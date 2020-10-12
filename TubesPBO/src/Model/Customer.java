@@ -12,7 +12,8 @@ package Model;
 public class Customer extends User{
     Keranjang keranjang;
 
-    public Customer(Keranjang keranjang) {
+    public Customer(Keranjang keranjang, String ID, String nama, String email, String password, String telepon) {
+        super(ID, nama, email, password, telepon);
         this.keranjang = keranjang;
     }
 
