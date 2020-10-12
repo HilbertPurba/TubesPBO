@@ -10,47 +10,36 @@ package Model;
  * @author Lenovo
  */
 public abstract class User {
-    private String idUser;
-    private String namaDepan;
-    private String namaBelakang;
+    private String ID;
+    private String nama;
     private String email;
     private String password;
-    private String jk;
     private String telepon;
 
-    public User(String idUser, String namaDepan, String namaBelakang, String email, String password, String jk, String telepon) {
-        this.idUser = idUser;
-        this.namaDepan = namaDepan;
-        this.namaBelakang = namaBelakang;
+    public User(String ID, String nama,String email, String password, String telepon) {
+        this.ID = ID;
+        this.nama = nama;
         this.email = email;
         this.password = password;
-        this.jk = jk;
         this.telepon = telepon;
     }
 
-    public String getIdUser() {
-        return idUser;
+    public String getID() {
+        return ID;
     }
 
-    public void setIdUser(String idUser) {
-        this.idUser = idUser;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
-    public String getNamaDepan() {
-        return namaDepan;
+    public String getNama() {
+        return nama;
     }
 
-    public void setNamaDepan(String namaDepan) {
-        this.namaDepan = namaDepan;
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
-    public String getNamaBelakang() {
-        return namaBelakang;
-    }
-
-    public void setNamaBelakang(String namaBelakang) {
-        this.namaBelakang = namaBelakang;
-    }
 
     public String getEmail() {
         return email;
@@ -66,14 +55,6 @@ public abstract class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getJk() {
-        return jk;
-    }
-
-    public void setJk(String jk) {
-        this.jk = jk;
     }
 
     public String getTelepon() {
