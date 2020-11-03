@@ -1,0 +1,31 @@
+jika project yang ada di gitlab belum tersedia di repo lokal kalian lakukan langkah ini:
+
+1. buka atau buat folder dimana pun di komputer kalian
+2. klik kanan dan buka git bashnya
+3. ketik git clone https://gitlab.com/kelompok-6ITHB/project-baru.git lalu enter
+4. selesai
+
+jika kalian ingin membuat branch baru
+
+1. buka folder projectnya
+2. klik kanan dan buka git bashnya
+3. ketik git branch <nama branchnya>
+4. ketik git branch untuk mengecek branch apa saja yang sudah ada
+5. selesai
+
+jika kalian ingin membuka atau pindah ke branch tertentu
+
+1. buka folder projectnya
+2. klik kanan dan buka git bashnya
+3. ketik git checkout <nama branchnya>
+4. selesai 
+
+jika kalian ingin melakukan push
+
+1. buka folder projectnya
+2. klik kanan dan buka git bashnya
+3. ketik git status untuk mengecek apakah filnya sudah di add atau belum
+4. jika belum di add ketik git add .
+5. ketik git commit -m "Pesan" untuk melakukan commit dan memberi keterangan commit apa yang dilakukan
+6. ketik git push https://gitlab.com/kelompok-6ITHB/project-baru.git lalu enter
+7. selesai
