@@ -5,6 +5,9 @@
  */
 package Main;
 
+import Controller.Controller;
+import java.util.ArrayList;
+
 /**
  *
  * @author Lenovo
@@ -14,8 +17,17 @@ public class Main {
     /**
      * @param args the command line arguments
      */
+    //buat ngetest doang
+    public Main() {
+        Controller controller =  new Controller();
+        ArrayList<Customer> listCust = controller.getAllCustomers();
+        for (Customer cust : listCust) {
+            System.out.println(cust.toString());
+        }
+    }
+    
     public static void main(String[] args) {
-        System.out.println("Initial Commit");
+       new Main();
     }
     
 }
