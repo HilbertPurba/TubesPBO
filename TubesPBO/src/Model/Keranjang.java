@@ -13,12 +13,12 @@ import java.util.List;
  */
 public class Keranjang {
     private String idKeranjang;
-    private String namaTOko;
+    private String namaToko;
     private List<Produk> listProdukBeli;
 
-    public Keranjang(String idKeranjang, String namaTOko, List<Produk> listProdukBeli) {
+    public Keranjang(String idKeranjang, String namaToko, List<Produk> listProdukBeli) {
         this.idKeranjang = idKeranjang;
-        this.namaTOko = namaTOko;
+        this.namaToko = namaToko;
         this.listProdukBeli = listProdukBeli;
     }
 
@@ -31,11 +31,11 @@ public class Keranjang {
     }
 
     public String getNamaTOko() {
-        return namaTOko;
+        return namaToko;
     }
 
     public void setNamaTOko(String namaTOko) {
-        this.namaTOko = namaTOko;
+        this.namaToko = namaTOko;
     }
 
     public List<Produk> getListProdukBeli() {
