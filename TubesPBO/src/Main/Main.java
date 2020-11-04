@@ -19,11 +19,11 @@ public class Main {
      */
     //buat ngetest doang
     public Main() {
-        Controller controller =  new Controller();
-        ArrayList<Customer> listCust = controller.getAllCustomers();
-        for (Customer cust : listCust) {
-            System.out.println(cust.toString());
-        }
+//        Controller controller =  new Controller();
+//        ArrayList<Customer> listCust = controller.getAllCustomers();
+//        for (Customer cust : listCust) {
+//            System.out.println(cust.toString());
+//        }
     }
     
     public static void main(String[] args) {
