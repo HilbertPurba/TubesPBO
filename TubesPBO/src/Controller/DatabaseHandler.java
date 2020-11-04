@@ -18,10 +18,7 @@ public class DatabaseHandler {
 
     public Connection con;
     private String driver = "com.mysql.cj.jdbc.Driver";
-    //Para Windowers pake ini
     private String url = "jdbc:mysql://localhost/db_olshop";
-    
-    //Kalo Linux pake ini baru bisa
 //    private String url = "jdbc:mysql://localhost/db_olshop?serverTimezone=" + TimeZone.getDefault().getID();
     private String username = "root";
     private String password = "";
