@@ -10,5 +10,7 @@ package View;
  * @author Lenovo
  */
 public class MainScreen {
-    
+    public static void main(String[] args) {
+        new PanelRegisterVendor();
+    }
 }
