@@ -5,7 +5,8 @@
  */
 package View;
 
-import controller.*;
+import Model.enums.TipeUserEnums;
+import Controller.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -13,7 +14,7 @@ import Model.UserManager;
 
 /**
  *
- * @author Jennifer Florentina
+ * @author Gilbert
  */
 public class PanelLogin implements ActionListener {
 
@@ -35,7 +36,7 @@ public class PanelLogin implements ActionListener {
         passwordLabel.setBounds(20, 90, 180, 50);
 
         email = new JTextField(100);
-        email.setBounds(180, 20, 380, 50);
+        email.setBounds(180, 20, 330, 50);
         email.setBorder(null);
 
         pass = new JPasswordField(100);
@@ -67,6 +68,28 @@ public class PanelLogin implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        String emailLogin = email.getText();
+        String passLogin = new String(pass.getPassword());
+        if (emailLogin.equals("") && passLogin.equals("")) {
+            JOptionPane.showMessageDialog(null, "Insert email and password!", "Alert", JOptionPane.WARNING_MESSAGE);
+        } else if (emailLogin.equals("")) {
+            JOptionPane.showMessageDialog(null, "Insert email!", "Alert", JOptionPane.WARNING_MESSAGE);
+        } else if (passLogin.equals("")) {
+            JOptionPane.showMessageDialog(null, "Insert password!", "Alert", JOptionPane.WARNING_MESSAGE);
+        } else if (Controller.cekPassword(emailLogin, passLogin)) {
+            UserManager.getInstance().setUser(Controller.getUser(emailLogin, passLogin));
+            if (UserManager.getInstance().getUser().getTipeUser() == TipeUserEnums.CUSTOMER) {
+                loginFrame.dispose();
+                new PanelRegisterCustomer();
+            } else if (UserManager.getInstance().getUser().getTipeUser() == TipeUserEnums.VENDOR) {
+                loginFrame.dispose();
+                new PanelRegisterVendor();
+            } else {
+                loginFrame.dispose();
+                new PanelRegisterVendor();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Insert email and password correctly!", "Alert", JOptionPane.WARNING_MESSAGE);
+        }
     }
 }

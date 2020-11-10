@@ -5,6 +5,8 @@
  */
 package Model;
 
+import Model.enums.TipeUserEnums;
+
 
 /**
  *
@@ -12,8 +14,8 @@ package Model;
  */
 public class Admin extends User{
 
-    public Admin(int ID, String nama, String email, String password, String telepon) {
-        super(ID, nama, email, password, telepon);
+    public Admin(int ID, TipeUserEnums TipeUser, String nama, String email, String password, String telepon) {
+        super(ID, TipeUser, nama, email, password, telepon);
     }
 
     public Admin(String nama, String email, String password, String telepon) {
@@ -22,6 +24,5 @@ public class Admin extends User{
 
     public Admin() {
     }
-    
-   
+
 }
