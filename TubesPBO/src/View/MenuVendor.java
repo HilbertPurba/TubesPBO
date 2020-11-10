@@ -7,6 +7,7 @@ package View;
 
 import java.awt.BorderLayout;
 import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -60,6 +61,7 @@ public class MenuVendor {
         
         title = new JLabel("Selamat Datang, Vendor!");
         title.setSize(400, 80);
+        title.setFont(new Font("Calibri", Font.BOLD, 36));
         panelTop.add(title);
         
         panelBottom = new JPanel();

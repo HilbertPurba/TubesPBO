@@ -8,6 +8,7 @@ package View;
 import javafx.scene.paint.Color;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -26,12 +27,13 @@ import javax.swing.JPanel;
  *
  * @author hilbert
  */
-public class MenuUser {
+public class MenuCustomer {
     private JFrame frame;
     private JPanel panelTop, panelNav, panelContent, panelBottom;
     private JButton btn_home, btn_keranjang, btn_account;
     private ImageIcon iconHome, iconKeranjang, iconAkun;
     private ImageIcon iconHome1, iconKeranjang1, iconAkun1;
+    private ImageIcon iconHome2;
 
     private JLabel title;
     
@@ -48,21 +50,27 @@ public class MenuUser {
         return dimg;
     }
     
-    public MenuUser() {
+    
+    
+    public MenuCustomer() {
         // Panel Set up
-        frame = new JFrame("Menu User");
+        frame = new JFrame("Menu Customer");
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setResizable(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         panelTop = new JPanel();
-        panelTop.setSize(JFrame.MAXIMIZED_BOTH, 80);
+        panelTop.setSize(JFrame.MAXIMIZED_BOTH, 100);
+        panelTop.setBackground(java.awt.Color.white);
         frame.add(panelTop, BorderLayout.NORTH);
         
-        title = new JLabel("Selamat Datang, User!");
+        title = new JLabel("CUSTOMER MENU");
         title.setSize(400, 80);
+        title.setFont(new Font("Calibri", Font.BOLD, 36));
+        title.setForeground(java.awt.Color.BLACK);
         panelTop.add(title);
         
+       
         panelBottom = new JPanel();
         panelBottom.setSize(400, 80);
         panelBottom.setBackground(java.awt.Color.white);
@@ -71,6 +79,8 @@ public class MenuUser {
         // Home
         iconHome = new ImageIcon(resizeImage("assets/home.png"));
         iconHome1 = new ImageIcon(resizeImage("assets/home1.png"));
+        iconHome2 = new ImageIcon(resizeImage("assets/home2.png"));
+
         btn_home = new JButton(iconHome);
         btn_home.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_home.setIcon(iconHome1);
@@ -78,8 +88,9 @@ public class MenuUser {
                 new MouseAdapter(){
                     @Override
                     public void mouseClicked(MouseEvent me){
-                        
+//                        btn_home.setIcon(iconHome2);
                     }
+                    
                     
                     @Override
                     public void mouseEntered(MouseEvent me){
