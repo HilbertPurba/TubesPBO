@@ -21,7 +21,7 @@ import Controller.*;
  * @author Gilbert
  */
 public class PanelRegister implements ActionListener {
-
+    
     JFrame registrasiFrame = new JFrame("Register Screen");
     JLabel namaLabel, emailLabel, teleponLabel, passLabel;
     JTextField name, email, telepon;
@@ -29,7 +29,7 @@ public class PanelRegister implements ActionListener {
     JPasswordField pass;
     JPanel Panel;
     JButton submitButton;
-
+    
     public PanelRegister() {
         registrasiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         registrasiFrame.setSize(300, 300);
@@ -64,7 +64,7 @@ public class PanelRegister implements ActionListener {
         pass = new JPasswordField(100);
         pass.setBounds(190, 310, 350, 40);
         pass.setBorder(null);
-
+        
         submitButton = new JButton("Register");
         submitButton.setBounds(280, 360, 150, 50);
         submitButton.addActionListener(this);
@@ -87,7 +87,7 @@ public class PanelRegister implements ActionListener {
         registrasiFrame.setLocationRelativeTo(null);
         registrasiFrame.setVisible(true);
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
 //        String nama = this.name.getText();
