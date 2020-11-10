@@ -5,7 +5,6 @@
  */
 package View;
 
-import Model.enums.TipeUser;
 import controller.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -68,28 +67,6 @@ public class PanelLogin implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-//        String username = uname.getText();
-//        String password = new String(pass.getPassword());
-//        if (username.equals("") && password.equals("")) {
-//            JOptionPane.showMessageDialog(null, "Insert username and password!", "Alert", JOptionPane.WARNING_MESSAGE);
-//        } else if (username.equals("")) {
-//            JOptionPane.showMessageDialog(null, "Insert username!", "Alert", JOptionPane.WARNING_MESSAGE);
-//        } else if (password.equals("")) {
-//            JOptionPane.showMessageDialog(null, "Insert password!", "Alert", JOptionPane.WARNING_MESSAGE);
-//        } else if (Controller.cekPassword(username, password)) {
-//            PersonManager.getInstance().setPerson(Controller.getPerson(username));
-//            if (PersonManager.getInstance().getPerson().getTipeUser() == TipeUserEnum.ADMIN) {
-//                loginFrame.dispose();
-//                new AdminMenuScreen();
-//            } else if (PersonManager.getInstance().getPerson().getTipeUser() == TipeUserEnum.MEMBER) {
-//                loginFrame.dispose();
-//                new MemberMenuScreen();
-//            } else {
-//                loginFrame.dispose();
-//                new UserMenuScreen();
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Insert email and password correctly!", "Alert", JOptionPane.WARNING_MESSAGE);
-//        }
+
     }
 }
