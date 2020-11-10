@@ -5,7 +5,6 @@
  */
 package Model;
 
-import Model.enums.TipeUser;
 import java.util.List;
 
 /**
@@ -16,13 +15,13 @@ public class Vendor extends User {
 
     private List<Produk> listProduk;
 
-    public Vendor(List<Produk> listProduk, int ID, String nama, String email, TipeUser tipeUser, String password, String telepon) {
-        super(ID, nama, email, tipeUser, password, telepon);
+    public Vendor(List<Produk> listProduk, int ID, String nama, String email, String password, String telepon) {
+        super(ID, nama, email, password, telepon);
         this.listProduk = listProduk;
     }
 
-    public Vendor(List<Produk> listProduk, String nama, String email, TipeUser tipeUser, String password, String telepon) {
-        super(nama, email, tipeUser, password, telepon);
+    public Vendor(List<Produk> listProduk, String nama, String email, String password, String telepon) {
+        super(nama, email, password, telepon);
         this.listProduk = listProduk;
     }
 
