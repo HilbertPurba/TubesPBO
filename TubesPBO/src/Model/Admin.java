@@ -5,13 +5,24 @@
  */
 package Model;
 
+import Model.enums.TipeUser;
+
 /**
  *
  * @author Lenovo
  */
 public class Admin extends User{
 
-    public Admin(String ID, String nama, String email, String password, String telepon) {
-        super(ID, nama, email, password, telepon);
+    public Admin(int ID, String nama, String email, TipeUser tipeUser, String password, String telepon) {
+        super(ID, nama, email, tipeUser, password, telepon);
     }
+
+    public Admin(String nama, String email, TipeUser tipeUser, String password, String telepon) {
+        super(nama, email, tipeUser, password, telepon);
+    }
+
+    public Admin() {
+    }
+    
+   
 }
