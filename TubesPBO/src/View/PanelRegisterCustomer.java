@@ -14,13 +14,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.event.*;
-import Model.User;
+import Model.*;
 import Controller.*;
 /**
  *
  * @author Gilbert
  */
-public class PanelRegister implements ActionListener {
+public class PanelRegisterCustomer implements ActionListener {
     
     JFrame registrasiFrame = new JFrame("Register Screen");
     JLabel namaLabel, emailLabel, teleponLabel, passLabel;
@@ -30,7 +30,7 @@ public class PanelRegister implements ActionListener {
     JPanel Panel;
     JButton submitButton;
     
-    public PanelRegister() {
+    public PanelRegisterCustomer() {
         registrasiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         registrasiFrame.setSize(300, 300);
 
@@ -90,28 +90,28 @@ public class PanelRegister implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
-//        String nama = this.name.getText();
-//        String email = this.email.getText();
-//        String noTelepon = this.telepon.getText();
-//        String password = new String(pass.getPassword());
-//        int a = JOptionPane.showOptionDialog(null, "Are you sure?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
-//        if (a == JOptionPane.YES_OPTION) {
-//            if (nama.length() == 0 || email.length() == 0 || noTelepon.length() == 0 || password.length() == 0) {
-//                JOptionPane.showMessageDialog(null, "Input all the data!", "Alert", JOptionPane.WARNING_MESSAGE);
-//            } else {
-//                User newUser = new User();
-//                newUser.setNama(nama);
-//                newUser.setPassword(password);
-//                newUser.setEmail(email);
-//                newUser.setTelepon(noTelepon);
-//                if (Controller.insertNewUser(newUser)) {
-//                    JOptionPane.showMessageDialog(null, "Registration Complete!\nPlease Login!");
-//                    registrasiFrame.dispose();
-//                    new PanelLogin();
-//                } else {
-//                    JOptionPane.showMessageDialog(null, "Data can't be inserted!", "Alert", JOptionPane.WARNING_MESSAGE);
-//                }
-//            }
-//        }
+        String nama = this.name.getText();
+        String email = this.email.getText();
+        String noTelepon = this.telepon.getText();
+        String password = new String(pass.getPassword());
+        int a = JOptionPane.showOptionDialog(null, "Are you sure?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+        if (a == JOptionPane.YES_OPTION) {
+            if (nama.length() == 0 || email.length() == 0 || noTelepon.length() == 0 || password.length() == 0) {
+                JOptionPane.showMessageDialog(null, "Input all the data!", "Alert", JOptionPane.WARNING_MESSAGE);
+            } else {
+                User newUser = new User();
+                newUser.setNama(nama);
+                newUser.setPassword(password);
+                newUser.setEmail(email);
+                newUser.setTelepon(noTelepon);
+                if (Controller.insertNewCust(newUser)) {
+                    JOptionPane.showMessageDialog(null, "Registration Complete!\nPlease Login!");
+                    registrasiFrame.dispose();
+                    new PanelLogin();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Data can't be inserted!", "Alert", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        }
     }
 }
