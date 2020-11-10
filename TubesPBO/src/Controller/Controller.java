@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import Model.*;
 
 /**
  *
@@ -65,17 +66,17 @@ public class Controller {
 //        return (customer);
 //    }
 //    
-//    // INSERT
-//    public boolean insertNewUser(Customer customer) {
+    // INSERT
+//    public boolean insertNewUser(User user) {
 //        conn.connect();
 //        String query = "INSERT INTO customers VALUES(?,?,?,?,?)";
 //        try {
 //            PreparedStatement stmt = conn.con.prepareStatement(query);
-//            stmt.setString(1, customer.getId());
-//            stmt.setString(2, customer.getName());
-//            stmt.setString(3, customer.getEmail());
-//            stmt.setString(4, customer.getPassword());
-//            stmt.setString(5, customer.getHp());
+//            stmt.setString(1, user.getId());
+//            stmt.setString(2, user.getName());
+//            stmt.setString(3, user.getEmail());
+//            stmt.setString(4, user.getPassword());
+//            stmt.setString(5, user.getHp());
 //            stmt.executeUpdate();
 //            return (true);
 //        } catch (SQLException e) {

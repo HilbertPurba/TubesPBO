@@ -5,16 +5,30 @@
  */
 package Model;
 
+import Model.enums.TipeUser;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  *
  * @author hilbert
  */
-public class Customer extends User{
-    Keranjang keranjang;
+public class Customer extends User {
 
-    public Customer(Keranjang keranjang, String ID, String nama, String email, String password, String telepon) {
-        super(ID, nama, email, password, telepon);
+    Keranjang keranjang;
+    private List<Customer> listCustomer = new LinkedList<>();
+
+    public Customer(Keranjang keranjang, int ID, String nama, String email, TipeUser tipeUser, String password, String telepon) {
+        super(ID, nama, email, tipeUser, password, telepon);
         this.keranjang = keranjang;
+    }
+
+    public Customer(Keranjang keranjang, String nama, String email, TipeUser tipeUser, String password, String telepon) {
+        super(nama, email, tipeUser, password, telepon);
+        this.keranjang = keranjang;
+    }
+
+    public Customer() {
     }
 
     public Keranjang getKeranjang() {
@@ -24,4 +38,13 @@ public class Customer extends User{
     public void setKeranjang(Keranjang keranjang) {
         this.keranjang = keranjang;
     }
+
+    public List<Customer> getListCustomer() {
+        return listCustomer;
+    }
+
+    public void setListCustomer(List<Customer> listCustomer) {
+        this.listCustomer = listCustomer;
+    }
+
 }

@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package Model.enums;
 
 /**
  *
- * @author Lenovo
+ * @author Gilbert
  */
-public class MainScreen {
-    public static void main(String[] args) {
-        new PanelRegister();
-    }
+public enum TipeUser {
+    ADMIN,CUSTOMER,VENDOR;
 }
