@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2020 at 05:25 AM
+-- Generation Time: Nov 10, 2020 at 09:40 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -31,7 +31,6 @@ CREATE TABLE `admin` (
   `id_admin` int(3) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `tipeUser` varchar(10) NOT NULL,
   `password` varchar(255) NOT NULL,
   `noTelp` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -40,8 +39,8 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id_admin`, `nama`, `email`, `tipeUser`, `password`, `noTelp`) VALUES
-(1, 'Kevin', 'kevin@gmail.com', 'Admin', '123456', '08159761575');
+INSERT INTO `admin` (`id_admin`, `nama`, `email`, `password`, `noTelp`) VALUES
+(1, 'Kevin', 'kevin@gmail.com', '123456', '08159761575');
 
 -- --------------------------------------------------------
 
@@ -53,7 +52,6 @@ CREATE TABLE `customer` (
   `id_cust` int(3) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `tipeUser` varchar(10) NOT NULL,
   `password` varchar(255) NOT NULL,
   `noTelp` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -62,10 +60,10 @@ CREATE TABLE `customer` (
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`id_cust`, `nama`, `email`, `tipeUser`, `password`, `noTelp`) VALUES
-(1, 'Zefanya', 'zefa@gmail.com', 'Customer', '123456', '085155340807'),
-(2, 'Gilbert', 'gibe@gmail.com', 'Customer', '123456', '087944568989'),
-(3, 'Hilbert', 'hilbert@gmail.com', 'Customer', '123456', '096899468989');
+INSERT INTO `customer` (`id_cust`, `nama`, `email`, `password`, `noTelp`) VALUES
+(1, 'Zefanya', 'zefa@gmail.com', '123456', '085155340807'),
+(2, 'Gilbert', 'gibe@gmail.com', '123456', '087944568989'),
+(3, 'Hilbert', 'hilbert@gmail.com', '123456', '096899468989');
 
 -- --------------------------------------------------------
 
@@ -151,7 +149,6 @@ CREATE TABLE `vendor` (
   `id_vendor` int(3) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `tipeUser` varchar(10) NOT NULL,
   `password` varchar(255) NOT NULL,
   `noTelp` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -160,10 +157,10 @@ CREATE TABLE `vendor` (
 -- Dumping data for table `vendor`
 --
 
-INSERT INTO `vendor` (`id_vendor`, `nama`, `email`, `tipeUser`, `password`, `noTelp`) VALUES
-(1, 'Megacomp', 'megacomp@gmail.com', 'Vendor', '123456', '085644987946'),
-(2, 'Gramedia Online', 'gramed@gmail.com', 'Vendor', '123456', '08659964646'),
-(3, '3Second Online', 'threesecond@gmail.com', 'Vendor', '123456', '086566894949');
+INSERT INTO `vendor` (`id_vendor`, `nama`, `email`, `password`, `noTelp`) VALUES
+(1, 'Megacomp', 'megacomp@gmail.com', '123456', '085644987946'),
+(2, 'Gramedia Online', 'gramed@gmail.com', '123456', '08659964646'),
+(3, '3Second Online', 'threesecond@gmail.com', '123456', '086566894949');
 
 --
 -- Indexes for dumped tables

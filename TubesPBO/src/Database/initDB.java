@@ -28,47 +28,44 @@ public class initDB {
             + "id_admin INT(3) AUTO_INCREMENT NOT NULL, "
             + "nama VARCHAR(255) NOT NULL, "
             + "email VARCHAR(255) NOT NULL, "
-            + "tipeUser VARCHAR(10) NOT NULL, "
             + "password VARCHAR(255) NOT NULL, "
             + "noTelp VARCHAR(255) NOT NULL, "
             + "PRIMARY KEY (id_admin))";
     
     static final String baseAdminData = "INSERT INTO Admin ("
-            + "'id_admin', 'nama', 'email','tipeUser', 'password', 'noTelp') "
+            + "'id_admin', 'nama', 'email', 'password', 'noTelp') "
             + "VALUES "
-            + "(" + "'" + 1 + "'" + ",'Kevin', 'kevin@gmail.com','Admin', '123456', '08159761575')";
+            + "(" + "'" + 1 + "'" + ",'Kevin', 'kevin@gmail.com', '123456', '08159761575')";
     
     static final String tableCustomer = "CREATE TABLE Customer ("
             + "id_cust INT(3) AUTO_INCREMENT NOT NULL, "
             + "nama VARCHAR(255) NOT NULL, "
             + "email VARCHAR(255) NOT NULL, "
-            + "tipeUser VARCHAR(10) NOT NULL, "
             + "password VARCHAR(255) NOT NULL, "
             + "noTelp VARCHAR(255) NOT NULL, "
             + "PRIMARY KEY(id_cust))";
     
     static final String baseCustomerData = "INSERT INTO Customer ("
-            + "'id_cust', 'nama', 'email','tipeUser', 'password', 'noTelp') "
+            + "'id_cust', 'nama', 'email','password', 'noTelp') "
             + "VALUES "
-            + "('"+1+"', 'Zefanya', 'zefa@gmail.com','Customer', '123456', '085155340807'), "
-            + "('"+2+"', 'Gilbert', 'gibe@gmail.com','Customer', '123456', '087944568989'), "
-            + "('"+3+"', 'Hilbert', 'hilbert@gmail.com','Customer', '123456', '096899468989') ";
+            + "('"+1+"', 'Zefanya', 'zefa@gmail.com', '123456', '085155340807'), "
+            + "('"+2+"', 'Gilbert', 'gibe@gmail.com', '123456', '087944568989'), "
+            + "('"+3+"', 'Hilbert', 'hilbert@gmail.com', '123456', '096899468989') ";
     
     static final String tableVendor = "CREATE TABLE Vendor ("
             + "id_vendor INT(3) AUTO_INCREMENT NOT NULL, "
             + "nama VARCHAR(255) NOT NULL, "
             + "email VARCHAR(255) NOT NULL, "
-            + "tipeUser VARCHAR(10) NOT NULL, "
             + "password VARCHAR(255) NOT NULL, "
             + "noTelp VARCHAR(255) NOT NULL, "
             + "PRIMARY KEY(id_vendor))";
     
     static final String baseVendorData = "INSERT INTO Vendor ("
-            + "'id_vendor', 'nama', 'email', 'tipeUser','password', 'noTelp') "
+            + "'id_vendor', 'nama', 'email', 'password', 'noTelp') "
             + "VALUES "
-            + "('"+1+"', 'Megacomp', 'megacomp@gmail.com','Vendor', '123456', '085644987946'), "
-            + "('"+2+"', 'Gramedia Online', 'gramed@gmail.com','Vendor', '123456', '08659964646'), "
-            + "('"+3+"', '3Second Online', 'threesecond@gmail.com','Vendor', '123456', '086566894949') ";
+            + "('"+1+"', 'Megacomp', 'megacomp@gmail.com','123456', '085644987946'), "
+            + "('"+2+"', 'Gramedia Online', 'gramed@gmail.com','123456', '08659964646'), "
+            + "('"+3+"', '3Second Online', 'threesecond@gmail.com','123456', '086566894949') ";
     
     static final String tableProduct = "CREATE TABLE Product ("
             + "id_prod INT(3) AUTO_INCREMENT NOT NULL, "
