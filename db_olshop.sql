@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2020 at 06:31 AM
+-- Generation Time: Nov 10, 2020 at 05:25 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -28,9 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `id_admin` varchar(10) NOT NULL,
+  `id_admin` int(3) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `tipeUser` varchar(10) NOT NULL,
   `password` varchar(255) NOT NULL,
   `noTelp` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -39,8 +40,8 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id_admin`, `nama`, `email`, `password`, `noTelp`) VALUES
-('A001', 'Kevin', 'kevin@gmail.com', '123456', '08159761575');
+INSERT INTO `admin` (`id_admin`, `nama`, `email`, `tipeUser`, `password`, `noTelp`) VALUES
+(1, 'Kevin', 'kevin@gmail.com', 'Admin', '123456', '08159761575');
 
 -- --------------------------------------------------------
 
@@ -49,9 +50,10 @@ INSERT INTO `admin` (`id_admin`, `nama`, `email`, `password`, `noTelp`) VALUES
 --
 
 CREATE TABLE `customer` (
-  `id_cust` varchar(10) NOT NULL,
+  `id_cust` int(3) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `tipeUser` varchar(10) NOT NULL,
   `password` varchar(255) NOT NULL,
   `noTelp` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -60,10 +62,10 @@ CREATE TABLE `customer` (
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`id_cust`, `nama`, `email`, `password`, `noTelp`) VALUES
-('C001', 'Zefanya', 'zefa@gmail.com', '123456', '085155340807'),
-('C002', 'Gilbert', 'gibe@gmail.com', '123456', '087944568989'),
-('C003', 'Hilbert', 'hilbert@gmail.com', '123456', '096899468989');
+INSERT INTO `customer` (`id_cust`, `nama`, `email`, `tipeUser`, `password`, `noTelp`) VALUES
+(1, 'Zefanya', 'zefa@gmail.com', 'Customer', '123456', '085155340807'),
+(2, 'Gilbert', 'gibe@gmail.com', 'Customer', '123456', '087944568989'),
+(3, 'Hilbert', 'hilbert@gmail.com', 'Customer', '123456', '096899468989');
 
 -- --------------------------------------------------------
 
@@ -72,9 +74,9 @@ INSERT INTO `customer` (`id_cust`, `nama`, `email`, `password`, `noTelp`) VALUES
 --
 
 CREATE TABLE `keranjang` (
-  `id_keranjang` varchar(10) NOT NULL,
-  `id_cust` varchar(10) NOT NULL,
-  `id_prod` varchar(10) NOT NULL,
+  `id_keranjang` int(3) NOT NULL,
+  `id_cust` int(3) NOT NULL,
+  `id_prod` int(3) NOT NULL,
   `jumlah_total` int(10) NOT NULL,
   `harga_total` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -84,9 +86,9 @@ CREATE TABLE `keranjang` (
 --
 
 INSERT INTO `keranjang` (`id_keranjang`, `id_cust`, `id_prod`, `jumlah_total`, `harga_total`) VALUES
-('K001', 'C001', 'P001', 1, 200000),
-('K002', 'C002', 'P002', 2, 50000),
-('K003', 'C003', 'P003', 4, 200000);
+(1, 1, 1, 1, 200000),
+(2, 2, 2, 2, 50000),
+(3, 3, 3, 4, 200000);
 
 -- --------------------------------------------------------
 
@@ -95,8 +97,8 @@ INSERT INTO `keranjang` (`id_keranjang`, `id_cust`, `id_prod`, `jumlah_total`, `
 --
 
 CREATE TABLE `product` (
-  `id_prod` varchar(10) NOT NULL,
-  `id_vendor` varchar(10) NOT NULL,
+  `id_prod` int(3) NOT NULL,
+  `id_vendor` int(3) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `merk` varchar(255) NOT NULL,
   `harga` int(15) NOT NULL,
@@ -108,9 +110,9 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id_prod`, `id_vendor`, `nama`, `merk`, `harga`, `stok`) VALUES
-('P001', 'V001', 'Mouse Logitech G33', 'Logitech', 200000, 10),
-('P002', 'V002', 'Buku Mengaji Cerdas', 'Mizan', 25000, 20),
-('P003', 'V003', 'Kaos Trendy Yellow', '3Second', 50000, 5);
+(1, 1, 'Mouse Logitech G33', 'Logitech', 200000, 10),
+(2, 2, 'Buku Mengaji Cerdas', 'Mizan', 25000, 20),
+(3, 3, 'Kaos Trendy Yellow', '3Second', 50000, 5);
 
 -- --------------------------------------------------------
 
@@ -119,8 +121,8 @@ INSERT INTO `product` (`id_prod`, `id_vendor`, `nama`, `merk`, `harga`, `stok`) 
 --
 
 CREATE TABLE `transaksi` (
-  `id_transaksi` varchar(10) NOT NULL,
-  `id_keranjang` varchar(10) NOT NULL,
+  `id_transaksi` int(3) NOT NULL,
+  `id_keranjang` int(3) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `noTelp` varchar(50) NOT NULL,
   `alamat` varchar(255) NOT NULL,
@@ -135,9 +137,9 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id_transaksi`, `id_keranjang`, `nama`, `noTelp`, `alamat`, `jenis_pembayaran`, `jenis_pengiriman`, `kode_promo`, `total_harga`) VALUES
-('T001', 'K001', 'Zefanya', '085155340807', 'Kopo', 'COD', '-', 'DISC10K', 190000),
-('T002', 'K002', 'Gilbert', '087944568989', 'Bitung', 'Transfer Bank', 'JNE', 'DISC10K', 40000),
-('T003', 'K003', 'Hilbert', '096899468989', 'Pasir Kaliki', 'Transfer Bank', 'JNT', '-', 200000);
+(1, 1, 'Zefanya', '085155340807', 'Kopo', 'COD', '-', 'DISC10K', 190000),
+(2, 2, 'Gilbert', '087944568989', 'Bitung', 'Transfer Bank', 'JNE', 'DISC10K', 40000),
+(3, 3, 'Hilbert', '096899468989', 'Pasir Kaliki', 'Transfer Bank', 'JNT', '-', 200000);
 
 -- --------------------------------------------------------
 
@@ -146,9 +148,10 @@ INSERT INTO `transaksi` (`id_transaksi`, `id_keranjang`, `nama`, `noTelp`, `alam
 --
 
 CREATE TABLE `vendor` (
-  `id_vendor` varchar(10) NOT NULL,
+  `id_vendor` int(3) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `tipeUser` varchar(10) NOT NULL,
   `password` varchar(255) NOT NULL,
   `noTelp` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -157,10 +160,10 @@ CREATE TABLE `vendor` (
 -- Dumping data for table `vendor`
 --
 
-INSERT INTO `vendor` (`id_vendor`, `nama`, `email`, `password`, `noTelp`) VALUES
-('V001', 'Megacomp', 'megacomp@gmail.com', '123456', '085644987946'),
-('V002', 'Gramedia Online', 'gramed@gmail.com', '123456', '08659964646'),
-('V003', '3Second Online', 'threesecond@gmail.com', '123456', '086566894949');
+INSERT INTO `vendor` (`id_vendor`, `nama`, `email`, `tipeUser`, `password`, `noTelp`) VALUES
+(1, 'Megacomp', 'megacomp@gmail.com', 'Vendor', '123456', '085644987946'),
+(2, 'Gramedia Online', 'gramed@gmail.com', 'Vendor', '123456', '08659964646'),
+(3, '3Second Online', 'threesecond@gmail.com', 'Vendor', '123456', '086566894949');
 
 --
 -- Indexes for dumped tables
@@ -205,6 +208,46 @@ ALTER TABLE `transaksi`
 --
 ALTER TABLE `vendor`
   ADD PRIMARY KEY (`id_vendor`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id_admin` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `id_cust` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `keranjang`
+--
+ALTER TABLE `keranjang`
+  MODIFY `id_keranjang` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
+  MODIFY `id_prod` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `transaksi`
+--
+ALTER TABLE `transaksi`
+  MODIFY `id_transaksi` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `vendor`
+--
+ALTER TABLE `vendor`
+  MODIFY `id_vendor` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
