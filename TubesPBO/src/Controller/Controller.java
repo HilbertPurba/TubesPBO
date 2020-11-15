@@ -5,7 +5,6 @@
  */
 package Controller;
 
-import static Model.enums.TipeUserEnums.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +14,7 @@ import Model.*;
 
 /**
  *
- * @author hilbert
+ * @author Gilbert
  */
 public class Controller {
 
@@ -23,28 +22,87 @@ public class Controller {
 //ini di comment dulu karena belum buat insert, update delete dsb.
     //sudah ditest semuanya lancar :)
 
-//    // SELECT ALL from table users
-//    public ArrayList<Customer> getAllCustomers() {
-//        ArrayList<Customer> listCustomer = new ArrayList<>();
-//        conn.connect();
-//        String query = "SELECT * FROM customers";
-//        try {
-//            Statement stmt = conn.con.createStatement();
-//            ResultSet rs = stmt.executeQuery(query);
-//            while (rs.next()) {
-//                Customer customer = new Customer();
-//                customer.setId(rs.getString("id"));
-//                customer.setName(rs.getString("name"));
-//                customer.setEmail(rs.getString("email"));
-//                customer.setPassword(rs.getString("password"));
-//                customer.setHp(rs.getString("hp"));
-//                listCustomer.add(customer);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return (listCustomer);
-//    }
+    public static ArrayList<User> getAllCustomers() {
+        ArrayList<User> users = new ArrayList<>();
+        conn.connect();
+        String query = "SELECT * FROM customer";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                User user = new User();
+                user.setID(rs.getInt("id_cust"));
+                user.setNama(rs.getString("nama"));
+                user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                user.setTelepon(rs.getString("noTelp"));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return (users);
+    }
+
+    //cek untuk login customer
+    public static boolean CekCustomer(String email, String pass) {
+        conn.connect();
+        String query = "SELECT * FROM customer WHERE email='" + email + "'";
+        boolean cek = false;
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                if(rs.getString("email").equals(email) && rs.getString("password").equals(pass)){
+                    cek = true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            cek = false;
+        }
+        return (cek);
+    }
+    
+    //cek untuk login vendor
+    public static boolean CekVendor(String email, String pass) {
+        conn.connect();
+        String query = "SELECT * FROM vendor WHERE email='" + email + "'";
+        boolean cek = false;
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                if(rs.getString("email").equals(email) && rs.getString("password").equals(pass)){
+                    cek = true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            cek = false;
+        }
+        return (cek);
+    }
+    
+    //cek untuk login customer
+    public static boolean CekAdmin(String email, String pass) {
+        conn.connect();
+        String query = "SELECT * FROM admin WHERE email='" + email + "'";
+        boolean cek = false;
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                if(rs.getString("email").equals(email) && rs.getString("password").equals(pass)){
+                    cek = true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            cek = false;
+        }
+        return (cek);
+    }
 //
 //    // SELECT WHERE
 //    public Customer getCustomer(String name, String email) {
@@ -68,6 +126,7 @@ public class Controller {
 //    }
 //    
     // INSERT Customer
+
     public static boolean insertNewCust(User user) {
         conn.connect();
         String query = "INSERT INTO customer (nama,email,password,noTelp) VALUES(?,?,?,?)";
@@ -121,71 +180,6 @@ public class Controller {
         }
     }
 
-    //Get User Login Data
-    public static User getUser(String email, String pass) {
-        User user = null;
-        conn.connect();
-        String query1 = "SELECT * FROM customer WHERE email='" + email + "'";
-        String query2 = "SELECT * FROM vendor WHERE email='" + email + "'";
-        String query3 = "SELECT * FROM admin WHERE email='" + email + "'";
-        try {
-            Statement stmt = conn.con.createStatement();
-            ResultSet rs1 = stmt.executeQuery(query1);
-            ResultSet rs2 = stmt.executeQuery(query2);
-            ResultSet rs3 = stmt.executeQuery(query3);
-            while (rs1.next() || rs2.next() || rs3.next()) {
-                String pass1 = rs1.getString("password");
-                String pass2 = rs2.getString("password");
-                String pass3 = rs3.getString("password");
-                if (pass.equals(pass1)) {
-                    user = new Customer();
-                    user.setTipeUser(CUSTOMER);
-                    user.setID(rs1.getInt("id_cust"));
-                    user.setNama(rs1.getString("nama"));
-                    user.setEmail(rs1.getString("email"));
-                    user.setPassword(rs1.getString("password"));
-                    user.setTelepon(rs1.getString("noTelp"));
-                } else if (pass.equals(pass2)) {
-                    user = new Customer();
-                    user.setTipeUser(VENDOR);
-                    user.setID(rs2.getInt("id_vendor"));
-                    user.setNama(rs2.getString("nama"));
-                    user.setEmail(rs2.getString("email"));
-                    user.setPassword(rs2.getString("password"));
-                    user.setTelepon(rs2.getString("noTelp"));
-                } else if (pass.equals(pass3)) {
-                    user = new Customer();
-                    user.setTipeUser(ADMIN);
-                    user.setID(rs3.getInt("id_admin"));
-                    user.setNama(rs3.getString("nama"));
-                    user.setEmail(rs3.getString("email"));
-                    user.setPassword(rs3.getString("password"));
-                    user.setTelepon(rs3.getString("noTelp"));
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return (user);
-    }
-
-    public static boolean cekPassword(String email, String password) {
-        conn.connect();
-        String query = "SELECT * FROM customer WHERE email='" + email + "'";
-        boolean isMatch = false;
-        try {
-            Statement stmt = conn.con.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                if (rs.getString("password").equals(password)) {
-                    isMatch = true;
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return isMatch;
-    }
 //
 //    // UPDATE
 //    public boolean updateUser(Customer customer) {
