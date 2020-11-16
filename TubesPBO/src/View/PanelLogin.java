@@ -79,7 +79,7 @@ public class PanelLogin implements ActionListener {
         } else if (Controller.CekCustomer(emailLogin, passLogin)) {
             JOptionPane.showMessageDialog(null, "Login Successfull!");
             loginFrame.dispose();
-            new Dashboard();
+            new DashboardCustomer();
         } else if (Controller.CekVendor(emailLogin, passLogin)) {
             JOptionPane.showMessageDialog(null, "Login Successfull!");
             loginFrame.dispose();

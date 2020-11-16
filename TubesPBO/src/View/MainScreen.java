@@ -13,7 +13,7 @@ public class MainScreen {
     public static void main(String[] args) {
 //        new PanelRegister();
 //        new PanelLogin();
-        new Dashboard();
+        new DashboardCustomer();
 //        new MenuVendor();
 //        new MenuAdmin();
     }
