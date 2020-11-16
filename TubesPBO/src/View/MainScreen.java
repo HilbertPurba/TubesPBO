@@ -12,8 +12,8 @@ package View;
 public class MainScreen {
     public static void main(String[] args) {
 //        new PanelRegister();
-        new PanelLogin();
-//        new MenuCustomer();
+//        new PanelLogin();
+        new Dashboard();
 //        new MenuVendor();
 //        new MenuAdmin();
     }
