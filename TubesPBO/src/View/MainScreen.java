@@ -13,11 +13,10 @@ public class MainScreen {
     public static void main(String[] args) {
         new Start();
 //        new PanelRegister();
-        new DashBoard();
+        new DashBoardCustomer();
 //        new PanelRegisterCustomer();
 //        new PanelRegisterVendor();
 //        new PanelLogin();
-//        new MenuCustomer();
 //        new MenuVendor();
 //        new MenuAdmin();
     }
