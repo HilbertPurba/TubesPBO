@@ -11,6 +11,10 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import Model.UserManager;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -18,52 +22,99 @@ import Model.UserManager;
  */
 public class PanelLogin implements ActionListener {
 
-    JFrame loginFrame = new JFrame("Login");
-    JPanel textfieldPanel = new JPanel();
-    JLabel emailLabel, passwordLabel;
-    JToggleButton eyeButton;
+    JFrame jfr_login;
+    JLabel emailL, passL;
+//    JToggleButton eyeButton;
     JTextField email;
     JPasswordField pass;
-    JButton submitButton;
+    JButton btn_login;
+    JPanel Panel;
+    
+    private ImageIcon iconLogin, iconLogin1;
+    
+    private Image resizeImage(String url) {
+        Image dimg = null;
+
+        try {
+            BufferedImage img = ImageIO.read(new File(url));
+            dimg = img.getScaledInstance(150, 60, Image.SCALE_SMOOTH);
+        } catch (IOException ex) {
+            ex.printStackTrace(System.err);
+        }
+
+        return dimg;
+    }
 
     public PanelLogin() {
-        loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jfr_login = new JFrame("GHz - Login");
+        jfr_login.getContentPane().setBackground(Color.WHITE);
+        jfr_login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jfr_login.setResizable(true);
+        jfr_login.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        jfr_login.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        Panel = new JPanel();
+        Panel.setLayout(null);
+        
+        JLabel judulL = new JLabel("LOGIN");
+        judulL.setBounds(900, 0, 1000, 300);
+        judulL.setFont(new Font("Trebuchet MS", Font.BOLD, 80));
+        judulL.setForeground(new Color(253,170,0));
 
-        emailLabel = new JLabel("Email     : ");
-        emailLabel.setBounds(20, 20, 180, 50);
-
-        passwordLabel = new JLabel("Password      : ");
-        passwordLabel.setBounds(20, 90, 180, 50);
-
-        email = new JTextField(100);
-        email.setBounds(180, 20, 330, 50);
+        emailL = new JLabel("Email              : ");
+        emailL.setBounds(720, 230, 150, 40);
+        emailL.setFont(new Font("Calibri", Font.BOLD, 20));
+        email = new JTextField();
+        email.setBounds(880, 230, 350, 40);
         email.setBorder(null);
 
+        passL = new JLabel("Password       : ");
+        passL.setBounds(720, 290, 150, 40);
+        passL.setFont(new Font("Calibri", Font.BOLD, 20));
         pass = new JPasswordField(100);
-        pass.setBounds(180, 90, 330, 50);
+        pass.setBounds(880, 290, 350, 40);
         pass.setBorder(null);
 
-        textfieldPanel = new JPanel();
-        textfieldPanel.setBounds(380, 150, 590, 170);
-        textfieldPanel.setBackground(new Color(221, 243, 245));
-        textfieldPanel.add(emailLabel);
-        textfieldPanel.add(email);
-        textfieldPanel.add(passwordLabel);
-        textfieldPanel.add(pass);
-        textfieldPanel.setLayout(null);
-
-        submitButton = new JButton("Login");
-        submitButton.setBounds(820, 350, 150, 50);
-        submitButton.addActionListener(this);
-
-        loginFrame.add(textfieldPanel);
-        loginFrame.add(submitButton);
-        loginFrame.getContentPane().setBackground(Color.WHITE);
-        loginFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        loginFrame.setLocationRelativeTo(null);
-        loginFrame.setLayout(null);
-        loginFrame.setVisible(true);
-
+        // Button Submit
+        iconLogin = new ImageIcon(resizeImage("assets/login.png"));
+        iconLogin1 = new ImageIcon(resizeImage("assets/login1.png"));
+        
+        btn_login = new JButton (iconLogin);
+        btn_login.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn_login.setIcon(iconLogin);
+        btn_login.setBounds(950, 380, 150, 60);
+        
+        btn_login.addMouseListener(
+                new MouseAdapter(){
+                    @Override
+                    public void mouseClicked(MouseEvent me){
+                        jfr_login.setVisible(false);
+                    }
+                    
+                    @Override
+                    public void mouseEntered(MouseEvent me){
+                        btn_login.setIcon(iconLogin1);
+                    }
+                    
+                    @Override
+                    public void mouseExited(MouseEvent me){
+                        btn_login.setIcon(iconLogin);
+                    }
+                }
+        );
+        btn_login.setBorderPainted(false);
+        btn_login.setFocusPainted(false);
+        btn_login.setContentAreaFilled(false);
+        btn_login.addActionListener(this);
+        
+        jfr_login.add(judulL);
+        jfr_login.add(emailL);
+        jfr_login.add(email);
+        jfr_login.add(passL);
+        jfr_login.add(pass);
+        jfr_login.add(btn_login);
+        jfr_login.add(Panel);
+        jfr_login.setVisible(true);
     }
 
     @Override
@@ -78,15 +129,15 @@ public class PanelLogin implements ActionListener {
             JOptionPane.showMessageDialog(null, "Insert password!", "Alert", JOptionPane.WARNING_MESSAGE);
         } else if (Controller.CekCustomer(emailLogin, passLogin)) {
             JOptionPane.showMessageDialog(null, "Login Successfull!");
-            loginFrame.dispose();
+            jfr_login.dispose();
             new Dashboard();
         } else if (Controller.CekVendor(emailLogin, passLogin)) {
             JOptionPane.showMessageDialog(null, "Login Successfull!");
-            loginFrame.dispose();
+            jfr_login.dispose();
             new MenuVendor();
         } else if (Controller.CekAdmin(emailLogin, passLogin)) {
             JOptionPane.showMessageDialog(null, "Login Successfull!");
-            loginFrame.dispose();
+            jfr_login.dispose();
             new MenuAdmin();
         } else {
             JOptionPane.showMessageDialog(null, "Insert email and password correctly!", "Alert", JOptionPane.WARNING_MESSAGE);
