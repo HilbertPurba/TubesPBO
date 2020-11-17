@@ -24,9 +24,9 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author hilbert
+ * @author Lenovo
  */
-public class PanelAccount extends JPanel {
+public class PanelVendorAccount extends JPanel {
     private JPanel header, content;
     private JLabel title, nama, email, telepon;
     private ImageIcon iconEdit, iconEdit1, iconEdit2;
@@ -44,27 +44,31 @@ public class PanelAccount extends JPanel {
         return dimg;
     }
     
-    public PanelAccount () {
+    public PanelVendorAccount () {
         setLayout(new BorderLayout());
         header = new JPanel();
         header.setBackground(java.awt.Color.white);
         
-        title = new JLabel("PROFIL");
-        title.setFont(new Font("Calibri", Font.BOLD, 36));
+        title = new JLabel("PROFIL VENDOR");
+        title.setFont(new Font("Calibri", Font.BOLD, 72));
         title.setForeground(java.awt.Color.BLACK);
         header.add(title);
         
         content = new JPanel();
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
-        nama = new JLabel("Nama: Test");
-        nama.setFont(new Font("Calibri",  Font.BOLD, 24));
+        
+        nama = new JLabel("Nama : Test", JLabel.CENTER);
+        nama.setFont(new Font("Calibri",  Font.BOLD, 42));
         nama.setAlignmentX(Component.CENTER_ALIGNMENT);
-        email = new JLabel("Email: test@domain.com");
-        email.setFont(new Font("Calibri",  Font.BOLD, 24));
+        nama.setAlignmentY(Component.CENTER_ALIGNMENT);
+        email = new JLabel("Email : test@domain.com",JLabel.CENTER);
+        email.setFont(new Font("Calibri",  Font.BOLD, 42));
         email.setAlignmentX(Component.CENTER_ALIGNMENT);
-        telepon = new JLabel("Telepon: 081231293219");
-        telepon.setFont(new Font("Calibri",  Font.BOLD, 24));
+        email.setAlignmentY(Component.CENTER_ALIGNMENT);
+        telepon = new JLabel("Telepon : 081231293219", JLabel.CENTER);
+        telepon.setFont(new Font("Calibri",  Font.BOLD, 42));
         telepon.setAlignmentX(Component.CENTER_ALIGNMENT);
+        telepon.setAlignmentY(Component.CENTER_ALIGNMENT);
         content.add(nama);
         content.add(email);
         content.add(telepon);
@@ -74,6 +78,8 @@ public class PanelAccount extends JPanel {
         iconEdit2 = new ImageIcon(resizeImage("assets/edit2.png"));
         btn_edit = new JButton(iconEdit);
         btn_edit.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btn_edit.setAlignmentY(Component.CENTER_ALIGNMENT);
+
         btn_edit.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_edit.setIcon(iconEdit);
         btn_edit.addMouseListener(

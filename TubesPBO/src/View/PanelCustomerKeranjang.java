@@ -14,11 +14,11 @@ import javax.swing.JPanel;
  *
  * @author hilbert
  */
-public class PanelKeranjang extends JPanel {
+public class PanelCustomerKeranjang extends JPanel {
     private JPanel header, content;
     private JLabel title, desc;
     
-    public PanelKeranjang() {
+    public PanelCustomerKeranjang() {
         setLayout(new BorderLayout());
         header = new JPanel();
         header.setBackground(java.awt.Color.white);

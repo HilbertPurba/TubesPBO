@@ -27,9 +27,9 @@ import javax.swing.JPanel;
 public class DashboardCustomer {
     //CardLayout component
     private CardLayout cl;
-    private PanelCustomer panelCustomer;
-    private PanelKeranjang panelKeranjang;
-    private PanelAccount panelAccount;
+    private PanelCustomerHome panelCustomer;
+    private PanelCustomerKeranjang panelKeranjang;
+    private PanelCustomerAccount panelAccount;
     
     //Frame component
     private JFrame frame;
@@ -160,9 +160,9 @@ public class DashboardCustomer {
         clPanel = new JPanel();
         clPanel.setLayout(cl);
         
-        panelCustomer = new PanelCustomer();
-        panelKeranjang = new PanelKeranjang();
-        panelAccount = new PanelAccount();
+        panelCustomer = new PanelCustomerHome();
+        panelKeranjang = new PanelCustomerKeranjang();
+        panelAccount = new PanelCustomerAccount();
         
         clPanel.add(panelCustomer, "panelCustomer");
         clPanel.add(panelKeranjang, "panelKeranjang");

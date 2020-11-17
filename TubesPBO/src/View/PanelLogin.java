@@ -133,7 +133,7 @@ public class PanelLogin implements ActionListener {
                new DashboardCustomer();
             } else if (UserManager.getInstance().getUser().getTipeUser() == 1) {
                 jfr_login.dispose();;
-                new PanelVendorTambahProduk();
+                new DashboardVendor();
             } else {
                 jfr_login.dispose();
                 new MenuAdmin();
