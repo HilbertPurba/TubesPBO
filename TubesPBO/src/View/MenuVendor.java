@@ -20,6 +20,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import Model.*;
+import Controller.*;
 
 /**
  *
@@ -59,7 +61,7 @@ public class MenuVendor {
         panelTop.setSize(JFrame.MAXIMIZED_BOTH, 80);
         frame.add(panelTop, BorderLayout.NORTH);
         
-        title = new JLabel("Selamat Datang, Vendor!");
+        title = new JLabel("Selamat Datang, "+UserManager.getInstance().getUser().getNama()+"!");
         title.setSize(400, 80);
         title.setFont(new Font("Calibri", Font.BOLD, 36));
         panelTop.add(title);

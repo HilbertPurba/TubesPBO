@@ -157,7 +157,7 @@ public class PanelRegisterCustomer implements ActionListener {
                 newUser.setPassword(password);
                 newUser.setEmail(email);
                 newUser.setTelepon(noTelepon);
-                if (Controller.insertNewCust(newUser)) {
+                if (Controller.insertNewCustomer(newUser)) {
                     JOptionPane.showMessageDialog(null, "Registration Complete!\nPlease Login!");
                     jfr_registrasi.dispose();
                     new PanelLogin();
