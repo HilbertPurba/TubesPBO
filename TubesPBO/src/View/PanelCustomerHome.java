@@ -14,12 +14,12 @@ import javax.swing.JPanel;
  *
  * @author hilbert
  */
-public class PanelCustomer extends JPanel {
+public class PanelCustomerHome extends JPanel {
     //CardLayout component
     private JPanel header, content;
     private JLabel title, desc;
     
-    public PanelCustomer () {
+    public PanelCustomerHome () {
         setLayout(new BorderLayout());
         header = new JPanel();
         header.setBackground(java.awt.Color.white);
