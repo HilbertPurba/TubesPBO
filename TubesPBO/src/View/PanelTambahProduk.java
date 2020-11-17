@@ -16,21 +16,20 @@ import javax.swing.*;
 import javax.swing.event.*;
 import Model.*;
 import Controller.*;
+
 /**
  *
  * @author Gilbert
  */
-public class PanelRegisterCustomer implements ActionListener {
-    
-    JFrame registrasiFrame = new JFrame("Register Screen");
-    JLabel namaLabel, emailLabel, teleponLabel, passLabel;
-    JTextField name, email, telepon;
-    JTextArea alamat;
-    JPasswordField pass;
+public class PanelTambahProduk implements ActionListener {
+
+    JFrame registrasiFrame = new JFrame("Insert Product Screen");
+    JLabel namaLabel, merkLabel, hargaLabel, stokLabel;
+    JTextField nama, merk, stok,harga;
     JPanel Panel;
     JButton submitButton;
-    
-    public PanelRegisterCustomer() {
+
+    public PanelTambahProduk() {
         registrasiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         registrasiFrame.setSize(300, 300);
 
@@ -40,7 +39,7 @@ public class PanelRegisterCustomer implements ActionListener {
         JLabel judul1 = new JLabel("Please Register First");
         judul1.setBounds(40, 40, 400, 40);
 
-        namaLabel = new JLabel("Name                  :");
+        namaLabel = new JLabel("Name Toko               :");
         emailLabel = new JLabel("Email                  :");
         teleponLabel = new JLabel("Phone                 :");
         passLabel = new JLabel("Password            :");
@@ -59,12 +58,12 @@ public class PanelRegisterCustomer implements ActionListener {
         telepon = new JTextField();
         telepon.setBounds(190, 250, 350, 40);
         telepon.setBorder(null);
-        
+
         passLabel.setBounds(40, 310, 150, 40);
         pass = new JPasswordField(100);
         pass.setBounds(190, 310, 350, 40);
         pass.setBorder(null);
-        
+
         submitButton = new JButton("Register");
         submitButton.setBounds(280, 360, 150, 50);
         submitButton.addActionListener(this);
@@ -80,14 +79,13 @@ public class PanelRegisterCustomer implements ActionListener {
         Panel.add(pass);
         Panel.add(submitButton);
 
-
         registrasiFrame.add(Panel);
         registrasiFrame.getContentPane().setBackground(Color.WHITE);
         registrasiFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         registrasiFrame.setLocationRelativeTo(null);
         registrasiFrame.setVisible(true);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String nama = this.name.getText();
@@ -104,7 +102,7 @@ public class PanelRegisterCustomer implements ActionListener {
                 newUser.setPassword(password);
                 newUser.setEmail(email);
                 newUser.setTelepon(noTelepon);
-                if (Controller.insertNewCustomer(newUser)) {
+                if (Controller.insertNewVendor(newUser)) {
                     JOptionPane.showMessageDialog(null, "Registration Complete!\nPlease Login!");
                     registrasiFrame.dispose();
                     new PanelLogin();

@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Model;
-import Model.enums.TipeUserEnums;
 /**
  *
  * @author Lenovo
@@ -12,26 +11,27 @@ import Model.enums.TipeUserEnums;
 public class User {
 
     private int ID;
-    private TipeUserEnums TipeUser;
     private String nama;
     private String email;
     private String password;
     private String telepon;
+    private int TipeUser;
 
-    public User(int ID, TipeUserEnums TipeUser, String nama, String email, String password, String telepon) {
+    public User(int ID, String nama, String email, String password, String telepon, int TipeUser) {
         this.ID = ID;
-        this.TipeUser = TipeUser;
         this.nama = nama;
         this.email = email;
         this.password = password;
         this.telepon = telepon;
+        this.TipeUser = TipeUser;
     }
 
-    public User(String nama, String email, String password, String telepon) {
+    public User(String nama, String email, String password, String telepon, int TipeUser) {
         this.nama = nama;
         this.email = email;
         this.password = password;
         this.telepon = telepon;
+        this.TipeUser = TipeUser;
     }
 
     public User() {
@@ -45,11 +45,11 @@ public class User {
         this.ID = ID;
     }
 
-    public TipeUserEnums getTipeUser() {
+    public int getTipeUser() {
         return TipeUser;
     }
 
-    public void setTipeUser(TipeUserEnums TipeUser) {
+    public void setTipeUser(int TipeUser) {
         this.TipeUser = TipeUser;
     }
 
@@ -84,6 +84,4 @@ public class User {
     public void setTelepon(String telepon) {
         this.telepon = telepon;
     }
-
-    
 }

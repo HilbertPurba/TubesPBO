@@ -19,8 +19,6 @@ import Model.*;
 public class Controller {
 
     static DatabaseHandler conn = new DatabaseHandler();
-//ini di comment dulu karena belum buat insert, update delete dsb.
-    //sudah ditest semuanya lancar :)
 
     public static ArrayList<User> getAllCustomers() {
         ArrayList<User> users = new ArrayList<>();
@@ -43,7 +41,49 @@ public class Controller {
         }
         return (users);
     }
-
+    //mencocokan untuk pasword login
+    public static boolean cekPassword(String email, String password) {
+        ArrayList<User> users = new ArrayList<>();
+        conn.connect();
+        String query = "SELECT * FROM pengguna WHERE email='" + email + "'";
+        boolean isMatch = false;
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                if (rs.getString("password").equals(password)) {
+                    isMatch = true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return isMatch;
+    }
+    
+    //Get User Login Data
+    public static User getUser(String email) {
+        User user = new User();
+        conn.connect();
+        String query = "SELECT * FROM pengguna WHERE email='" + email + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                int tipeUser = rs.getInt("tipeUser");
+                user.setTipeUser(tipeUser);
+                user.setID(rs.getInt("id"));
+                user.setNama(rs.getString("nama"));
+                user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                user.setTelepon(rs.getString("noTelp"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return (user);
+    }
+    
     //cek untuk login customer
     public static boolean CekCustomer(String email, String pass) {
         conn.connect();
@@ -53,7 +93,7 @@ public class Controller {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                if(rs.getString("email").equals(email) && rs.getString("password").equals(pass)){
+                if (rs.getString("email").equals(email) && rs.getString("password").equals(pass)) {
                     cek = true;
                 }
             }
@@ -63,7 +103,7 @@ public class Controller {
         }
         return (cek);
     }
-    
+
     //cek untuk login vendor
     public static boolean CekVendor(String email, String pass) {
         conn.connect();
@@ -73,7 +113,7 @@ public class Controller {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                if(rs.getString("email").equals(email) && rs.getString("password").equals(pass)){
+                if (rs.getString("email").equals(email) && rs.getString("password").equals(pass)) {
                     cek = true;
                 }
             }
@@ -83,7 +123,7 @@ public class Controller {
         }
         return (cek);
     }
-    
+
     //cek untuk login customer
     public static boolean CekAdmin(String email, String pass) {
         conn.connect();
@@ -93,7 +133,7 @@ public class Controller {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                if(rs.getString("email").equals(email) && rs.getString("password").equals(pass)){
+                if (rs.getString("email").equals(email) && rs.getString("password").equals(pass)) {
                     cek = true;
                 }
             }
@@ -125,17 +165,17 @@ public class Controller {
 //        return (customer);
 //    }
 //    
-    // INSERT Customer
-
-    public static boolean insertNewCust(User user) {
+    // INSERT Customer 
+    public static boolean insertNewCustomer(User user) {
         conn.connect();
-        String query = "INSERT INTO customer (nama,email,password,noTelp) VALUES(?,?,?,?)";
+        String query = "INSERT INTO pengguna (nama,email,password,noTelp,tipeUser) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement stmt = conn.con.prepareStatement(query);
             stmt.setString(1, user.getNama());
             stmt.setString(2, user.getEmail());
             stmt.setString(3, user.getPassword());
             stmt.setString(4, user.getTelepon());
+            stmt.setInt(5, 0);
             stmt.executeUpdate();
             return (true);
         } catch (SQLException e) {
@@ -147,31 +187,14 @@ public class Controller {
     // INSERT Vendor
     public static boolean insertNewVendor(User user) {
         conn.connect();
-        String query = "INSERT INTO vendor (nama,email,password,noTelp) VALUES(?,?,?,?)";
+        String query = "INSERT INTO pengguna (nama,email,password,noTelp,tipeUser) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement stmt = conn.con.prepareStatement(query);
             stmt.setString(1, user.getNama());
             stmt.setString(2, user.getEmail());
             stmt.setString(3, user.getPassword());
             stmt.setString(4, user.getTelepon());
-            stmt.executeUpdate();
-            return (true);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return (false);
-        }
-    }
-
-    // INSERT Admin
-    public static boolean insertNewAdmin(User user) {
-        conn.connect();
-        String query = "INSERT INTO admin (nama,email,password,noTelp) VALUES(?,?,?,?)";
-        try {
-            PreparedStatement stmt = conn.con.prepareStatement(query);
-            stmt.setString(2, user.getNama());
-            stmt.setString(3, user.getEmail());
-            stmt.setString(4, user.getPassword());
-            stmt.setString(5, user.getTelepon());
+            stmt.setInt(5, 1);
             stmt.executeUpdate();
             return (true);
         } catch (SQLException e) {

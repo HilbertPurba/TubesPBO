@@ -5,7 +5,6 @@
  */
 package View;
 
-import Model.enums.TipeUserEnums;
 import Controller.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -76,18 +75,18 @@ public class PanelLogin implements ActionListener {
             JOptionPane.showMessageDialog(null, "Insert email!", "Alert", JOptionPane.WARNING_MESSAGE);
         } else if (passLogin.equals("")) {
             JOptionPane.showMessageDialog(null, "Insert password!", "Alert", JOptionPane.WARNING_MESSAGE);
-        } else if (Controller.CekCustomer(emailLogin, passLogin)) {
-            JOptionPane.showMessageDialog(null, "Login Successfull!");
-            loginFrame.dispose();
-            new MenuCustomer();
-        } else if (Controller.CekVendor(emailLogin, passLogin)) {
-            JOptionPane.showMessageDialog(null, "Login Successfull!");
-            loginFrame.dispose();
-            new MenuVendor();
-        } else if (Controller.CekAdmin(emailLogin, passLogin)) {
-            JOptionPane.showMessageDialog(null, "Login Successfull!");
-            loginFrame.dispose();
-            new MenuAdmin();
+        } else if (Controller.cekPassword(emailLogin, passLogin)) {
+            UserManager.getInstance().setUser(Controller.getUser(emailLogin));
+            if (UserManager.getInstance().getUser().getTipeUser() == 0) {
+                loginFrame.dispose();
+                new MenuCustomer();
+            } else if (UserManager.getInstance().getUser().getTipeUser() == 1) {
+                loginFrame.dispose();
+                new MenuVendor();
+            } else {
+                loginFrame.dispose();
+                new MenuAdmin();
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Insert email and password correctly!", "Alert", JOptionPane.WARNING_MESSAGE);
         }

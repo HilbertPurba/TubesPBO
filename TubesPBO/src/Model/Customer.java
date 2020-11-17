@@ -5,7 +5,6 @@
  */
 package Model;
 
-import Model.enums.TipeUserEnums;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,17 +17,17 @@ public class Customer extends User {
     Keranjang keranjang;
     private List<Customer> listCustomer = new LinkedList<>();
 
-    public Customer(Keranjang keranjang, int ID, TipeUserEnums TipeUser, String nama, String email, String password, String telepon) {
-        super(ID, TipeUser, nama, email, password, telepon);
+    public Customer(Keranjang keranjang, int ID, String nama, String email, String password, String telepon, int TipeUser) {
+        super(ID, nama, email, password, telepon, TipeUser);
         this.keranjang = keranjang;
     }
 
-    public Customer(String nama, String email, String password, String telepon) {
-        super(nama, email, password, telepon);
+    public Customer(String nama, String email, String password, String telepon, int TipeUser) {
+        super(nama, email, password, telepon, TipeUser);
     }
 
-    public Customer(int ID, TipeUserEnums TipeUser, String nama, String email, String password, String telepon) {
-        super(ID, TipeUser, nama, email, password, telepon);
+    public Customer(int ID, String nama, String email, String password, String telepon, int TipeUser) {
+        super(ID, nama, email, password, telepon, TipeUser);
     }
 
     public Customer() {
