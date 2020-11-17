@@ -11,12 +11,13 @@ package View;
  */
 public class MainScreen {
     public static void main(String[] args) {
-        new Start();
+//        new PanelVendorTambahProduk();
+//        new Start();
 //        new PanelRegister();
-        new DashBoardCustomer();
+//        new DashboardCustomer();
 //        new PanelRegisterCustomer();
 //        new PanelRegisterVendor();
-//        new PanelLogin();
+        new PanelLogin();
 //        new MenuVendor();
 //        new MenuAdmin();
     }

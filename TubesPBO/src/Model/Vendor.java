@@ -6,6 +6,8 @@
 package Model;
 
 import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Lenovo
@@ -17,7 +19,6 @@ public class Vendor extends User {
     public Vendor(int ID, String nama, String email, String password, String telepon, int TipeUser) {
         super(ID, nama, email, password, telepon, TipeUser);
     }
-
 
     public Vendor(String nama, String email, String password, String telepon, int TipeUser) {
         super(nama, email, password, telepon, TipeUser);
@@ -38,5 +39,10 @@ public class Vendor extends User {
     public void setListProduk(List<Produk> listProduk) {
         this.listProduk = listProduk;
     }
-
+//    //tes insert ke list
+//    public void printProduct(){
+//        for(Produk produk: listProduk){
+//            JOptionPane.showMessageDialog(null, produk.getNamaProduk()+"\n"+produk.getHarga());
+//        }
+//    }
 }

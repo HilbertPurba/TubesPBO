@@ -24,6 +24,9 @@ public class Produk {
         this.stok = stok;
     }
 
+    public Produk() {
+    }
+
     public String getIdProduk() {
         return idProduk;
     }

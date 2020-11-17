@@ -83,66 +83,7 @@ public class Controller {
         }
         return (user);
     }
-    
-    //cek untuk login customer
-    public static boolean CekCustomer(String email, String pass) {
-        conn.connect();
-        String query = "SELECT * FROM customer WHERE email='" + email + "'";
-        boolean cek = false;
-        try {
-            Statement stmt = conn.con.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                if (rs.getString("email").equals(email) && rs.getString("password").equals(pass)) {
-                    cek = true;
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            cek = false;
-        }
-        return (cek);
-    }
-
-    //cek untuk login vendor
-    public static boolean CekVendor(String email, String pass) {
-        conn.connect();
-        String query = "SELECT * FROM vendor WHERE email='" + email + "'";
-        boolean cek = false;
-        try {
-            Statement stmt = conn.con.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                if (rs.getString("email").equals(email) && rs.getString("password").equals(pass)) {
-                    cek = true;
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            cek = false;
-        }
-        return (cek);
-    }
-
-    //cek untuk login customer
-    public static boolean CekAdmin(String email, String pass) {
-        conn.connect();
-        String query = "SELECT * FROM admin WHERE email='" + email + "'";
-        boolean cek = false;
-        try {
-            Statement stmt = conn.con.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                if (rs.getString("email").equals(email) && rs.getString("password").equals(pass)) {
-                    cek = true;
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            cek = false;
-        }
-        return (cek);
-    }
+   
 //
 //    // SELECT WHERE
 //    public Customer getCustomer(String name, String email) {
@@ -195,6 +136,26 @@ public class Controller {
             stmt.setString(3, user.getPassword());
             stmt.setString(4, user.getTelepon());
             stmt.setInt(5, 1);
+            stmt.executeUpdate();
+            return (true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
+        }
+    }
+    
+    // INSERT produk
+    public static boolean insertNewProduk(Produk produk) {
+        int id = UserManager.getInstance().getUser().getID();
+        conn.connect();
+        String query = "INSERT INTO produk (id,nama_prod,merk_prod,harga,stok) VALUES(?,?,?,?,?)";
+        try {
+            PreparedStatement stmt = conn.con.prepareStatement(query);
+            stmt.setInt(1, id);
+            stmt.setString(2, produk.getNamaProduk());
+            stmt.setString(3, produk.getMerk());
+            stmt.setInt(4, produk.getHarga());
+            stmt.setInt(5, produk.getStok());
             stmt.executeUpdate();
             return (true);
         } catch (SQLException e) {
