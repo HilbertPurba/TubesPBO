@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Nov 2020 pada 14.53
+-- Waktu pembuatan: 17 Nov 2020 pada 09.22
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.9
 
@@ -46,8 +46,20 @@ CREATE TABLE `pengguna` (
   `nama` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `noTelp` varchar(255) NOT NULL,
   `tipeUser` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `pengguna`
+--
+
+INSERT INTO `pengguna` (`id`, `nama`, `email`, `password`, `noTelp`, `tipeUser`) VALUES
+(1, 'Gilbert', 'gibe@gmail.com', '123123', '09876543', 0),
+(2, 'Zefa', 'zef@gmail.com', '123', '12345', 0),
+(3, 'Megacomp', 'mega@gmail.com', '12345', '021987', 1),
+(4, 'Gramedia', 'grame@gmail.com', '0011', '02198789', 1),
+(5, 'Agus Computer', 'aguscomp@gmail.com', '112233', '012312', 1);
 
 -- --------------------------------------------------------
 
@@ -129,7 +141,7 @@ ALTER TABLE `keranjang`
 -- AUTO_INCREMENT untuk tabel `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `produk`
