@@ -5,11 +5,15 @@
  */
 package Model;
 
+import Controller.Controller;
+import java.util.ArrayList;
+
 /**
  *
  * @author hilbert
  */
 public class Produk {
+
     private int idProduk;
     private String namaProduk;
     private String merk;
@@ -65,5 +69,16 @@ public class Produk {
 
     public void setStok(int stok) {
         this.stok = stok;
+    }
+
+    @Override
+    public String toString() {
+        ArrayList<Produk> listProd = Controller.getProdukToko(UserManager.getInstance().getUser().getID());
+        String data = "<html><body><table border=\"1\"><tr><th>Nama Produk</th><th>Stok</th></tr>";
+        for (int i = 0; i < listProd.size(); i++) {
+            data += "<tr><td>"+listProd.get(i).getNamaProduk() + "</td>"+"<td>"+listProd.get(i).getStok() + "</td></tr>";
+        }
+        data += "</table></body></html>";
+        return data;
     }
 }

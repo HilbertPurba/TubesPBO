@@ -5,6 +5,8 @@
  */
 package View;
 
+import Model.Produk;
+
 /**
  *
  * @author Lenovo
@@ -19,9 +21,9 @@ public class MainScreen {
 //        new DashboardVendor();
 //        new PanelRegisterCustomer();
 //        new PanelRegisterVendor();
-//        new PanelLogin();
+        new PanelLogin();
 //        new MenuVendor();
-//        new PanelLogin();
 //        new MenuAdmin();
+//        new PanelVendorCheck();
     }
 }

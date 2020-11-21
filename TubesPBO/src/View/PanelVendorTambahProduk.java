@@ -133,13 +133,11 @@ public class PanelVendorTambahProduk extends JPanel implements ActionListener   
             } else {
                 Produk newProduk = new Produk();
                 List<Produk> listProduk = new ArrayList<>();
-                Vendor newVendor = new Vendor();
                 newProduk.setNamaProduk(nama);
                 newProduk.setMerk(merk);
                 newProduk.setHarga(harga);
                 newProduk.setStok(stok);
                 listProduk.add(newProduk);
-                newVendor.setListProduk(listProduk);
                 if (Controller.insertNewProduk(newProduk)) {
                     JOptionPane.showMessageDialog(null, "Data Produk telah tersimpan!");
 //                    tambahProduk.dispose();
