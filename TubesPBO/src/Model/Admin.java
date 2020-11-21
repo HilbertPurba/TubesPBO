@@ -8,7 +8,9 @@ package Model;
 
 /**
  *
- * @author Lenovo
+ * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class Admin extends User{
 

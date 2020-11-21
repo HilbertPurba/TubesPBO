@@ -10,7 +10,9 @@ import java.util.List;
 
 /**
  *
- * @author hilbert
+ * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class Customer extends User {
 

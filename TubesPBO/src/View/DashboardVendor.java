@@ -27,7 +27,9 @@ import java.awt.Color;
 
 /**
  *
- * @author Lenovo
+ * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class DashboardVendor {
     //CardLayout Component

@@ -10,7 +10,9 @@ import java.util.ArrayList;
 
 /**
  *
- * @author hilbert
+ * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class Produk {
 

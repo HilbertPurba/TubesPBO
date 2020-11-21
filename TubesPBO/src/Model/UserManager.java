@@ -8,6 +8,8 @@ package Model;
 /**
  *
  * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class UserManager {
     private static UserManager instance;
