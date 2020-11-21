@@ -41,6 +41,30 @@ public class Controller {
         }
         return (listProd);
     }
+    
+    //get produk dari Toko tertentu
+    public static ArrayList<Produk> getProdukToko(int id) {
+        ArrayList<Produk> listProd = new ArrayList<>();
+        conn.connect();
+        String query = "SELECT * FROM produk WHERE id='" + id + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                Produk prod = new Produk();
+                prod.setIdProduk(rs.getInt("id_prod"));
+                prod.setNamaProduk(rs.getString("nama_prod"));
+                prod.setMerk(rs.getString("merk_prod"));
+                prod.setHarga(rs.getInt("harga"));
+                prod.setStok(rs.getInt("stok"));
+                listProd.add(prod);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return (listProd);
+    }
+    
     //mencocokan untuk pasword login
     public static boolean cekPassword(String email, String password) {
         ArrayList<User> users = new ArrayList<>();

@@ -5,6 +5,8 @@
  */
 package View;
 
+import Model.Produk;
+
 /**
  *
  * @author Lenovo
@@ -12,14 +14,14 @@ package View;
 public class MainScreen {
     public static void main(String[] args) {
 //        new PanelVendorTambahProduk();
-        new Start();
+//        new Start();
 //        new PanelRegister();
 //        new DashboardCustomer();
 //        new PanelRegisterCustomer();
 //        new PanelRegisterVendor();
-//        new PanelLogin();
+        new PanelLogin();
 //        new MenuVendor();
-//        new PanelLogin();
 //        new MenuAdmin();
+//        new PanelVendorCheck();
     }
 }
