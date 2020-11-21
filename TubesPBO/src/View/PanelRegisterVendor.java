@@ -54,13 +54,14 @@ public class PanelRegisterVendor implements ActionListener {
         jfr_registrasi.getContentPane().setBackground(Color.white );
         jfr_registrasi.setResizable(true);
         jfr_registrasi.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jfr_registrasi.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        jfr_registrasi.setSize(1000,1000);
+        jfr_registrasi.setLocationRelativeTo(null);
 
         Panel = new JPanel();
         Panel.setLayout(null);
 
         JLabel judulL = new JLabel("Register as Vendor : ");
-        judulL.setBounds(700, 0, 1000, 300);
+        judulL.setBounds(230, 0, 1000, 300);
         judulL.setFont(new Font("Calibri", Font.BOLD, 60));
         judulL.setForeground(new Color(22,105,122));
 
@@ -69,28 +70,28 @@ public class PanelRegisterVendor implements ActionListener {
         teleponL = new JLabel("Phone                 :");
         passL = new JLabel("Password            :");
 
-        namaL.setBounds(720, 230, 150, 40);
+        namaL.setBounds(225, 230, 150, 40);
         namaL.setFont(new Font("Calibri", Font.BOLD, 20));
         name = new JTextField();
-        name.setBounds(880, 230, 350, 40);
+        name.setBounds(400, 230, 350, 40);
         name.setBorder(null);
 
-        emailL.setBounds(720, 290, 150, 40);
+        emailL.setBounds(225, 290, 150, 40);
         emailL.setFont(new Font("Calibri", Font.BOLD, 20));
         email = new JTextField();
-        email.setBounds(880, 290, 350, 40);
+        email.setBounds(400, 290, 350, 40);
         email.setBorder(null);
 
-        teleponL.setBounds(720, 350, 150, 40);
+        teleponL.setBounds(225, 350, 150, 40);
         teleponL.setFont(new Font("Calibri", Font.BOLD, 20));
         telepon = new JTextField();
-        telepon.setBounds(880, 350, 350, 40);
+        telepon.setBounds(400, 350, 350, 40);
         telepon.setBorder(null);
         
-        passL.setBounds(720, 410, 150, 40);
+        passL.setBounds(225, 410, 150, 40);
         passL.setFont(new Font("Calibri", Font.BOLD, 20));
         pass = new JPasswordField(100);
-        pass.setBounds(880, 410, 350, 40);
+        pass.setBounds(400, 410, 350, 40);
         pass.setBorder(null);
         
         // Button Submit
@@ -100,7 +101,7 @@ public class PanelRegisterVendor implements ActionListener {
         btn_submit = new JButton (iconRegister);
         btn_submit.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_submit.setIcon(iconRegister);
-        btn_submit.setBounds(1080, 480, 150, 60);
+        btn_submit.setBounds(600, 480, 150, 60);
         
         btn_submit.addMouseListener(
                 new MouseAdapter(){
@@ -138,9 +139,6 @@ public class PanelRegisterVendor implements ActionListener {
 
 
         jfr_registrasi.add(Panel);
-        jfr_registrasi.getContentPane().setBackground(Color.WHITE);
-        jfr_registrasi.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        jfr_registrasi.setLocationRelativeTo(null);
         jfr_registrasi.setVisible(true);
     }
     

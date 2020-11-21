@@ -50,28 +50,29 @@ public class PanelLogin implements ActionListener {
         jfr_login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jfr_login.setResizable(true);
         jfr_login.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jfr_login.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        jfr_login.setSize(1000,1000);
+        jfr_login.setLocationRelativeTo(null);
         
         Panel = new JPanel();
         Panel.setLayout(null);
         
         JLabel judulL = new JLabel("LOGIN");
-        judulL.setBounds(900, 0, 1000, 300);
+        judulL.setBounds(400, 0, 1000, 300);
         judulL.setFont(new Font("Trebuchet MS", Font.BOLD, 80));
         judulL.setForeground(new Color(253,170,0));
 
         emailL = new JLabel("Email              : ");
-        emailL.setBounds(720, 230, 150, 40);
+        emailL.setBounds(220, 230, 150, 40);
         emailL.setFont(new Font("Calibri", Font.BOLD, 20));
         email = new JTextField();
-        email.setBounds(880, 230, 350, 40);
+        email.setBounds(380, 230, 350, 40);
         email.setBorder(null);
 
         passL = new JLabel("Password       : ");
-        passL.setBounds(720, 290, 150, 40);
+        passL.setBounds(220, 290, 150, 40);
         passL.setFont(new Font("Calibri", Font.BOLD, 20));
         pass = new JPasswordField(100);
-        pass.setBounds(880, 290, 350, 40);
+        pass.setBounds(380, 290, 350, 40);
         pass.setBorder(null);
 
         // Button Submit
@@ -81,7 +82,7 @@ public class PanelLogin implements ActionListener {
         btn_login = new JButton (iconLogin);
         btn_login.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_login.setIcon(iconLogin);
-        btn_login.setBounds(950, 380, 150, 60);
+        btn_login.setBounds(450, 380, 150, 60);
         
         btn_login.addMouseListener(
                 new MouseAdapter(){
@@ -132,14 +133,14 @@ public class PanelLogin implements ActionListener {
                 jfr_login.dispose();
                new DashboardCustomer();
             } else if (UserManager.getInstance().getUser().getTipeUser() == 1) {
-                jfr_login.dispose();;
+                jfr_login.dispose();
                 new DashboardVendor();
             } else {
                 jfr_login.dispose();
                 new MenuAdmin();
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Insert email and password correctly!", "Alert", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Masukkan Email dan Password yang benar!", "Alert", JOptionPane.WARNING_MESSAGE);
         }
     }
 }

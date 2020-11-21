@@ -6,6 +6,7 @@
 package View;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -51,7 +52,7 @@ public class PanelVendorAccount extends JPanel {
         
         title = new JLabel("PROFIL VENDOR");
         title.setFont(new Font("Calibri", Font.BOLD, 72));
-        title.setForeground(java.awt.Color.BLACK);
+        title.setForeground(new Color(2,91,149));
         header.add(title);
         
         content = new JPanel();
