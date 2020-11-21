@@ -6,6 +6,7 @@
 package View;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,8 +26,8 @@ public class PanelCustomerHome extends JPanel {
         header.setBackground(java.awt.Color.white);
         
         title = new JLabel("SELAMAT DATANG, HILBERT");
-        title.setFont(new Font("Calibri", Font.BOLD, 36));
-        title.setForeground(java.awt.Color.BLACK);
+        title.setFont(new Font("Calibri", Font.BOLD, 72));
+        title.setForeground(new Color(253,170,0));
         header.add(title);
         
         content = new JPanel();
