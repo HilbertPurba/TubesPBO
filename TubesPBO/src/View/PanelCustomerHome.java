@@ -8,6 +8,7 @@ package View;
 import Controller.Controller;
 import Model.*;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
@@ -34,10 +35,10 @@ public class PanelCustomerHome extends JPanel {
         header = new JPanel();
         header.setBackground(java.awt.Color.white);
 
-//        + UserManager.getInstance().getUser().getNama()
-        title = new JLabel("SELAMAT DATANG, ");
-        title.setFont(new Font("Calibri", Font.BOLD, 36));
-        title.setForeground(java.awt.Color.BLACK);
+//        + UserManager.getInstance().getUser().getNama()  
+        title = new JLabel("SELAMAT DATANG, HILBERT");
+        title.setFont(new Font("Calibri", Font.BOLD, 72));
+        title.setForeground(new Color(253,170,0));
         header.add(title);
 
         content = new JPanel();

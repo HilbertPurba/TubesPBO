@@ -171,7 +171,8 @@ public class DashboardCustomer {
         frame = new JFrame("Menu Utama");
         frame.add(clPanel);
         frame.add(panelNav, BorderLayout.PAGE_END);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setSize(1000,1000);
+        frame.setLocationRelativeTo(null);
         frame.setResizable(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);

@@ -16,76 +16,108 @@ import javax.swing.*;
 import javax.swing.event.*;
 import Model.*;
 import Controller.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import javafx.scene.input.MouseEvent;
+import java.awt.event.MouseAdapter;
+import javax.imageio.ImageIO;
 
 /**
  *
  * @author Gilbert
  */
 
-public class PanelVendorTambahProduk extends JPanel implements ActionListener {
+public class PanelVendorTambahProduk extends JPanel implements ActionListener   {
+    private JPanel header, content;
+    private JLabel title, namaL, merkL, hargaL, stokL;
+    private JTextField nama, merk, stok, harga;
+    private ImageIcon iconOK;
+    private JButton btn_submit;
+    
+    private Image resizeImage(String url) {
+        Image dimg = null;
 
-    JFrame tambahProduk = new JFrame("Menu Tambah Produk");
-    JLabel namaLabel, merkLabel, hargaLabel, stokLabel;
-    JTextField nama, merk, stok, harga;
-    JPanel Panel;
-    JButton submitButton;
+        try {
+            BufferedImage img = ImageIO.read(new File(url));
+            dimg = img.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        } catch (IOException ex) {
+            ex.printStackTrace(System.err);
+        }
+
+        return dimg;
+    }
 
     public PanelVendorTambahProduk() {
-        tambahProduk.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        tambahProduk.setSize(300, 300);
+        setLayout(new BorderLayout());
+        header = new JPanel();
+        header.setBackground(java.awt.Color.white);
+        
+        
+        title = new JLabel("TAMBAH PRODUK");
+        title.setFont(new Font("Calibri", Font.BOLD, 72));
+        title.setForeground(java.awt.Color.BLACK);
+        title.setForeground(new Color(2,91,149));
+        header.add(title);
+        
+        content = new JPanel(new GridBagLayout());
+        content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
 
-        Panel = new JPanel();
-        Panel.setLayout(null);
-
-        JLabel judul1 = new JLabel("Masukan Produk Baru");
-        judul1.setBounds(40, 40, 400, 40);
-
-        namaLabel = new JLabel("Nama Produk             :");
-        merkLabel = new JLabel("Merek Produk            :");
-        hargaLabel = new JLabel("Harga Produk          :");
-        stokLabel = new JLabel("Stok Awal              :");
-
-        namaLabel.setBounds(40, 130, 150, 40);
+        namaL = new JLabel("Nama Produk ");
+        namaL.setFont(new Font("Calibri", Font.BOLD, 42));
+        namaL.setForeground(new Color(2,91,149));
+        namaL.setBounds(150, 130, 300, 40);
         nama = new JTextField();
-        nama.setBounds(190, 130, 350, 40);
+        nama.setBounds(465, 130, 350, 40);
         nama.setBorder(null);
-
-        merkLabel.setBounds(40, 190, 150, 40);
+        
+        merkL = new JLabel("Merek Produk ");
+        merkL.setFont(new Font("Calibri", Font.BOLD, 42));
+        merkL.setForeground(new Color(2,91,149));
+        merkL.setBounds(150, 190, 300, 40);
         merk = new JTextField();
-        merk.setBounds(190, 190, 350, 40);
+        merk.setBounds(465, 190, 350, 40);
         merk.setBorder(null);
-
-        hargaLabel.setBounds(40, 250, 150, 40);
+        
+        hargaL = new JLabel("Harga Produk ");
+        hargaL.setFont(new Font("Calibri", Font.BOLD, 42));
+        hargaL.setForeground(new Color(2,91,149));
+        hargaL.setBounds(150, 250, 300, 40);
         harga = new JTextField();
-        harga.setBounds(190, 250, 350, 40);
+        harga.setBounds(465, 250, 350, 40);
         harga.setBorder(null);
-
-        stokLabel.setBounds(40, 310, 150, 40);
+        
+        stokL = new JLabel("Stok Awal ");
+        stokL.setFont(new Font("Calibri", Font.BOLD, 42));
+        stokL.setForeground(new Color(2,91,149));
+        stokL.setBounds(150, 310, 300, 40);
         stok = new JTextField();
-        stok.setBounds(190, 310, 350, 40);
+        stok.setBounds(465, 310, 350, 40);
         stok.setBorder(null);
+        
+        //Button
+        iconOK = new ImageIcon(resizeImage("assets/ok.png"));
+        btn_submit = new JButton(iconOK);
+        btn_submit.setBounds(445,380,100,100);
+        btn_submit.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn_submit.setIcon(iconOK);
+        btn_submit.setBorderPainted(false);
+        btn_submit.setFocusPainted(false);
+        btn_submit.setContentAreaFilled(false);
+        btn_submit.addActionListener(this);
 
-        submitButton = new JButton("Submit");
-        submitButton.setBounds(280, 360, 150, 50);
-        submitButton.addActionListener(this);
-
-        Panel.add(judul1);
-        Panel.add(namaLabel);
-        Panel.add(merkLabel);
-        Panel.add(hargaLabel);
-        Panel.add(stokLabel);
-        Panel.add(nama);
-        Panel.add(merk);
-        Panel.add(harga);
-        Panel.add(stok);
-        Panel.add(submitButton);
-
-        tambahProduk.add(Panel);
-        tambahProduk.getContentPane().setBackground(Color.WHITE);
-        tambahProduk.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        tambahProduk.setLocationRelativeTo(null);
-        tambahProduk.setVisible(true);
+        add(namaL);
+        add(nama);
+        add(merkL);
+        add(merk);
+        add(hargaL);
+        add(harga);
+        add(stokL);
+        add(stok);
+        add(btn_submit);
+        add(header, BorderLayout.PAGE_START);
+        add(content);
     }
 
     @Override
@@ -110,7 +142,7 @@ public class PanelVendorTambahProduk extends JPanel implements ActionListener {
                 newVendor.setListProduk(listProduk);
                 if (Controller.insertNewProduk(newProduk)) {
                     JOptionPane.showMessageDialog(null, "Data Produk telah tersimpan!");
-                    tambahProduk.dispose();
+//                    tambahProduk.dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "Insert Data Gagal!", "Alert", JOptionPane.WARNING_MESSAGE);
                 }
