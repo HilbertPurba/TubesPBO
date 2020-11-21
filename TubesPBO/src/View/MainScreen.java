@@ -14,10 +14,11 @@ public class MainScreen {
 //        new PanelVendorTambahProduk();
 //        new Start();
 //        new PanelRegister();
-//        new DashboardCustomer();
+        new DashboardCustomer();
+//        new PanelCustomerHome();
 //        new PanelRegisterCustomer();
 //        new PanelRegisterVendor();
-        new PanelLogin();
+//        new PanelLogin();
 //        new MenuVendor();
 //        new PanelLogin();
 //         new DashboardVendor();

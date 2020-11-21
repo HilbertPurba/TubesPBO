@@ -23,7 +23,7 @@ import java.util.List;
  * @author Gilbert
  */
 
-public class PanelVendorTambahProduk implements ActionListener {
+public class PanelVendorTambahProduk extends JPanel implements ActionListener {
 
     JFrame tambahProduk = new JFrame("Menu Tambah Produk");
     JLabel namaLabel, merkLabel, hargaLabel, stokLabel;
@@ -116,17 +116,5 @@ public class PanelVendorTambahProduk implements ActionListener {
                 }
             }
         }
-    }
-}
-=======
-public class PanelVendorTambahProduk extends JPanel {
-
-//    JFrame registrasiFrame = new JFrame("Insert Product Screen");
-//    JLabel namaLabel, merkLabel, hargaLabel, stokLabel;
-//    JTextField nama, merk, stok,harga;
-//    JPanel Panel;
-//    JButton submitButton;
-
-    public PanelVendorTambahProduk() {
     }
 }

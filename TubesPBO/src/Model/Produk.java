@@ -10,13 +10,13 @@ package Model;
  * @author hilbert
  */
 public class Produk {
-    private String idProduk;
+    private int idProduk;
     private String namaProduk;
     private String merk;
     private int harga;
     private int stok;
 
-    public Produk(String idProduk, String namaProduk, String merk, int harga, int stok) {
+    public Produk(int idProduk, String namaProduk, String merk, int harga, int stok) {
         this.idProduk = idProduk;
         this.namaProduk = namaProduk;
         this.merk = merk;
@@ -27,11 +27,11 @@ public class Produk {
     public Produk() {
     }
 
-    public String getIdProduk() {
+    public int getIdProduk() {
         return idProduk;
     }
 
-    public void setIdProduk(String idProduk) {
+    public void setIdProduk(int idProduk) {
         this.idProduk = idProduk;
     }
 
