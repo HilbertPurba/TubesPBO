@@ -9,7 +9,9 @@ import java.util.List;
 
 /**
  *
- * @author hilbert
+ * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class Keranjang {
     private int idKeranjang;

@@ -15,6 +15,8 @@ import Model.*;
 /**
  *
  * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class Controller {
 

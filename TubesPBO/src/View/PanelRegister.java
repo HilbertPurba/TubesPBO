@@ -23,7 +23,9 @@ import javax.swing.WindowConstants;
 
 /**
  *
- * @author Lenovo
+ * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class PanelRegister {
     private JFrame jfr_register;

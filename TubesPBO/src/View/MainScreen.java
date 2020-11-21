@@ -7,7 +7,9 @@ package View;
 
 /**
  *
- * @author Lenovo
+ * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class MainScreen {
     public static void main(String[] args) {

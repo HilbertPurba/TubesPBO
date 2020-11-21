@@ -11,7 +11,9 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Lenovo
+ * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class initDB {
     static final String url = "jdbc:mysql://localhost/";

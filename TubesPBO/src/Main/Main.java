@@ -10,7 +10,9 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Lenovo
+ * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class Main {
 

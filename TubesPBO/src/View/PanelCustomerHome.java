@@ -30,7 +30,9 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author hilbert
+ * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class PanelCustomerHome extends JPanel implements ActionListener {
 
