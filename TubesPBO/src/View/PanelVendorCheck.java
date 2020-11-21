@@ -12,5 +12,5 @@ import javax.swing.JPanel;
  * @author Lenovo
  */
 public class PanelVendorCheck extends JPanel {
-    
-}
+
+        }
