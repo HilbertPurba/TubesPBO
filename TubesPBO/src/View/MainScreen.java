@@ -15,7 +15,6 @@ public class MainScreen {
         new Start();
 //        new PanelRegister();
 //        new DashboardCustomer();
-//         new DashboardVendor();
 //        new PanelRegisterCustomer();
 //        new PanelRegisterVendor();
 //        new PanelLogin();

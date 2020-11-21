@@ -135,6 +135,7 @@ public class PanelLogin implements ActionListener {
             } else if (UserManager.getInstance().getUser().getTipeUser() == 1) {
                 jfr_login.dispose();
                 new DashboardVendor();
+                System.out.println("");
             } else {
                 jfr_login.dispose();
                 new MenuAdmin();
