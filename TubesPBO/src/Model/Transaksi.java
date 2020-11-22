@@ -7,7 +7,9 @@ package Model;
 
 /**
  *
- * @author hilbert
+ * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class Transaksi {
     private String idTransaksi;

@@ -15,32 +15,58 @@ import Model.*;
 /**
  *
  * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class Controller {
 
     static DatabaseHandler conn = new DatabaseHandler();
 
-    public static ArrayList<User> getAllCustomers() {
-        ArrayList<User> users = new ArrayList<>();
+    public static ArrayList<Produk> getAllProduk() {
+        ArrayList<Produk> listProd = new ArrayList<>();
         conn.connect();
-        String query = "SELECT * FROM customer";
+        String query = "SELECT * FROM produk";
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                User user = new User();
-                user.setID(rs.getInt("id_cust"));
-                user.setNama(rs.getString("nama"));
-                user.setEmail(rs.getString("email"));
-                user.setPassword(rs.getString("password"));
-                user.setTelepon(rs.getString("noTelp"));
-                users.add(user);
+                Produk prod = new Produk();
+                prod.setIdProduk(rs.getInt("id_prod"));
+                prod.setNamaProduk(rs.getString("nama_prod"));
+                prod.setMerk(rs.getString("merk_prod"));
+                prod.setHarga(rs.getInt("harga"));
+                prod.setStok(rs.getInt("stok"));
+                listProd.add(prod);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return (users);
+        return (listProd);
     }
+    
+    //get produk dari Toko tertentu
+    public static ArrayList<Produk> getProdukToko(int id) {
+        ArrayList<Produk> listProd = new ArrayList<>();
+        conn.connect();
+        String query = "SELECT * FROM produk WHERE id='" + id + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                Produk prod = new Produk();
+                prod.setIdProduk(rs.getInt("id_prod"));
+                prod.setNamaProduk(rs.getString("nama_prod"));
+                prod.setMerk(rs.getString("merk_prod"));
+                prod.setHarga(rs.getInt("harga"));
+                prod.setStok(rs.getInt("stok"));
+                listProd.add(prod);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return (listProd);
+    }
+    
     //mencocokan untuk pasword login
     public static boolean cekPassword(String email, String password) {
         ArrayList<User> users = new ArrayList<>();

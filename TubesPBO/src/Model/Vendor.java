@@ -10,7 +10,9 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Lenovo
+ * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class Vendor extends User {
 

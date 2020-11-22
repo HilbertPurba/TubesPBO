@@ -26,7 +26,9 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author hilbert
+ * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class PanelCustomerAccount extends JPanel {
     private JPanel header, content;

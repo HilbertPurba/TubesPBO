@@ -18,6 +18,8 @@ import javax.imageio.ImageIO;
 /**
  *
  * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class PanelLogin implements ActionListener {
 

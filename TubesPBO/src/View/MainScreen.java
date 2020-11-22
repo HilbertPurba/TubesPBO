@@ -5,9 +5,13 @@
  */
 package View;
 
+import Model.Produk;
+
 /**
  *
- * @author Lenovo
+ * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class MainScreen {
     public static void main(String[] args) {
@@ -19,10 +23,10 @@ public class MainScreen {
 //        new DashboardCustomer();
 //        new DashboardVendor();
 //        new PanelRegisterCustomer();
-//        new PanelRegisterVendor();
+//        new PanelRegisterVend;or();
 //        new PanelLogin();
 //        new MenuVendor();
-//        new PanelLogin();
 //        new MenuAdmin();
+//        new PanelVendorCheck();
     }
 }

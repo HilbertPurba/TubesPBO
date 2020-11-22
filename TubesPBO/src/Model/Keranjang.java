@@ -9,33 +9,58 @@ import java.util.List;
 
 /**
  *
- * @author hilbert
+ * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class Keranjang {
-    private String idKeranjang;
+    private int idKeranjang;
+    private int id_user;
+    private int id_toko;
     private String namaToko;
     private List<Produk> listProdukBeli;
 
-    public Keranjang(String idKeranjang, String namaToko, List<Produk> listProdukBeli) {
+    public Keranjang(int idKeranjang, int id_user, int id_toko, String namaToko, List<Produk> listProdukBeli) {
         this.idKeranjang = idKeranjang;
+        this.id_user = id_user;
+        this.id_toko = id_toko;
         this.namaToko = namaToko;
         this.listProdukBeli = listProdukBeli;
     }
 
-    public String getIdKeranjang() {
+    public Keranjang() {
+    }
+
+    public int getIdKeranjang() {
         return idKeranjang;
     }
 
-    public void setIdKeranjang(String idKeranjang) {
+    public void setIdKeranjang(int idKeranjang) {
         this.idKeranjang = idKeranjang;
     }
 
-    public String getNamaTOko() {
+    public int getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+    }
+
+    public int getId_toko() {
+        return id_toko;
+    }
+
+    public void setId_toko(int id_toko) {
+        this.id_toko = id_toko;
+    }
+
+    public String getNamaToko() {
         return namaToko;
     }
 
-    public void setNamaTOko(String namaTOko) {
-        this.namaToko = namaTOko;
+    public void setNamaToko(String namaToko) {
+        this.namaToko = namaToko;
     }
 
     public List<Produk> getListProdukBeli() {
@@ -45,4 +70,6 @@ public class Keranjang {
     public void setListProdukBeli(List<Produk> listProdukBeli) {
         this.listProdukBeli = listProdukBeli;
     }
+
+    
 }

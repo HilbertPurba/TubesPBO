@@ -26,7 +26,9 @@ import javax.swing.WindowConstants;
 
 /**
  *
- * @author Lenovo
+ * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class Start{
     private JFrame jfr_start;

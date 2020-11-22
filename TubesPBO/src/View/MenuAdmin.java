@@ -23,7 +23,9 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Lenovo
+ * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class MenuAdmin {
     private JFrame frame;

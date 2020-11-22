@@ -13,7 +13,9 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author hilbert
+ * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class PanelCustomerKeranjang extends JPanel {
     private JPanel header, content;
