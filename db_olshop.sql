@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2020 at 01:46 PM
+-- Generation Time: Nov 22, 2020 at 04:03 PM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -24,13 +24,37 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `connectorprodukkeranjang`
+--
+
+CREATE TABLE `connectorprodukkeranjang` (
+  `id_keranjang` int(3) NOT NULL,
+  `id_prod` int(3) NOT NULL,
+  `jumlah_produk` int(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `connectorproduktransaksi`
+--
+
+CREATE TABLE `connectorproduktransaksi` (
+  `id_transaksi` int(3) NOT NULL,
+  `id_prod` int(3) NOT NULL,
+  `jumlah_produk` int(5) NOT NULL,
+  `total_harga` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `keranjang`
 --
 
 CREATE TABLE `keranjang` (
   `id_keranjang` int(3) NOT NULL,
   `id` int(3) NOT NULL,
-  `id_prod` int(3) NOT NULL,
   `jumlah_total` int(10) NOT NULL,
   `harga_total` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -92,7 +116,6 @@ INSERT INTO `produk` (`id_prod`, `id`, `nama_prod`, `merk_prod`, `harga`, `stok`
 (11, 3, 'ROG G512LV', 'ASUS', 15000000, 8),
 (12, 4, 'Buku Al-Quran', 'Mizan', 15000, 20),
 (13, 4, 'Tas Sekolah Trendy', 'Eversac', 150000, 15),
-(14, 3, 'Acer Nitro 5', 'Acer', 14000000, 15),
 (15, 4, 'Buku SBMPTN 2020', 'Erlangga', 35000, 120),
 (16, 3, 'Macbook Pro 2020', 'Apple', 20000000, 10);
 
@@ -104,7 +127,6 @@ INSERT INTO `produk` (`id_prod`, `id`, `nama_prod`, `merk_prod`, `harga`, `stok`
 
 CREATE TABLE `transaksi` (
   `id_transaksi` int(3) NOT NULL,
-  `id_keranjang` int(3) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `noTelp` varchar(50) NOT NULL,
   `alamat` varchar(255) NOT NULL,
@@ -120,12 +142,27 @@ CREATE TABLE `transaksi` (
 --
 
 --
+-- Indexes for table `connectorprodukkeranjang`
+--
+ALTER TABLE `connectorprodukkeranjang`
+  ADD PRIMARY KEY (`id_keranjang`,`id_prod`),
+  ADD KEY `id_keranjang` (`id_keranjang`),
+  ADD KEY `id_prod` (`id_prod`);
+
+--
+-- Indexes for table `connectorproduktransaksi`
+--
+ALTER TABLE `connectorproduktransaksi`
+  ADD PRIMARY KEY (`id_transaksi`,`id_prod`),
+  ADD KEY `id_transaksi` (`id_transaksi`),
+  ADD KEY `id_prod` (`id_prod`);
+
+--
 -- Indexes for table `keranjang`
 --
 ALTER TABLE `keranjang`
   ADD PRIMARY KEY (`id_keranjang`),
-  ADD KEY `id` (`id`),
-  ADD KEY `id_prod` (`id_prod`);
+  ADD KEY `id` (`id`);
 
 --
 -- Indexes for table `pengguna`
@@ -144,8 +181,7 @@ ALTER TABLE `produk`
 -- Indexes for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD PRIMARY KEY (`id_transaksi`),
-  ADD KEY `id_keranjang` (`id_keranjang`);
+  ADD PRIMARY KEY (`id_transaksi`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -183,20 +219,13 @@ ALTER TABLE `transaksi`
 -- Constraints for table `keranjang`
 --
 ALTER TABLE `keranjang`
-  ADD CONSTRAINT `keranjang_ibfk_1` FOREIGN KEY (`id`) REFERENCES `pengguna` (`id`),
-  ADD CONSTRAINT `keranjang_ibfk_2` FOREIGN KEY (`id_prod`) REFERENCES `produk` (`id_prod`);
+  ADD CONSTRAINT `keranjang_ibfk_1` FOREIGN KEY (`id`) REFERENCES `pengguna` (`id`);
 
 --
 -- Constraints for table `produk`
 --
 ALTER TABLE `produk`
   ADD CONSTRAINT `produk_ibfk_1` FOREIGN KEY (`id`) REFERENCES `pengguna` (`id`);
-
---
--- Constraints for table `transaksi`
---
-ALTER TABLE `transaksi`
-  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_keranjang`) REFERENCES `keranjang` (`id_keranjang`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
