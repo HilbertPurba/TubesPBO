@@ -34,9 +34,9 @@ import java.awt.Color;
 public class DashboardVendor {
     //CardLayout Component
     private CardLayout cl;
+    private PanelVendorCheck panelCheck;
     private PanelVendorTambahProduk panelTambahProduk;
     private PanelVendorHistory panelHistory;
-    private PanelVendorCheck panelCheck;
     private PanelVendorAccount panelAccount;
     
     //Frame Component
@@ -44,10 +44,10 @@ public class DashboardVendor {
     
     //Panel Component
     private JPanel clPanel, panelNav;
-    private JButton btn_addProduct, btn_check, btn_history, btn_account;
-    private ImageIcon iconAddProduct, iconHistory, iconCheckStock, iconAccount;
-    private ImageIcon iconAddProduct1, iconHistory1, iconCheckStock1, iconAccount1;
-    private ImageIcon iconAddProduct2, iconHistory2, iconCheckStock2, iconAccount2;
+    private JButton  btn_check,btn_addProduct,btn_history, btn_account;
+    private ImageIcon iconCheckStock,iconAddProduct, iconHistory,  iconAccount;
+    private ImageIcon iconCheckStock1,iconAddProduct1, iconHistory1,  iconAccount1;
+    private ImageIcon iconCheckStock2,iconAddProduct2, iconHistory2,  iconAccount2;
     
     public Image resizeImage(String url) {
         Image dimg = null;
@@ -65,6 +65,38 @@ public class DashboardVendor {
     public DashboardVendor() {
         panelNav = new JPanel();
         panelNav.setBackground(Color.white);
+        
+        // Check Stock
+        iconCheckStock = new ImageIcon(resizeImage("assets/check.png"));
+        iconCheckStock1 = new ImageIcon(resizeImage("assets/check1.png"));
+        iconCheckStock2 = new ImageIcon(resizeImage("assets/check2.png"));
+        btn_check = new JButton(iconCheckStock);
+        btn_check.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn_check.setIcon(iconCheckStock1);
+        btn_check.addMouseListener(
+                new MouseAdapter(){
+                    @Override
+                    public void mouseClicked(MouseEvent me){
+                        btn_check.setIcon(iconCheckStock2);
+                        cl.show(clPanel, "panelCheck");
+                        frame.setTitle("Menu Check Stock");
+                    }
+                    
+                    @Override
+                    public void mouseEntered(MouseEvent me){
+                        btn_check.setIcon(iconCheckStock);
+                    }
+                    
+                    @Override
+                    public void mouseExited(MouseEvent me){
+                        btn_check.setIcon(iconCheckStock1);
+                    }
+                }
+        );
+        btn_check.setBorderPainted(false);
+        btn_check.setFocusPainted(false);
+        btn_check.setContentAreaFilled(false);
+        panelNav.add(btn_check);
         
         // Add Product
         iconAddProduct2 = new ImageIcon(resizeImage("assets/addProduct2.png"));
@@ -130,38 +162,6 @@ public class DashboardVendor {
         btn_history.setContentAreaFilled(false);
         panelNav.add(btn_history);
         
-        // Check Stock
-        iconCheckStock = new ImageIcon(resizeImage("assets/check.png"));
-        iconCheckStock1 = new ImageIcon(resizeImage("assets/check1.png"));
-        iconCheckStock2 = new ImageIcon(resizeImage("assets/check2.png"));
-        btn_check = new JButton(iconCheckStock);
-        btn_check.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btn_check.setIcon(iconCheckStock1);
-        btn_check.addMouseListener(
-                new MouseAdapter(){
-                    @Override
-                    public void mouseClicked(MouseEvent me){
-                        btn_check.setIcon(iconCheckStock2);
-                        cl.show(clPanel, "panelCheck");
-                        frame.setTitle("Menu Check Stock");
-                    }
-                    
-                    @Override
-                    public void mouseEntered(MouseEvent me){
-                        btn_check.setIcon(iconCheckStock);
-                    }
-                    
-                    @Override
-                    public void mouseExited(MouseEvent me){
-                        btn_check.setIcon(iconCheckStock1);
-                    }
-                }
-        );
-        btn_check.setBorderPainted(false);
-        btn_check.setFocusPainted(false);
-        btn_check.setContentAreaFilled(false);
-        panelNav.add(btn_check);
-        
         // Account
         iconAccount = new ImageIcon(resizeImage("assets/account.png"));
         iconAccount1 = new ImageIcon(resizeImage("assets/account1.png"));
@@ -198,14 +198,14 @@ public class DashboardVendor {
         clPanel = new JPanel();
         clPanel.setLayout(cl);
         
+        panelCheck = new PanelVendorCheck();
         panelTambahProduk = new PanelVendorTambahProduk();
         panelHistory = new PanelVendorHistory();
-        panelCheck = new PanelVendorCheck();
         panelAccount = new PanelVendorAccount();
         
+        clPanel.add(panelCheck, "panelCheck");        
         clPanel.add(panelTambahProduk, "panelTambahProduk");
         clPanel.add(panelHistory, "panelHistory");
-        clPanel.add(panelCheck, "panelCheck");
         clPanel.add(panelAccount, "panelAccount");
 
         frame = new JFrame("Menu Utama");
