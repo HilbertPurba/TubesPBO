@@ -34,7 +34,7 @@ public class DashboardCustomer {
     private PanelCustomerAccount panelAccount;
     
     //Frame component
-    private JFrame frame;
+    static JFrame frame;
     
     //Panel compoenent
     private JPanel clPanel, panelNav;
@@ -55,8 +55,6 @@ public class DashboardCustomer {
 
         return dimg;
     }
-    
-    
     
     public DashboardCustomer() {
         panelNav = new JPanel();
@@ -170,7 +168,8 @@ public class DashboardCustomer {
         clPanel.add(panelKeranjang, "panelKeranjang");
         clPanel.add(panelAccount, "panelAccount");
         
-        frame = new JFrame("Menu Utama");
+        frame = new JFrame();
+        frame.setTitle("Menu Utama");
         frame.add(clPanel);
         frame.add(panelNav, BorderLayout.PAGE_END);
         frame.setSize(1000,1000);

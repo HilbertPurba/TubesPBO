@@ -16,14 +16,15 @@ import Model.Produk;
 public class MainScreen {
     public static void main(String[] args) {
 //        new PanelVendorTambahProduk();
-//        new Start();
+        new Start();
+//          new DashboardCustomer();
+//        new PanelCustomerEditProfil();
 //        new PanelRegister();
 //        new DashboardCustomer();
-//        new PanelCustomerHome();
 //        new DashboardVendor();
 //        new PanelRegisterCustomer();
 //        new PanelRegisterVend;or();
-        new PanelLogin();
+//        new PanelLogin();
 //        new MenuVendor();
 //        new MenuAdmin();
 //        new PanelVendorCheck();

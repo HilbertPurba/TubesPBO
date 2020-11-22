@@ -64,9 +64,7 @@ public class PanelCustomerHome extends JPanel implements ActionListener {
         setLayout(new BorderLayout());
         header = new JPanel();
         header.setBackground(java.awt.Color.white);
-
-//        + UserManager.getInstance().getUser().getNama()  
-        title = new JLabel("SELAMAT DATANG, HILBERT");
+        title = new JLabel("SELAMAT DATANG, " + UserManager.getInstance().getUser().getNama().toUpperCase());
         title.setFont(new Font("Calibri", Font.BOLD, 72));
         title.setForeground(new Color(253,170,0));
         header.add(title);

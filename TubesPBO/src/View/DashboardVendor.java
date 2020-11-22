@@ -49,7 +49,7 @@ public class DashboardVendor {
     private ImageIcon iconCheckStock1,iconAddProduct1, iconHistory1,  iconAccount1;
     private ImageIcon iconCheckStock2,iconAddProduct2, iconHistory2,  iconAccount2;
     
-    public Image resizeImage(String url) {
+    private Image resizeImage(String url) {
         Image dimg = null;
 
         try {
