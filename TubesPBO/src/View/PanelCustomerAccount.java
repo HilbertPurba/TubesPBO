@@ -60,12 +60,12 @@ public class PanelCustomerAccount extends JPanel {
         header.add(title);
         
         content = new JPanel(new GridBagLayout());
-        nama = new JLabel("Nama: " + UserManager.getInstance().getUser().getNama());
-        nama.setFont(new Font("Calibri",  Font.BOLD, 28));
-        email = new JLabel("Email: " + UserManager.getInstance().getUser().getEmail());
-        email.setFont(new Font("Calibri",  Font.BOLD, 28));
-        telepon = new JLabel("Telp: " + UserManager.getInstance().getUser().getTelepon());
-        telepon.setFont(new Font("Calibri",  Font.BOLD, 28));
+        nama = new JLabel("Nama       : " + UserManager.getInstance().getUser().getNama());
+        nama.setFont(new Font("Segoe UI",  Font.BOLD, 42));
+        email = new JLabel("Email        : " + UserManager.getInstance().getUser().getEmail());
+        email.setFont(new Font("Segoe UI",  Font.BOLD, 42));
+        telepon = new JLabel("Telepon    : " + UserManager.getInstance().getUser().getTelepon());
+        telepon.setFont(new Font("Segoe UI",  Font.BOLD, 42));
  
         iconEdit = new ImageIcon(resizeImage("assets/edit.png"));
         iconEdit1 = new ImageIcon(resizeImage("assets/edit1.png"));

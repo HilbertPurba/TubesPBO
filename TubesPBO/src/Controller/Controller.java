@@ -191,8 +191,8 @@ public class Controller {
         }
     }
 
-//
-    public static boolean updateProfilCustomer(UserManager updateUser) {
+    // Update Profil Customer
+    public static boolean updateProfil(UserManager updateUser) {
         conn.connect();
         String query = "UPDATE pengguna SET email='" + updateUser.getInstance().getUser().getEmail() + "',"
                 + "noTelp='" + updateUser.getInstance().getUser().getTelepon()+ "'"
@@ -206,6 +206,8 @@ public class Controller {
             return (false);
         }
     }
+    
+    
 //
 //    // DELETE
 //    public boolean deleteUser(String name) {

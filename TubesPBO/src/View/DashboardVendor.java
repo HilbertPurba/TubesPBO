@@ -48,7 +48,7 @@ public class DashboardVendor {
     }
     
     //Frame Component
-    private JFrame frame;
+    static JFrame frame;
     
     //Panel Component
     private JPanel clPanel, panelNav;

@@ -116,18 +116,18 @@ public class PanelCustomerHome extends JPanel implements ActionListener {
             y3 += 60;
             y4 += 60;
             y5 += 60;
-            if (y1 > 350) {
-                y1 = 80;
-                y2 = 84;
-                y3 = 80;
-                y4 = 84;
-                y5 = 80;
-                x1 += 260;
-                x2 += 260;
-                x3 += 260;
-                x4 += 260;
-                x5 += 260;
-            }
+//            if (y1 > 350) {
+//                y1 = 80;
+//                y2 = 84;
+//                y3 = 80;
+//                y4 = 84;
+//                y5 = 80;
+//                x1 += 260;
+//                x2 += 260;
+//                x3 += 260;
+//                x4 += 260;
+//                x5 += 260;
+//            }
             
             btn_add[counter].setCursor(new Cursor(Cursor.HAND_CURSOR));
             btn_add[counter].setBorderPainted(false);
