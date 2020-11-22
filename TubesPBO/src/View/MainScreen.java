@@ -24,8 +24,6 @@ public class MainScreen {
 //        new PanelRegisterCustomer();
 //        new PanelRegisterVend;or();
         new PanelLogin();
-//        new MenuVendor();
-//        new MenuAdmin();
-//        new PanelVendorCheck();
+//        new DashboardAdmin();
     }
 }

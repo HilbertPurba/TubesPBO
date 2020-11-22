@@ -22,6 +22,7 @@ public class Controller {
 
     static DatabaseHandler conn = new DatabaseHandler();
 
+    //Get All Produk
     public static ArrayList<Produk> getAllProduk() {
         ArrayList<Produk> listProd = new ArrayList<>();
         conn.connect();
@@ -44,7 +45,7 @@ public class Controller {
         return (listProd);
     }
     
-    //get produk dari Toko tertentu
+    //Get Produk dari Toko tertentu
     public static ArrayList<Produk> getProdukToko(int id) {
         ArrayList<Produk> listProd = new ArrayList<>();
         conn.connect();

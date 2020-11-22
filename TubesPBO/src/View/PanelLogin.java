@@ -137,9 +137,9 @@ public class PanelLogin implements ActionListener {
             } else if (UserManager.getInstance().getUser().getTipeUser() == 1) {
                 jfr_login.dispose();
                 new DashboardVendor();
-            } else {
+            } else if (UserManager.getInstance().getUser().getTipeUser() == 2) {
                 jfr_login.dispose();
-                new MenuAdmin();
+                new DashboardAdmin();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Masukkan Email dan Password yang benar!", "Alert", JOptionPane.WARNING_MESSAGE);
