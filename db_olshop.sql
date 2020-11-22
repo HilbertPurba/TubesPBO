@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Nov 2020 pada 09.22
--- Versi server: 10.4.14-MariaDB
--- Versi PHP: 7.4.9
+-- Generation Time: Nov 22, 2020 at 01:46 PM
+-- Server version: 10.4.16-MariaDB
+-- PHP Version: 7.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `keranjang`
+-- Table structure for table `keranjang`
 --
 
 CREATE TABLE `keranjang` (
@@ -38,7 +38,7 @@ CREATE TABLE `keranjang` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengguna`
+-- Table structure for table `pengguna`
 --
 
 CREATE TABLE `pengguna` (
@@ -51,7 +51,7 @@ CREATE TABLE `pengguna` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pengguna`
+-- Dumping data for table `pengguna`
 --
 
 INSERT INTO `pengguna` (`id`, `nama`, `email`, `password`, `noTelp`, `tipeUser`) VALUES
@@ -59,12 +59,14 @@ INSERT INTO `pengguna` (`id`, `nama`, `email`, `password`, `noTelp`, `tipeUser`)
 (2, 'Zefa', 'zef@gmail.com', '123', '12345', 0),
 (3, 'Megacomp', 'mega@gmail.com', '12345', '021987', 1),
 (4, 'Gramedia', 'grame@gmail.com', '0011', '02198789', 1),
-(5, 'Agus Computer', 'aguscomp@gmail.com', '112233', '012312', 1);
+(5, 'Agus Computer', 'aguscomp@gmail.com', '112233', '012312', 1),
+(6, 'admin', 'admin@gmail.com', 'admin123', '085156987087', 2),
+(8, 'Logitech Indonesia', 'logitech@gmail.com', 'logitech', '099887', 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `produk`
+-- Table structure for table `produk`
 --
 
 CREATE TABLE `produk` (
@@ -76,10 +78,28 @@ CREATE TABLE `produk` (
   `stok` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `produk`
+--
+
+INSERT INTO `produk` (`id_prod`, `id`, `nama_prod`, `merk_prod`, `harga`, `stok`) VALUES
+(1, 3, 'Legion 5i ', 'Lenovo', 17000000, 7),
+(2, 3, 'Pavilion Gaming', 'Hp', 12000000, 5),
+(3, 4, 'Acoustic Electric Guitar', 'Yamaha', 2500000, 5),
+(8, 8, 'G915 Gaming Keyboard', 'Logitech', 5000000, 5),
+(9, 8, 'G431 Wired Headset', 'Logitech', 900000, 7),
+(10, 8, 'M331 Wireless Mouse', 'Logitech', 300000, 25),
+(11, 3, 'ROG G512LV', 'ASUS', 15000000, 8),
+(12, 4, 'Buku Al-Quran', 'Mizan', 15000, 20),
+(13, 4, 'Tas Sekolah Trendy', 'Eversac', 150000, 15),
+(14, 3, 'Acer Nitro 5', 'Acer', 14000000, 15),
+(15, 4, 'Buku SBMPTN 2020', 'Erlangga', 35000, 120),
+(16, 3, 'Macbook Pro 2020', 'Apple', 20000000, 10);
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transaksi`
+-- Table structure for table `transaksi`
 --
 
 CREATE TABLE `transaksi` (
@@ -100,7 +120,7 @@ CREATE TABLE `transaksi` (
 --
 
 --
--- Indeks untuk tabel `keranjang`
+-- Indexes for table `keranjang`
 --
 ALTER TABLE `keranjang`
   ADD PRIMARY KEY (`id_keranjang`),
@@ -108,72 +128,72 @@ ALTER TABLE `keranjang`
   ADD KEY `id_prod` (`id_prod`);
 
 --
--- Indeks untuk tabel `pengguna`
+-- Indexes for table `pengguna`
 --
 ALTER TABLE `pengguna`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `produk`
+-- Indexes for table `produk`
 --
 ALTER TABLE `produk`
   ADD PRIMARY KEY (`id_prod`),
   ADD KEY `id` (`id`);
 
 --
--- Indeks untuk tabel `transaksi`
+-- Indexes for table `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id_transaksi`),
   ADD KEY `id_keranjang` (`id_keranjang`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `keranjang`
+-- AUTO_INCREMENT for table `keranjang`
 --
 ALTER TABLE `keranjang`
   MODIFY `id_keranjang` int(3) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `pengguna`
+-- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `produk`
+-- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_prod` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_prod` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT untuk tabel `transaksi`
+-- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
   MODIFY `id_transaksi` int(3) NOT NULL AUTO_INCREMENT;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `keranjang`
+-- Constraints for table `keranjang`
 --
 ALTER TABLE `keranjang`
   ADD CONSTRAINT `keranjang_ibfk_1` FOREIGN KEY (`id`) REFERENCES `pengguna` (`id`),
   ADD CONSTRAINT `keranjang_ibfk_2` FOREIGN KEY (`id_prod`) REFERENCES `produk` (`id_prod`);
 
 --
--- Ketidakleluasaan untuk tabel `produk`
+-- Constraints for table `produk`
 --
 ALTER TABLE `produk`
   ADD CONSTRAINT `produk_ibfk_1` FOREIGN KEY (`id`) REFERENCES `pengguna` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `transaksi`
+-- Constraints for table `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_keranjang`) REFERENCES `keranjang` (`id_keranjang`);
