@@ -78,7 +78,7 @@ public class PanelCustomerAccount extends JPanel {
                     @Override
                     public void mouseClicked(MouseEvent me){
                         btn_edit.setIcon(iconEdit2);
-                        new PanelCustomerEditProfil();
+                        new PanelCustomerAccount_EditProfile();
                     }
                     
                     @Override

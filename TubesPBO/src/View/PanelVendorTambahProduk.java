@@ -74,7 +74,7 @@ public class PanelVendorTambahProduk extends JPanel implements ActionListener   
         nama.setBounds(465, 130, 350, 40);
         nama.setBorder(null);
         
-        merkL = new JLabel("Merek Produk ");
+        merkL = new JLabel("Merk ");
         merkL.setFont(new Font("Calibri", Font.BOLD, 42));
         merkL.setForeground(new Color(2,91,149));
         merkL.setBounds(150, 190, 300, 40);
@@ -82,7 +82,7 @@ public class PanelVendorTambahProduk extends JPanel implements ActionListener   
         merk.setBounds(465, 190, 350, 40);
         merk.setBorder(null);
         
-        hargaL = new JLabel("Harga Produk ");
+        hargaL = new JLabel("Harga ");
         hargaL.setFont(new Font("Calibri", Font.BOLD, 42));
         hargaL.setForeground(new Color(2,91,149));
         hargaL.setBounds(150, 250, 300, 40);
@@ -148,5 +148,8 @@ public class PanelVendorTambahProduk extends JPanel implements ActionListener   
                 }
             }
         }
+//        DashboardVendor dashboardVendor = new DashboardVendor();
+//        dashboardVendor.getFrame().dispose();
+//        new DashboardVendor();
     }
 }

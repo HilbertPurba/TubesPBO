@@ -38,6 +38,14 @@ public class DashboardVendor {
     private PanelVendorTambahProduk panelTambahProduk;
     private PanelVendorHistory panelHistory;
     private PanelVendorAccount panelAccount;
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    public void setFrame(JFrame frame) {
+        this.frame = frame;
+    }
     
     //Frame Component
     private JFrame frame;

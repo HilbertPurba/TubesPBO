@@ -34,7 +34,7 @@ import javax.swing.JTextField;
  *
  * @author hilbert
  */
-public class PanelCustomerEditProfil extends JFrame implements ActionListener {
+public class PanelCustomerAccount_EditProfile extends JFrame implements ActionListener {
     private JPanel panel;
     private JLabel labelEmail, labelTelepon;
     private JTextField tfEmail, tfTelepon;
@@ -55,7 +55,7 @@ public class PanelCustomerEditProfil extends JFrame implements ActionListener {
         return dimg;
     }
     
-    public PanelCustomerEditProfil() {
+    public PanelCustomerAccount_EditProfile() {
         labelEmail = new JLabel("Email: ");
         tfEmail = new JTextField(UserManager.getInstance().getUser().getEmail(), 20);
         

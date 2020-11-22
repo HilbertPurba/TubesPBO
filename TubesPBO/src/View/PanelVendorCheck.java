@@ -50,7 +50,7 @@ public class PanelVendorCheck extends JPanel {
 
         isi = new JLabel();
         isi.setFont(new Font("Segoe UI", Font.PLAIN, 25));
-        isi.setBounds(150, 0, 800, 520);
+        isi.setBounds(150, 50, 800, 520);
         isi.setText(produk.toString());
         
         add(contentTitle);
