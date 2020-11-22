@@ -5,6 +5,7 @@
  */
 package View;
 
+import Model.UserManager;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -25,7 +26,7 @@ public class PanelCustomerHome extends JPanel {
         header = new JPanel();
         header.setBackground(java.awt.Color.white);
         
-        title = new JLabel("SELAMAT DATANG, HILBERT");
+        title = new JLabel("SELAMAT DATANG, " + UserManager.getInstance().getUser().getNama().toUpperCase());
         title.setFont(new Font("Calibri", Font.BOLD, 72));
         title.setForeground(new Color(253,170,0));
         header.add(title);

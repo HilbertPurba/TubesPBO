@@ -165,22 +165,20 @@ public class Controller {
     }
 
 //
-//    // UPDATE
-//    public boolean updateUser(Customer customer) {
-//        conn.connect();
-//        String query = "UPDATE customers SET name='" + customer.getName() + "', "
-//                + "email='" + customer.getEmail() + "', "
-//                + "password='" + customer.getPassword() + "' "
-//                + " WHERE ID='" + customer.getId() + "'";
-//        try {
-//            Statement stmt = conn.con.createStatement();
-//            stmt.executeUpdate(query);
-//            return (true);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            return (false);
-//        }
-//    }
+    public static boolean updateProfilCustomer(UserManager updateUser) {
+        conn.connect();
+        String query = "UPDATE pengguna SET email='" + updateUser.getInstance().getUser().getEmail() + "',"
+                + "noTelp='" + updateUser.getInstance().getUser().getTelepon()+ "'"
+                + "WHERE nama='" + updateUser.getInstance().getUser().getNama() + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(query);
+            return (true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
+        }
+    }
 //
 //    // DELETE
 //    public boolean deleteUser(String name) {

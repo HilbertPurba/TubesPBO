@@ -13,9 +13,11 @@ public class MainScreen {
     public static void main(String[] args) {
 //        new PanelVendorTambahProduk();
         new Start();
+//          new DashboardCustomer();
+//        new PanelCustomerEditProfil();
 //        new PanelRegister();
 //        new DashboardCustomer();
-//         new DashboardVendor();
+//        new DashboardVendor();
 //        new PanelRegisterCustomer();
 //        new PanelRegisterVendor();
 //        new PanelLogin();
