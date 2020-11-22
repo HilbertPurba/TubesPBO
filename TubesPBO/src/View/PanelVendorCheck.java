@@ -12,6 +12,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
+import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,26 +25,38 @@ import javax.swing.JPanel;
  */
 public class PanelVendorCheck extends JPanel {
 
-    JFrame CekStok = new JFrame("Cek Stok");
-    JLabel judul, isi;
+    private JPanel header,content;
+    private JLabel headerTitle, contentTitle, isi;
 
     public PanelVendorCheck() {
+        setLayout(new BorderLayout());
+        header = new JPanel();
+        header.setBackground(Color.white);
+        
+        headerTitle = new JLabel("CHECK STOCK - MEGACOMP");
+        headerTitle.setFont(new Font("Calibri", Font.BOLD, 72));
+        headerTitle.setForeground(new Color(2,91,149));
+        header.add(headerTitle);
+        
+        contentTitle = new JLabel("Daftar Produk : ");
+        contentTitle.setFont(new Font("Segoe UI", Font.BOLD, 42));
+        contentTitle.setForeground(new Color(2,91,149));
+        contentTitle.setBounds(350, 130, 450, 40);
+        
+        content = new JPanel();
+        content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
+        
         Produk produk = new Produk();
-        CekStok.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-
-        judul = new JLabel("Daftar Produk:");
-        judul.setBounds(10, 10, 200, 40);
 
         isi = new JLabel();
-        isi.setBounds(10, 30, 690, 720);
+        isi.setFont(new Font("Segoe UI", Font.PLAIN, 25));
+        isi.setBounds(150, 0, 800, 520);
         isi.setText(produk.toString());
-
-        CekStok.add(judul);
-        CekStok.add(isi);
-        CekStok.setSize(700, 770);
-        CekStok.getContentPane().setBackground(Color.WHITE);
-        CekStok.setLocationRelativeTo(null);
-        CekStok.setLayout(null);
-        CekStok.setVisible(true);
+        
+        add(contentTitle);
+        add(isi);
+        
+        add(header, BorderLayout.PAGE_START);
+        add(content);
     }
 }
