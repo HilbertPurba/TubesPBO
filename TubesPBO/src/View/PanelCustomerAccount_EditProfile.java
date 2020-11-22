@@ -141,14 +141,14 @@ public class PanelCustomerAccount_EditProfile extends JFrame implements ActionLi
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == btnOk) {
             if(tfEmail.getText().isEmpty() || tfTelepon.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Masih ada data yang kosong. Mohon diisi",  "Warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Masih ada Data yang Kosong. Mohon diisi",  "Warning", JOptionPane.WARNING_MESSAGE);
             } else {
-                int option = JOptionPane.showConfirmDialog(null, "Apakah anda sudah yakin?",  "Update", JOptionPane.YES_NO_OPTION);
+                int option = JOptionPane.showConfirmDialog(null, "Apakah Anda yakin?",  "Update", JOptionPane.YES_NO_OPTION);
                 if(option == JOptionPane.OK_OPTION) {
                     UserManager.getInstance().getUser().setEmail(tfEmail.getText());
                     UserManager.getInstance().getUser().setTelepon(tfTelepon.getText());
-                    if(Controller.updateProfilCustomer(UserManager.getInstance())) {
-                        JOptionPane.showMessageDialog(null, "Pembaharuan data sukses anda akan diminta untuk login kembali dengan data yang baru", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    if(Controller.updateProfil(UserManager.getInstance())) {
+                        JOptionPane.showMessageDialog(null, "Update Data Sukses. Anda akan diminta untuk Login kembali dengan Data yang baru", "Success", JOptionPane.INFORMATION_MESSAGE);
                         dispose();
                         frame.dispose();
                         UserManager.getInstance().logOut();
