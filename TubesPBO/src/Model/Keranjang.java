@@ -5,6 +5,8 @@
  */
 package Model;
 
+import Controller.Controller;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,19 +18,28 @@ import java.util.List;
 public class Keranjang {
     private int idKeranjang;
     private int id_user;
-    private int id_toko;
-    private String namaToko;
-    private List<Produk> listProdukBeli;
-
-    public Keranjang(int idKeranjang, int id_user, int id_toko, String namaToko, List<Produk> listProdukBeli) {
-        this.idKeranjang = idKeranjang;
-        this.id_user = id_user;
-        this.id_toko = id_toko;
-        this.namaToko = namaToko;
-        this.listProdukBeli = listProdukBeli;
-    }
+    private int jumlah_total;
+    private int harga_total;
 
     public Keranjang() {
+    }
+    
+    public int testConnector() {
+        int id_produk = -1;
+        List<Produk> listProd = Controller.getAllProduk();
+        for(int i = 0; i < listProd.size(); i++) {
+            if(listProd.get(i).getNamaProduk().equals(ProdukBeliManager.getInstance().getProdukBeli().getNama())) {
+                id_produk = listProd.get(i).getIdProduk();
+            }
+        }
+        return id_produk;
+    }
+
+    public Keranjang(int idKeranjang, int id_user, int jumlah_total, int harga_total) {
+        this.idKeranjang = idKeranjang;
+        this.id_user = id_user;
+        this.jumlah_total = jumlah_total;
+        this.harga_total = harga_total;
     }
 
     public int getIdKeranjang() {
@@ -47,29 +58,20 @@ public class Keranjang {
         this.id_user = id_user;
     }
 
-    public int getId_toko() {
-        return id_toko;
+    public int getJumlah_total() {
+        return jumlah_total;
     }
 
-    public void setId_toko(int id_toko) {
-        this.id_toko = id_toko;
+    public void setJumlah_total(int jumlah_total) {
+        this.jumlah_total = jumlah_total;
     }
 
-    public String getNamaToko() {
-        return namaToko;
+    public int getHarga_total() {
+        return harga_total;
     }
 
-    public void setNamaToko(String namaToko) {
-        this.namaToko = namaToko;
+    public void setHarga_total(int harga_total) {
+        this.harga_total = harga_total;
     }
-
-    public List<Produk> getListProdukBeli() {
-        return listProdukBeli;
-    }
-
-    public void setListProdukBeli(List<Produk> listProdukBeli) {
-        this.listProdukBeli = listProdukBeli;
-    }
-
-    
+  
 }

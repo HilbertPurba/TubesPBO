@@ -5,18 +5,12 @@
  */
 package View;
 
-import javax.swing.JPanel;
-import Controller.Controller;
 import Model.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.util.ArrayList;
 import javax.swing.BoxLayout;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -34,12 +28,12 @@ public class PanelVendorCheck extends JPanel {
         header.setBackground(Color.white);
         
         headerTitle = new JLabel("CHECK STOCK - MEGACOMP");
-        headerTitle.setFont(new Font("Calibri", Font.BOLD, 72));
+        headerTitle.setFont(new Font("Calibri", Font.BOLD, 60));
         headerTitle.setForeground(new Color(2,91,149));
         header.add(headerTitle);
         
         contentTitle = new JLabel("Daftar Produk : ");
-        contentTitle.setFont(new Font("Segoe UI", Font.BOLD, 42));
+        contentTitle.setFont(new Font("Segoe UI", Font.BOLD, 35));
         contentTitle.setForeground(new Color(2,91,149));
         contentTitle.setBounds(350, 130, 450, 40);
         

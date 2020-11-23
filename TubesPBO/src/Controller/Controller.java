@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import Model.*;
+import java.util.List;
 
 /**
  *
@@ -43,7 +44,7 @@ public class Controller {
         }
         return (listProd);
     }
-    
+
     //get produk dari Toko tertentu
     public static ArrayList<Produk> getProdukToko(int id) {
         ArrayList<Produk> listProd = new ArrayList<>();
@@ -66,7 +67,7 @@ public class Controller {
         }
         return (listProd);
     }
-    
+
     //mencocokan untuk pasword login
     public static boolean cekPassword(String email, String password) {
         ArrayList<User> users = new ArrayList<>();
@@ -86,7 +87,7 @@ public class Controller {
         }
         return isMatch;
     }
-    
+
     //Get User Login Data
     public static User getUser(String email) {
         User user = new User();
@@ -109,7 +110,7 @@ public class Controller {
         }
         return (user);
     }
-   
+
 //
 //    // SELECT WHERE
 //    public Customer getCustomer(String name, String email) {
@@ -169,7 +170,7 @@ public class Controller {
             return (false);
         }
     }
-    
+
     // INSERT produk
     public static boolean insertNewProduk(Produk produk) {
         int id = UserManager.getInstance().getUser().getID();
@@ -183,6 +184,83 @@ public class Controller {
             stmt.setInt(4, produk.getHarga());
             stmt.setInt(5, produk.getStok());
             stmt.executeUpdate();
+            return (true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
+        }
+    }
+
+    public static int countId(Keranjang keranjang) {
+        conn.connect();
+        String query = "SELECT count(*) FROM keranjang WHERE id=" + keranjang.getId_user();
+        int count = 0;
+        try {
+            PreparedStatement stmtId = conn.con.prepareStatement(query);
+            ResultSet rs = stmtId.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt("count(*)");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+    public static boolean insertNewKeranjang(Keranjang keranjang) {
+        if(countId(keranjang) == 0) {
+            String query = "INSERT INTO keranjang (id, jumlah_total, harga_total) VALUES (?,?,?)";
+            try {
+                PreparedStatement stmt = conn.con.prepareStatement(query);
+                stmt.setInt(1, keranjang.getId_user());
+                stmt.setInt(2, keranjang.getJumlah_total());
+                stmt.setInt(3, keranjang.getHarga_total());
+                stmt.executeUpdate();
+                return (true);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return (false);
+            }
+        } else {
+            String query = "UPDATE keranjang SET jumlah_total=jumlah_total+" + keranjang.getJumlah_total()
+                    + ", harga_total=harga_total+" + keranjang.getHarga_total()
+                    + " WHERE id=" + keranjang.getId_user();
+            try {
+                PreparedStatement stmt = conn.con.prepareStatement(query);
+                stmt.executeUpdate();
+                return (true);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return (false);
+            }
+        }
+    }
+    
+    public static int getIdKeranjang() {
+        int id_keranjang = 0;
+        conn.connect();
+        String query = "SELECT id_keranjang FROM keranjang WHERE id=" + KeranjangManager.getInstance().getKeranjang().getId_user();
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                id_keranjang = rs.getInt("id_keranjang");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id_keranjang;
+    }
+    
+    public static boolean insertConnectorKeranjang(Keranjang keranjang) {
+        int id_produk = KeranjangManager.getInstance().getKeranjang().testConnector();
+        conn.connect();
+        String query = "INSERT INTO connectorprodukkeranjang (id_keranjang, id_prod, jumlah_produk) VALUES (?,?,?)";
+        try {
+            PreparedStatement stmt = conn.con.prepareStatement(query);
+                stmt.setInt(1, getIdKeranjang());
+                stmt.setInt(2, id_produk);
+                stmt.setInt(3, keranjang.getJumlah_total());
+                stmt.executeUpdate();
             return (true);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -204,6 +282,48 @@ public class Controller {
             e.printStackTrace();
             return (false);
         }
+    }
+    
+    public static int getProdukKeranjang() {
+        int id_keranjang = 0;
+        conn.connect();
+        String query = "SELECT id_keranjang FROM keranjang WHERE id=" + UserManager.getInstance().getUser().getID();
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                id_keranjang = rs.getInt("id_keranjang");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id_keranjang;
+    }
+    
+    public static List<ProdukBeli> getProdukBeli() {
+        List<ProdukBeli> listProdukBeli = new ArrayList<>();
+        String query = "SELECT connectorprodukkeranjang.id_keranjang, produk.nama_prod, produk.merk_prod, "
+                + "connectorprodukkeranjang.jumlah_produk, "
+                + "connectorprodukkeranjang.jumlah_produk*produk.harga AS totalharga1produk "
+                + "from produk "
+                + "JOIN connectorprodukkeranjang on produk.id_prod = connectorprodukkeranjang.id_prod "
+                + "WHERE connectorprodukkeranjang.id_keranjang=" + getProdukKeranjang();
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                ProdukBeli produkBeli = new ProdukBeli();
+                produkBeli.setId_keranjang(rs.getInt("id_keranjang"));
+                produkBeli.setNama(rs.getString("nama_prod"));
+                produkBeli.setMerk(rs.getString("merk_prod"));
+                produkBeli.setJumlahBeli(rs.getInt("jumlah_produk"));
+                produkBeli.setHarga(rs.getInt("totalharga1produk"));
+                listProdukBeli.add(produkBeli);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listProdukBeli;
     }
 //
 //    // DELETE

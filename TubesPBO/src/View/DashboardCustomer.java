@@ -172,7 +172,7 @@ public class DashboardCustomer {
         frame.setTitle("Menu Utama");
         frame.add(clPanel);
         frame.add(panelNav, BorderLayout.PAGE_END);
-        frame.setSize(1000,1000);
+        frame.setSize(1000,700);
         frame.setLocationRelativeTo(null);
         frame.setResizable(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
