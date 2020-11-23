@@ -6,6 +6,7 @@
 package View;
 
 import Controller.*;
+import Model.KeranjangManager;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
