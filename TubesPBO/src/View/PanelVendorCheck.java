@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.Controller;
 import Model.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
