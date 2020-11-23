@@ -14,6 +14,7 @@ package Model;
 public class UserManager {
     private static UserManager instance;
     private User user;
+    private Produk produk;
     
     public static UserManager getInstance() {
         if (instance == null) {
@@ -24,6 +25,10 @@ public class UserManager {
 
     public User getUser() {
         return user;
+    }
+    
+    public Produk getProduk(){
+        return produk;
     }
     
     public void logOut() {

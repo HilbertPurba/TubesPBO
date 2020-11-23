@@ -52,7 +52,7 @@ public class PanelLogin implements ActionListener {
         jfr_login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jfr_login.setResizable(true);
         jfr_login.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jfr_login.setSize(1000,1000);
+        jfr_login.setSize(1000,700);
         jfr_login.setLocationRelativeTo(null);
         
         Panel = new JPanel();

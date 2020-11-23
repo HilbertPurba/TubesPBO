@@ -37,6 +37,7 @@ public class PanelVendorTambahProduk extends JPanel implements ActionListener   
     private JTextField nama, merk, stok, harga;
     private ImageIcon iconOK;
     private JButton btn_submit;
+    private GridBagConstraints gbc;
     
     private Image resizeImage(String url) {
         Image dimg = null;
@@ -56,70 +57,91 @@ public class PanelVendorTambahProduk extends JPanel implements ActionListener   
         header = new JPanel();
         header.setBackground(java.awt.Color.white);
         
-        
         title = new JLabel("TAMBAH PRODUK");
-        title.setFont(new Font("Calibri", Font.BOLD, 72));
+        title.setFont(new Font("Calibri", Font.BOLD, 60));
         title.setForeground(java.awt.Color.BLACK);
         title.setForeground(new Color(2,91,149));
         header.add(title);
         
         content = new JPanel(new GridBagLayout());
-        content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
+//        content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
 
-        namaL = new JLabel("Nama Produk ");
-        namaL.setFont(new Font("Calibri", Font.BOLD, 42));
+        namaL = new JLabel("Nama Produk : ");
+        namaL.setFont(new Font("Calibri", Font.BOLD, 35));
         namaL.setForeground(new Color(2,91,149));
-        namaL.setBounds(150, 130, 300, 40);
-        nama = new JTextField();
-        nama.setBounds(465, 130, 350, 40);
-        nama.setBorder(null);
+        nama = new JTextField(12);
+        nama.setFont(new Font("Calibri", Font.PLAIN, 27));
         
-        merkL = new JLabel("Merk ");
-        merkL.setFont(new Font("Calibri", Font.BOLD, 42));
+        merkL = new JLabel("Merk                : ");
+        merkL.setFont(new Font("Calibri", Font.BOLD, 35));
         merkL.setForeground(new Color(2,91,149));
-        merkL.setBounds(150, 190, 300, 40);
-        merk = new JTextField();
-        merk.setBounds(465, 190, 350, 40);
-        merk.setBorder(null);
+        merk = new JTextField(12);
+        merk.setFont(new Font("Calibri", Font.PLAIN, 27));
         
-        hargaL = new JLabel("Harga ");
-        hargaL.setFont(new Font("Calibri", Font.BOLD, 42));
+        hargaL = new JLabel("Harga               :");
+        hargaL.setFont(new Font("Calibri", Font.BOLD, 35));
         hargaL.setForeground(new Color(2,91,149));
-        hargaL.setBounds(150, 250, 300, 40);
-        harga = new JTextField();
-        harga.setBounds(465, 250, 350, 40);
-        harga.setBorder(null);
+        harga = new JTextField(12);
+        harga.setFont(new Font("Calibri", Font.PLAIN, 27));
         
-        stokL = new JLabel("Stok Awal ");
-        stokL.setFont(new Font("Calibri", Font.BOLD, 42));
+        stokL = new JLabel("Stok Awal       :");
+        stokL.setFont(new Font("Calibri", Font.BOLD, 35));
         stokL.setForeground(new Color(2,91,149));
-        stokL.setBounds(150, 310, 300, 40);
-        stok = new JTextField();
-        stok.setBounds(465, 310, 350, 40);
-        stok.setBorder(null);
+        stok = new JTextField(12);
+        stok.setFont(new Font("Calibri", Font.PLAIN, 27));
         
         //Button
         iconOK = new ImageIcon(resizeImage("assets/ok.png"));
         btn_submit = new JButton(iconOK);
-        btn_submit.setBounds(445,380,100,100);
         btn_submit.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_submit.setIcon(iconOK);
         btn_submit.setBorderPainted(false);
         btn_submit.setFocusPainted(false);
         btn_submit.setContentAreaFilled(false);
         btn_submit.addActionListener(this);
-
-        add(namaL);
-        add(nama);
-        add(merkL);
-        add(merk);
-        add(hargaL);
-        add(harga);
-        add(stokL);
-        add(stok);
-        add(btn_submit);
+        
+        gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        content.add(namaL, gbc);
+        
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        content.add(nama, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        content.add(merkL, gbc);
+        
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        content.add(merk, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        content.add(hargaL, gbc);
+        
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        content.add(harga, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        content.add(stokL, gbc);
+        
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        content.add(stok, gbc);
+        
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        content.add(btn_submit, gbc);
+        
         add(header, BorderLayout.PAGE_START);
-        add(content);
+        add(content, BorderLayout.CENTER);
     }
 
     @Override
