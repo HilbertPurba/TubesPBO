@@ -26,7 +26,6 @@ public class PanelVendorCheck extends JPanel {
     private JPanel header,content;
     private JLabel headerTitle, contentTitle, namaL, stokL;
     private JLabel[] nama, stok;
-    private JLabel isi;
     private GridBagConstraints gbc;
     private ArrayList<Produk> listProd = Controller.getProdukToko(UserManager.getInstance().getUser().getID());
     private int jumlahProduk =0;
@@ -46,10 +45,6 @@ public class PanelVendorCheck extends JPanel {
         contentTitle = new JLabel("Daftar Produk : ");
         contentTitle.setFont(new Font("Segoe UI", Font.BOLD, 35));
         contentTitle.setForeground(new Color(2,91,149));
-//        contentTitle.setBounds(350, 130, 450, 40);
-        
-//        content = new JPanel();
-//        content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
 
         for (int i = 0;i < listProd.size(); i++){
             jumlahProduk++;
@@ -62,12 +57,8 @@ public class PanelVendorCheck extends JPanel {
         namaL.setFont(new Font("Segoe UI", Font.BOLD, 25));
         stokL = new JLabel("Stok");
         stokL.setFont(new Font("Segoe UI", Font.BOLD, 25));
-//        nama = new JLabel(UserManager.getInstance().getProduk().getNamaProduk());
         nama = new JLabel[jumlahProduk];
-//        nama.setFont(new Font("Segoe UI", Font.BOLD, 25));
-//        stok = new JLabel(String.valueOf(UserManager.getInstance().getProduk().getStok()));
         stok = new JLabel[jumlahProduk];
-//        stok.setFont(new Font("Segoe UI", Font.BOLD, 25));
 
         int counter = 0;
         
