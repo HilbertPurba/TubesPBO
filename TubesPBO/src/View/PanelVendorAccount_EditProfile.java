@@ -8,7 +8,7 @@ package View;
 import Controller.Controller;
 import Model.User;
 import Model.UserManager;
-import static View.DashboardCustomer.frame;
+import static View.DashboardVendor.frame;
 import java.awt.Cursor;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -32,9 +32,11 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author hilbert
+ * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
-public class PanelCustomerEditProfil extends JFrame implements ActionListener {
+public class PanelVendorAccount_EditProfile extends JFrame implements ActionListener {
     private JPanel panel;
     private JLabel labelEmail, labelTelepon;
     private JTextField tfEmail, tfTelepon;
@@ -55,7 +57,7 @@ public class PanelCustomerEditProfil extends JFrame implements ActionListener {
         return dimg;
     }
     
-    public PanelCustomerEditProfil() {
+    public PanelVendorAccount_EditProfile() {
         labelEmail = new JLabel("Email: ");
         tfEmail = new JTextField(UserManager.getInstance().getUser().getEmail(), 20);
         
@@ -143,12 +145,12 @@ public class PanelCustomerEditProfil extends JFrame implements ActionListener {
             if(tfEmail.getText().isEmpty() || tfTelepon.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Masih ada data yang kosong. Mohon diisi",  "Warning", JOptionPane.WARNING_MESSAGE);
             } else {
-                int option = JOptionPane.showConfirmDialog(null, "Apakah anda sudah yakin?",  "Update", JOptionPane.YES_NO_OPTION);
+                int option = JOptionPane.showConfirmDialog(null, "Apakah Anda yakin?",  "Update", JOptionPane.YES_NO_OPTION);
                 if(option == JOptionPane.OK_OPTION) {
                     UserManager.getInstance().getUser().setEmail(tfEmail.getText());
                     UserManager.getInstance().getUser().setTelepon(tfTelepon.getText());
-                    if(Controller.updateProfilCustomer(UserManager.getInstance())) {
-                        JOptionPane.showMessageDialog(null, "Pembaharuan data sukses anda akan diminta untuk login kembali dengan data yang baru", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    if(Controller.updateProfil(UserManager.getInstance())) {
+                        JOptionPane.showMessageDialog(null, "Update Data Sukses. Anda akan diminta untuk Login kembali dengan Data yang baru", "Success", JOptionPane.INFORMATION_MESSAGE);
                         dispose();
                         frame.dispose();
                         UserManager.getInstance().logOut();
@@ -161,3 +163,4 @@ public class PanelCustomerEditProfil extends JFrame implements ActionListener {
         }
     }
 }
+

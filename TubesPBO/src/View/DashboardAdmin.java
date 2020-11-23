@@ -9,7 +9,9 @@ import Model.UserManager;
 import static View.DashboardVendor.frame;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -20,6 +22,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -29,22 +32,21 @@ import javax.swing.JPanel;
  * @author Hilbert
  * @author Zefanya
  */
-public class DashboardCustomer {
+public class DashboardAdmin {
     //CardLayout component
     private CardLayout cl;
-    private PanelCustomerHome panelCustomer;
-    private PanelCustomerKeranjang panelKeranjang;
-    private PanelCustomerAccount panelAccount;
+    private PanelAdminSeeTransaction panelSeeTransaction;
+    private PanelAdminCancelTransaction panelCancelTransaction;
     
     //Frame component
-    static JFrame frame;
+    private JFrame frame;
     
     //Panel compoenent
     private JPanel clPanel, panelNav;
-    private JButton btn_home, btn_keranjang, btn_account, btn_logout;
-    private ImageIcon iconHome, iconKeranjang, iconAkun, iconLogout;
-    private ImageIcon iconHome1, iconKeranjang1, iconAkun1, iconLogout1;
-    private ImageIcon iconHome2, iconKeranjang2, iconAkun2, iconLogout2;
+    private JButton btn_seeTransaction, btn_cancelTransaaction, btn_logout;
+    private ImageIcon iconSeeTransaction, iconCancelTransaction, iconLogout;
+    private ImageIcon iconSeeTransaction1, iconCancelTransaction1, iconLogout1;
+    private ImageIcon iconSeeTransaction2, iconCancelTransaction2, iconLogout2;
     
     private Image resizeImage(String url) {
         Image dimg = null;
@@ -59,105 +61,71 @@ public class DashboardCustomer {
         return dimg;
     }
     
-    public DashboardCustomer() {
+    public DashboardAdmin() {
         panelNav = new JPanel();
         panelNav.setBackground(java.awt.Color.white);
         
-        // Home
-        iconHome = new ImageIcon(resizeImage("assets/home.png"));
-        iconHome1 = new ImageIcon(resizeImage("assets/home1.png"));
-        iconHome2 = new ImageIcon(resizeImage("assets/home2.png"));
-        btn_home = new JButton(iconHome);
-        btn_home.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btn_home.setIcon(iconHome1);
-        btn_home.addMouseListener(
-                new MouseAdapter(){
+        // See
+        iconSeeTransaction = new ImageIcon(resizeImage("assets/transaction.png"));
+        iconSeeTransaction1 = new ImageIcon(resizeImage("assets/transaction1.png"));
+        iconSeeTransaction2 = new ImageIcon(resizeImage("assets/transaction2.png"));
+        btn_seeTransaction = new JButton(iconSeeTransaction);
+        btn_seeTransaction.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn_seeTransaction.setIcon(iconSeeTransaction);
+        btn_seeTransaction.addMouseListener(new MouseAdapter(){
                     @Override
                     public void mouseClicked(MouseEvent me){
-                        btn_home.setIcon(iconHome2);
-                        cl.show(clPanel, "panelCustomer");
-                        frame.setTitle("Main Menu");
+                        btn_seeTransaction.setIcon(iconSeeTransaction2);
+                        cl.show(clPanel, "panelSeeTransaction");
+                        frame.setTitle("Menu Lihat Transaksi");
                     }
                     
                     @Override
                     public void mouseEntered(MouseEvent me){
-                        btn_home.setIcon(iconHome);
+                        btn_seeTransaction.setIcon(iconSeeTransaction1);
                     }
                     
                     @Override
                     public void mouseExited(MouseEvent me){
-                        btn_home.setIcon(iconHome1);
+                        btn_seeTransaction.setIcon(iconSeeTransaction);
                     }
                 }
         );
-        btn_home.setBorderPainted(false);
-        btn_home.setFocusPainted(false);
-        btn_home.setContentAreaFilled(false);
-        panelNav.add(btn_home);
+        btn_seeTransaction.setBorderPainted(false);
+        btn_seeTransaction.setFocusPainted(false);
+        btn_seeTransaction.setContentAreaFilled(false);
+        panelNav.add(btn_seeTransaction);
         
-        // Keranjang
-        iconKeranjang = new ImageIcon(resizeImage("assets/keranjang.png"));
-        iconKeranjang1 = new ImageIcon(resizeImage("assets/keranjang1.png"));
-        iconKeranjang2 = new ImageIcon(resizeImage("assets/keranjang2.png"));
-        btn_keranjang = new JButton(iconKeranjang);
-        btn_keranjang.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btn_keranjang.setIcon(iconKeranjang1);
-        btn_keranjang.addMouseListener(
-                new MouseAdapter(){
+        // Cancel
+        iconCancelTransaction = new ImageIcon(resizeImage("assets/cancelTR.png"));
+        iconCancelTransaction1 = new ImageIcon(resizeImage("assets/cancelTR1.png"));
+        iconCancelTransaction2 = new ImageIcon(resizeImage("assets/cancelTR2.png"));
+        btn_cancelTransaaction = new JButton(iconCancelTransaction);
+        btn_cancelTransaaction.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn_cancelTransaaction.setIcon(iconCancelTransaction);
+        btn_cancelTransaaction.addMouseListener(new MouseAdapter(){
                     @Override
                     public void mouseClicked(MouseEvent me){
-                        btn_keranjang.setIcon(iconKeranjang2);
-                        cl.show(clPanel, "panelKeranjang");
-                        frame.setTitle("Menu Keranjang");
+                        btn_cancelTransaaction.setIcon(iconCancelTransaction2);
+                        cl.show(clPanel, "panelCancelTransaction");
+                        frame.setTitle("Menu Cancel Transaction");
                     }
                     
                     @Override
                     public void mouseEntered(MouseEvent me){
-                        btn_keranjang.setIcon(iconKeranjang);
+                        btn_cancelTransaaction.setIcon(iconCancelTransaction1);
                     }
                     
                     @Override
                     public void mouseExited(MouseEvent me){
-                        btn_keranjang.setIcon(iconKeranjang1);
+                        btn_cancelTransaaction.setIcon(iconCancelTransaction);
                     }
                 }
         );
-        btn_keranjang.setBorderPainted(false);
-        btn_keranjang.setFocusPainted(false);
-        btn_keranjang.setContentAreaFilled(false);
-        panelNav.add(btn_keranjang);
-        
-        // Account
-        iconAkun = new ImageIcon(resizeImage("assets/account.png"));
-        iconAkun1 = new ImageIcon(resizeImage("assets/account1.png"));
-        iconAkun2 = new ImageIcon(resizeImage("assets/account2.png"));
-        btn_account = new JButton(iconAkun);
-        btn_account.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btn_account.setIcon(iconAkun1);
-        btn_account.addMouseListener(
-                new MouseAdapter(){
-                    @Override
-                    public void mouseClicked(MouseEvent me){
-                        btn_account.setIcon(iconAkun2);
-                        cl.show(clPanel, "panelAccount");
-                        frame.setTitle("Menu Account");
-                    }
-                    
-                    @Override
-                    public void mouseEntered(MouseEvent me){
-                        btn_account.setIcon(iconAkun);
-                    }
-                    
-                    @Override
-                    public void mouseExited(MouseEvent me){
-                        btn_account.setIcon(iconAkun1);
-                    }
-                }
-        );
-        btn_account.setBorderPainted(false);
-        btn_account.setFocusPainted(false);
-        btn_account.setContentAreaFilled(false);
-        panelNav.add(btn_account);
+        btn_cancelTransaaction.setBorderPainted(false);
+        btn_cancelTransaaction.setFocusPainted(false);
+        btn_cancelTransaaction.setContentAreaFilled(false);
+        panelNav.add(btn_cancelTransaaction);
         
         // Logout
         iconLogout = new ImageIcon(resizeImage("assets/logout.png"));
@@ -202,16 +170,13 @@ public class DashboardCustomer {
         clPanel = new JPanel();
         clPanel.setLayout(cl);
         
-        panelCustomer = new PanelCustomerHome();
-        panelKeranjang = new PanelCustomerKeranjang();
-        panelAccount = new PanelCustomerAccount();
+        panelSeeTransaction = new PanelAdminSeeTransaction();
+        panelCancelTransaction = new PanelAdminCancelTransaction();
         
-        clPanel.add(panelCustomer, "panelCustomer");
-        clPanel.add(panelKeranjang, "panelKeranjang");
-        clPanel.add(panelAccount, "panelAccount");
+        clPanel.add(panelSeeTransaction, "panelSeeTransaction");
+        clPanel.add(panelCancelTransaction, "panelCancelTransaction");
         
-        frame = new JFrame();
-        frame.setTitle("Menu Utama");
+        frame = new JFrame("Menu Utama");
         frame.add(clPanel);
         frame.add(panelNav, BorderLayout.PAGE_END);
         frame.setSize(1000,700);

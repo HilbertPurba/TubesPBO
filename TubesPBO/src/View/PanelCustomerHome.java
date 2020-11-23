@@ -74,27 +74,34 @@ public class PanelCustomerHome extends JPanel implements ActionListener {
         desc = new JLabel("Pilih Produk: ");
         desc.setFont(new Font("Calibri", Font.BOLD, 56));
         desc.setBounds(350, 100, 550, 75);
+        desc.setForeground(new Color(253,170,0));
         add(desc);
 
         iconAdd = new ImageIcon(resizeImage("assets/add.png"));
 
-        namaProd = new JLabel[listProd.size()];
-        merkProd = new JLabel[listProd.size()];
-        hargaProd = new JLabel[listProd.size()];
-        stokProd = new JLabel[listProd.size()];
-        btn_add = new JButton[listProd.size()];
-        int x1 = 70, x2 = 350, x3 = 500, x4 = 700, x5 = 800;
+        for (int i = 0; i < listProd.size(); i++) {
+            jumlahProduk++;
+            if (jumlahProduk == 5){
+                break;
+            }
+        }
+        namaProd = new JLabel[jumlahProduk];
+        merkProd = new JLabel[jumlahProduk];
+        hargaProd = new JLabel[jumlahProduk];
+        stokProd = new JLabel[jumlahProduk];
+        btn_add = new JButton[jumlahProduk];
+        int x1 = 70, x2 = 350, x3 = 520, x4 = 700, x5 = 800;
         int y1 = 225, y2 = 225, y3 = 225, y4 = 225, y5 = 225;
         int counter = 0;
-        for (int i = 0; i < listProd.size(); i++) {
+        for (int i = 0; i < jumlahProduk; i++) {
             namaProd[counter] = new JLabel(listProd.get(i).getNamaProduk());
-            namaProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 18));
+            namaProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
             merkProd[counter] = new JLabel(listProd.get(i).getMerk());
-            merkProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 18));
+            merkProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
             hargaProd[counter] = new JLabel("Rp. " + listProd.get(i).getHarga());
-            hargaProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 18));
+            hargaProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
             stokProd[counter] = new JLabel("" + listProd.get(i).getStok());
-            stokProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 18));
+            stokProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
             btn_add[counter] = new JButton(iconAdd);
 
             namaProd[counter].setBounds(x1, y1, 300, 25);
@@ -114,19 +121,6 @@ public class PanelCustomerHome extends JPanel implements ActionListener {
             y3 += 60;
             y4 += 60;
             y5 += 60;
-//            if (y1 > 350) {
-//                y1 = 80;
-//                y2 = 84;
-//                y3 = 80;
-//                y4 = 84;
-//                y5 = 80;
-//                x1 += 260;
-//                x2 += 260;
-//                x3 += 260;
-//                x4 += 260;
-//                x5 += 260;
-//            }
-
             btn_add[counter].setCursor(new Cursor(Cursor.HAND_CURSOR));
             btn_add[counter].setBorderPainted(false);
             btn_add[counter].setFocusPainted(false);

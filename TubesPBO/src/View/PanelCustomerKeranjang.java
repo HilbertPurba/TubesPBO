@@ -57,8 +57,8 @@ public class PanelCustomerKeranjang extends JPanel {
         header.setBackground(java.awt.Color.white);
 
         title = new JLabel("KERANJANG");
-        title.setFont(new Font("Calibri", Font.BOLD, 72));
-        title.setForeground(new Color(253, 170, 0));
+        title.setFont(new Font("Calibri", Font.BOLD, 60));
+        title.setForeground(new Color(253,170,0));
         header.add(title);
 
         content = new JPanel(new GridBagLayout());

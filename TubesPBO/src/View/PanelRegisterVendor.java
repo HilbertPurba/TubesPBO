@@ -34,9 +34,10 @@ public class PanelRegisterVendor implements ActionListener {
     JTextArea alamat;
     JPasswordField pass;
     JPanel Panel;
-    JButton btn_submit;
+    JButton btn_submit, btn_back;
     
     private ImageIcon iconRegister, iconRegister1;
+    private ImageIcon iconBack, iconBack1;
     
     private Image resizeImage(String url) {
         Image dimg = null;
@@ -56,21 +57,21 @@ public class PanelRegisterVendor implements ActionListener {
         jfr_registrasi.getContentPane().setBackground(Color.white );
         jfr_registrasi.setResizable(true);
         jfr_registrasi.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jfr_registrasi.setSize(1000,1000);
+        jfr_registrasi.setSize(1000,700);
         jfr_registrasi.setLocationRelativeTo(null);
 
         Panel = new JPanel();
         Panel.setLayout(null);
 
         JLabel judulL = new JLabel("Register as Vendor : ");
-        judulL.setBounds(230, 0, 1000, 300);
-        judulL.setFont(new Font("Calibri", Font.BOLD, 60));
+        judulL.setBounds(225, 0, 1000, 300);
+        judulL.setFont(new Font("Calibri", Font.BOLD, 50));
         judulL.setForeground(new Color(22,105,122));
 
-        namaL = new JLabel("Nama Toko         :");
-        emailL = new JLabel("Email                   :");
-        teleponL = new JLabel("Phone                 :");
-        passL = new JLabel("Password            :");
+        namaL = new JLabel("Nama Toko ");
+        emailL = new JLabel("Email ");
+        teleponL = new JLabel("Phone ");
+        passL = new JLabel("Password ");
 
         namaL.setBounds(225, 230, 150, 40);
         namaL.setFont(new Font("Calibri", Font.BOLD, 20));
@@ -128,6 +129,38 @@ public class PanelRegisterVendor implements ActionListener {
         btn_submit.setContentAreaFilled(false);
         btn_submit.addActionListener(this);
 
+        // Button Submit
+        iconBack = new ImageIcon(resizeImage("assets/backo.png"));
+        iconBack1 = new ImageIcon(resizeImage("assets/backo1.png"));
+        
+        btn_back = new JButton (iconBack);
+        btn_back.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn_back.setIcon(iconBack);
+        btn_back.setBounds(400, 480, 150, 60);
+        
+        btn_back.addMouseListener(
+                new MouseAdapter(){
+                    @Override
+                    public void mouseClicked(MouseEvent me){
+                        jfr_registrasi.dispose();
+                        new PanelRegister();
+                    }
+                    
+                    @Override
+                    public void mouseEntered(MouseEvent me){
+                        btn_back.setIcon(iconBack1);
+                    }
+                    
+                    @Override
+                    public void mouseExited(MouseEvent me){
+                        btn_back.setIcon(iconBack);
+                    }
+                }
+        );
+        btn_back.setBorderPainted(false);
+        btn_back.setFocusPainted(false);
+        btn_back.setContentAreaFilled(false);
+        
         Panel.add(judulL);
         Panel.add(namaL);
         Panel.add(teleponL);
@@ -138,7 +171,7 @@ public class PanelRegisterVendor implements ActionListener {
         Panel.add(telepon);
         Panel.add(pass);
         Panel.add(btn_submit);
-
+        Panel.add(btn_back);
 
         jfr_registrasi.add(Panel);
         jfr_registrasi.setVisible(true);

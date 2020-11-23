@@ -5,9 +5,13 @@
  */
 package View;
 
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,6 +26,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 /**
@@ -30,12 +35,15 @@ import javax.swing.WindowConstants;
  * @author Hilbert
  * @author Zefanya
  */
-public class Start{
+public class Start extends JPanel {
     private JFrame jfr_start;
+    private JPanel content;
     private JLabel namaAppL;
     private JButton idk, btn_register, btn_login, btn_exit;
     private ImageIcon iconExit, iconRegister, iconLogin;
     private ImageIcon iconExit1, iconRegister1, iconLogin1;
+    private GridBagConstraints gbc;
+    
     
     private Image resizeImage(String url) {
         Image dimg = null;
@@ -52,16 +60,17 @@ public class Start{
     
     public Start(){
         jfr_start = new JFrame("GHz Online Shop");
-        
         jfr_start.getContentPane().setBackground(Color.white );
         jfr_start.setResizable(true);
         jfr_start.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jfr_start.setSize(1000,1000);
+        jfr_start.setSize(1000,700);
         jfr_start.setLocationRelativeTo(null);
+        jfr_start.setLayout(new BorderLayout());
+        
+        content = new JPanel(new GridBagLayout());          
         
         namaAppL = new JLabel("Welcome to GHz Online Shop");
-        namaAppL.setBounds(125,50,1000,300);
-        namaAppL.setFont(new Font("Calibri", Font.BOLD, 60));
+        namaAppL.setFont(new Font("Calibri", Font.BOLD, 55));
         namaAppL.setForeground(Color.orange);
         
         // Exit
@@ -71,7 +80,6 @@ public class Start{
         btn_exit = new JButton(iconExit);
         btn_exit.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_exit.setIcon(iconExit);
-        btn_exit.setBounds(300, 500, 400, 150);
         btn_exit.addMouseListener(
                 new MouseAdapter(){
                     @Override
@@ -106,7 +114,6 @@ public class Start{
         btn_register = new JButton(iconRegister);
         btn_register.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_register.setIcon(iconRegister);
-        btn_register.setBounds(0, 300, 600, 150);
         btn_register.addMouseListener(
                 new MouseAdapter(){
                     @Override
@@ -137,7 +144,6 @@ public class Start{
         btn_login = new JButton(iconLogin);
         btn_login.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_login.setIcon(iconLogin);
-        btn_login.setBounds(500, 300, 400, 150);
         btn_login.addMouseListener(
                 new MouseAdapter(){
                     @Override
@@ -161,11 +167,28 @@ public class Start{
         btn_login.setFocusPainted(false);
         btn_login.setContentAreaFilled(false);
         
-        jfr_start.add(namaAppL);
-        jfr_start.add(btn_register);
-        jfr_start.add(btn_login);
-        jfr_start.add(btn_exit);
+        gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        content.add(namaAppL, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        content.add(btn_register, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        content.add(btn_login, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        content.add(btn_exit, gbc);
+        
         jfr_start.add(idk);
+        jfr_start.add(content, BorderLayout.CENTER);
         jfr_start.setVisible(true);
     }
 }

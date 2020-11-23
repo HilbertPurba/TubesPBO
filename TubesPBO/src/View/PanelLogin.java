@@ -24,22 +24,21 @@ import javax.imageio.ImageIO;
  */
 public class PanelLogin implements ActionListener {
 
-    JFrame jfr_login;
-    JLabel emailL, passL;
-//    JToggleButton eyeButton;
-    JTextField email;
-    JPasswordField pass;
-    JButton btn_login;
-    JPanel Panel;
-    
-    private ImageIcon iconLogin, iconLogin1;
+    private JFrame jfr_login;
+    private JLabel emailL, passL;
+    private JTextField email;
+    private JPasswordField pass;
+    private JButton btn_login, btn_back;
+    private JPanel panel;
+    private GridBagConstraints gbc;    
+    private ImageIcon iconLogin, iconLogin1, iconBack, iconBack1;
     
     private Image resizeImage(String url) {
         Image dimg = null;
 
         try {
             BufferedImage img = ImageIO.read(new File(url));
-            dimg = img.getScaledInstance(150, 60, Image.SCALE_SMOOTH);
+            dimg = img.getScaledInstance(165, 65, Image.SCALE_SMOOTH);
         } catch (IOException ex) {
             ex.printStackTrace(System.err);
         }
@@ -50,32 +49,30 @@ public class PanelLogin implements ActionListener {
     public PanelLogin() {
         jfr_login = new JFrame("GHz - Login");
         jfr_login.getContentPane().setBackground(Color.WHITE);
-        jfr_login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jfr_login.setResizable(true);
         jfr_login.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jfr_login.setSize(1000,1000);
+        jfr_login.setSize(1000,700);
         jfr_login.setLocationRelativeTo(null);
+        jfr_login.setLayout(new BorderLayout());
         
-        Panel = new JPanel();
-        Panel.setLayout(null);
+        panel = new JPanel(new GridBagLayout());
         
         JLabel judulL = new JLabel("LOGIN");
-        judulL.setBounds(400, 0, 1000, 300);
-        judulL.setFont(new Font("Trebuchet MS", Font.BOLD, 80));
+        judulL.setFont(new Font("Trebuchet MS", Font.BOLD, 100));
         judulL.setForeground(new Color(253,170,0));
 
-        emailL = new JLabel("Email              : ");
-        emailL.setBounds(220, 230, 150, 40);
-        emailL.setFont(new Font("Calibri", Font.BOLD, 20));
-        email = new JTextField();
-        email.setBounds(380, 230, 350, 40);
+        emailL = new JLabel("Email           : ");
+        emailL.setFont(new Font("Calibri", Font.CENTER_BASELINE, 32));
+        
+        email = new JTextField(15);
+        email.setFont(new Font("Calibri", Font.PLAIN, 25));
         email.setBorder(null);
 
-        passL = new JLabel("Password       : ");
-        passL.setBounds(220, 290, 150, 40);
-        passL.setFont(new Font("Calibri", Font.BOLD, 20));
-        pass = new JPasswordField(100);
-        pass.setBounds(380, 290, 350, 40);
+        passL = new JLabel("Password   : ");
+        passL.setFont(new Font("Calibri", Font.CENTER_BASELINE, 32));
+        
+        pass = new JPasswordField(15);
+        pass.setFont(new Font("Calibri", Font.PLAIN, 25));
         pass.setBorder(null);
 
         // Button Submit
@@ -84,9 +81,7 @@ public class PanelLogin implements ActionListener {
         
         btn_login = new JButton (iconLogin);
         btn_login.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btn_login.setIcon(iconLogin);
-        btn_login.setBounds(450, 380, 150, 60);
-        
+        btn_login.setIcon(iconLogin);        
         btn_login.addMouseListener(
                 new MouseAdapter(){
                     @Override
@@ -110,13 +105,69 @@ public class PanelLogin implements ActionListener {
         btn_login.setContentAreaFilled(false);
         btn_login.addActionListener(this);
         
-        jfr_login.add(judulL);
-        jfr_login.add(emailL);
-        jfr_login.add(email);
-        jfr_login.add(passL);
-        jfr_login.add(pass);
-        jfr_login.add(btn_login);
-        jfr_login.add(Panel);
+        // Button Cancel
+        iconBack = new ImageIcon(resizeImage("assets/backo.png"));
+        iconBack1 = new ImageIcon(resizeImage("assets/backo1.png"));
+        
+        btn_back = new JButton (iconBack);
+        btn_back.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn_back.setIcon(iconBack);        
+        btn_back.addMouseListener(
+                new MouseAdapter(){
+                    @Override
+                    public void mouseClicked(MouseEvent me){
+                        jfr_login.dispose();
+                        new Start();
+                    }
+                    
+                    @Override
+                    public void mouseEntered(MouseEvent me){
+                        btn_back.setIcon(iconBack1);
+                    }
+                    
+                    @Override
+                    public void mouseExited(MouseEvent me){
+                        btn_back.setIcon(iconBack);
+                    }
+                }
+        );
+        btn_back.setBorderPainted(false);
+        btn_back.setFocusPainted(false);
+        btn_back.setContentAreaFilled(false);
+        
+        gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        panel.add(judulL, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        panel.add(emailL, gbc);
+        
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        panel.add(email, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        panel.add(passL, gbc);
+        
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        panel.add(pass, gbc);
+        
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        panel.add(btn_back, gbc);
+        
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        panel.add(btn_login, gbc);
+        
+        jfr_login.add(panel, BorderLayout.CENTER);
         jfr_login.setVisible(true);
     }
 
@@ -138,9 +189,9 @@ public class PanelLogin implements ActionListener {
             } else if (UserManager.getInstance().getUser().getTipeUser() == 1) {
                 jfr_login.dispose();
                 new DashboardVendor();
-            } else {
+            } else if (UserManager.getInstance().getUser().getTipeUser() == 2) {
                 jfr_login.dispose();
-                new MenuAdmin();
+                new DashboardAdmin();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Masukkan Email dan Password yang benar!", "Alert", JOptionPane.WARNING_MESSAGE);

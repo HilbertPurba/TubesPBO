@@ -5,11 +5,14 @@
  */
 package View;
 
+import Model.UserManager;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -34,6 +37,7 @@ public class PanelVendorAccount extends JPanel {
     private JLabel title, nama, email, telepon;
     private ImageIcon iconEdit, iconEdit1, iconEdit2;
     private JButton btn_edit;
+    private GridBagConstraints gbc;
     private Image resizeImage(String url) {
         Image dimg = null;
 
@@ -47,42 +51,28 @@ public class PanelVendorAccount extends JPanel {
         return dimg;
     }
     
-    public PanelVendorAccount () {
+    public PanelVendorAccount  () {
         setLayout(new BorderLayout());
         header = new JPanel();
         header.setBackground(java.awt.Color.white);
         
         title = new JLabel("PROFIL VENDOR");
-        title.setFont(new Font("Calibri", Font.BOLD, 72));
+        title.setFont(new Font("Calibri", Font.BOLD, 60));
         title.setForeground(new Color(2,91,149));
         header.add(title);
         
-        content = new JPanel();
-        content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
+        content = new JPanel(new GridBagLayout());
         
-        nama = new JLabel("Nama : Test", JLabel.CENTER);
-        nama.setFont(new Font("Calibri",  Font.BOLD, 42));
-        nama.setAlignmentX(Component.CENTER_ALIGNMENT);
-        nama.setAlignmentY(Component.CENTER_ALIGNMENT);
-        email = new JLabel("Email : test@domain.com",JLabel.CENTER);
-        email.setFont(new Font("Calibri",  Font.BOLD, 42));
-        email.setAlignmentX(Component.CENTER_ALIGNMENT);
-        email.setAlignmentY(Component.CENTER_ALIGNMENT);
-        telepon = new JLabel("Telepon : 081231293219", JLabel.CENTER);
-        telepon.setFont(new Font("Calibri",  Font.BOLD, 42));
-        telepon.setAlignmentX(Component.CENTER_ALIGNMENT);
-        telepon.setAlignmentY(Component.CENTER_ALIGNMENT);
-        content.add(nama);
-        content.add(email);
-        content.add(telepon);
-        
+        nama = new JLabel("Nama       : " + UserManager.getInstance().getUser().getNama());
+        nama.setFont(new Font("Segoe UI",  Font.BOLD, 35));
+        email = new JLabel("Email        : " + UserManager.getInstance().getUser().getEmail());
+        email.setFont(new Font("Segoe UI",  Font.BOLD, 35));
+        telepon = new JLabel("Telepon    : " + UserManager.getInstance().getUser().getTelepon());
+        telepon.setFont(new Font("Segoe UI",  Font.BOLD, 35));
         iconEdit = new ImageIcon(resizeImage("assets/edit.png"));
         iconEdit1 = new ImageIcon(resizeImage("assets/edit1.png"));
         iconEdit2 = new ImageIcon(resizeImage("assets/edit2.png"));
         btn_edit = new JButton(iconEdit);
-        btn_edit.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btn_edit.setAlignmentY(Component.CENTER_ALIGNMENT);
-
         btn_edit.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_edit.setIcon(iconEdit);
         btn_edit.addMouseListener(
@@ -90,6 +80,7 @@ public class PanelVendorAccount extends JPanel {
                     @Override
                     public void mouseClicked(MouseEvent me){
                         btn_edit.setIcon(iconEdit2);
+                        new PanelVendorAccount_EditProfile();
                     }
                     
                     @Override
@@ -103,13 +94,32 @@ public class PanelVendorAccount extends JPanel {
                     }
                 }
         );
-
+        
         btn_edit.setBorderPainted(false);
         btn_edit.setFocusPainted(false);
         btn_edit.setContentAreaFilled(false);
-        content.add(btn_edit);
+        
+        gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        content.add(nama, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        content.add(email, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        content.add(telepon, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        content.add(btn_edit, gbc);
         
         add(header, BorderLayout.PAGE_START);
-        add(content);
+        add(content, BorderLayout.CENTER);
     }
 }
