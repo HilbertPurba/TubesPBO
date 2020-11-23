@@ -5,12 +5,70 @@
  */
 package View;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
  *
- * @author Lenovo
+ * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class PanelAdminCancelTransaction extends JPanel {
+    private JPanel header, content;
+    private JLabel title, judul;
+    private JLabel namaL;
+    private GridBagConstraints gbc;
     
+    public PanelAdminCancelTransaction(){
+        setLayout(new BorderLayout());
+        header = new JPanel();
+        header.setBackground(Color.WHITE);
+                
+        title = new JLabel("CANCEL TRANSAKSI");
+        title.setFont(new Font("Calibri", Font.BOLD, 60));
+        title.setForeground(Color.red);
+        header.add(title);
+        
+        content = new JPanel(new GridBagLayout());
+        
+        judul = new JLabel("Daftar Transaksi: ");
+        judul.setFont(new Font("Segoe UI", Font.BOLD, 35));
+        judul.setForeground(Color.red);
+        
+//        for (int i=0;i< listProd.size();i++){
+//        
+//        }
+        
+        namaL = new JLabel("Nama Customer        ");
+        namaL.setFont(new Font("Segoe UI", Font.BOLD, 20));
+        
+        //isi
+        
+        //counter
+        
+        gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        
+        gbc.gridy = 2;
+        
+        //looping isi
+        
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        content.add(judul, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        content.add(namaL, gbc);
+        
+        add(header, BorderLayout.PAGE_START);
+        add(content, BorderLayout.CENTER);
+    }
 }

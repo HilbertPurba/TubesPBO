@@ -19,7 +19,9 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Lenovo
+ * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class PanelVendorCheck extends JPanel {
 
@@ -53,9 +55,9 @@ public class PanelVendorCheck extends JPanel {
             }
         }
 
-        namaL = new JLabel("Nama Produk");
+        namaL = new JLabel("Nama Produk                      ");
         namaL.setFont(new Font("Segoe UI", Font.BOLD, 25));
-        stokL = new JLabel("Stok");
+        stokL = new JLabel("Stok ");
         stokL.setFont(new Font("Segoe UI", Font.BOLD, 25));
         nama = new JLabel[jumlahProduk];
         stok = new JLabel[jumlahProduk];
@@ -96,17 +98,6 @@ public class PanelVendorCheck extends JPanel {
         gbc.gridx = 1;
         gbc.gridy = 1;
         content.add(stokL, gbc);
-        
-
-//        Produk produk = new Produk();
-//
-//        isi = new JLabel();
-//        isi.setFont(new Font("Segoe UI", Font.PLAIN, 25));
-//        isi.setBounds(150, 50, 800, 520);
-//        isi.setText(produk.toString());
-        
-//        add(contentTitle);
-//        add(isi);
         
         add(header, BorderLayout.PAGE_START);
         add(content, BorderLayout.CENTER);
