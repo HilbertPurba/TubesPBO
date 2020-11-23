@@ -39,7 +39,7 @@ public class PanelRegister {
 
         try {
             BufferedImage img = ImageIO.read(new File(url));
-            dimg = img.getScaledInstance(350, 350, Image.SCALE_SMOOTH);
+            dimg = img.getScaledInstance(250, 250, Image.SCALE_SMOOTH);
         } catch (IOException ex) {
             ex.printStackTrace(System.err);
         }
@@ -65,13 +65,13 @@ public class PanelRegister {
         jfr_register.getContentPane().setBackground(Color.white );
         jfr_register.setResizable(true);
         jfr_register.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jfr_register.setSize(1000,1000);
+        jfr_register.setSize(1000,700);
         jfr_register.setLocationRelativeTo(null);
 
         
         judul = new JLabel("Register Sebagai ..");
-        judul.setBounds(200,0,1000,300);
-        judul.setFont(new Font("Calibri", Font.BOLD, 80));
+        judul.setBounds(300,0,1000,300);
+        judul.setFont(new Font("Calibri", Font.BOLD, 55));
         judul.setForeground(Color.orange);
         
         //Customer
@@ -81,7 +81,7 @@ public class PanelRegister {
         btn_cust = new JButton(iconCust);
         btn_cust.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_cust.setIcon(iconCust);
-        btn_cust.setBounds(120, 250, 350, 350);
+        btn_cust.setBounds(240, 200, 250, 250);
         btn_cust.addMouseListener(
                 new MouseAdapter(){
                     @Override
@@ -117,7 +117,7 @@ public class PanelRegister {
         btn_vendor = new JButton(iconVendor);
         btn_vendor.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_vendor.setIcon(iconVendor);
-        btn_vendor.setBounds(500, 250, 350, 350);
+        btn_vendor.setBounds(500, 200, 250, 250);
         btn_vendor.addMouseListener(
                 new MouseAdapter(){
                     @Override
@@ -148,7 +148,7 @@ public class PanelRegister {
         btn_back = new JButton(iconBack);
         btn_back.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_back.setIcon(iconBack);
-        btn_back.setBounds(325, 500, 300, 300);
+        btn_back.setBounds(420, 420, 150, 150);
         btn_back.addMouseListener(
                 new MouseAdapter(){
                     @Override

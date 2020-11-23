@@ -65,38 +65,42 @@ public class PanelCustomerHome extends JPanel implements ActionListener {
         header = new JPanel();
         header.setBackground(java.awt.Color.white);
         title = new JLabel("SELAMAT DATANG, " + UserManager.getInstance().getUser().getNama().toUpperCase());
-        title.setFont(new Font("Calibri", Font.BOLD, 72));
+        title.setFont(new Font("Calibri", Font.BOLD, 60));
         title.setForeground(new Color(253,170,0));
         header.add(title);
 
         content = new JPanel();
         desc = new JLabel("Pilih Produk: ");
         desc.setFont(new Font("Calibri", Font.BOLD, 56));
-        desc.setBounds(350,100,550,75);
+        desc.setForeground(new Color(253,170,0));
+        desc.setBounds(70,100,550,75);
         add(desc);
         
         iconAdd = new ImageIcon(resizeImage("assets/add.png"));
 
         for (int i = 0; i < listProd.size(); i++) {
             jumlahProduk++;
+            if (jumlahProduk == 5){
+                break;
+            }
         }
         namaProd = new JLabel[jumlahProduk];
         merkProd = new JLabel[jumlahProduk];
         hargaProd = new JLabel[jumlahProduk];
         stokProd = new JLabel[jumlahProduk];
         btn_add = new JButton[jumlahProduk];
-        int x1 = 70, x2 = 350, x3 = 500, x4 = 700, x5 = 800;
+        int x1 = 70, x2 = 350, x3 = 520, x4 = 700, x5 = 800;
         int y1 = 225, y2 = 225, y3 = 225, y4 = 225, y5 = 225;
         int counter = 0;
-        for (int i = 0; i < listProd.size(); i++) {
+        for (int i = 0; i < jumlahProduk; i++) {
             namaProd[counter] = new JLabel(listProd.get(i).getNamaProduk());
-            namaProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 18));
+            namaProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
             merkProd[counter] = new JLabel(listProd.get(i).getMerk());
-            merkProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 18));
+            merkProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
             hargaProd[counter] = new JLabel("Rp. " + listProd.get(i).getHarga());
-            hargaProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 18));
+            hargaProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
             stokProd[counter] = new JLabel("" + listProd.get(i).getStok());
-            stokProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 18));
+            stokProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
             btn_add[counter] = new JButton(iconAdd);
             
             namaProd[counter].setBounds(x1, y1, 300, 25);

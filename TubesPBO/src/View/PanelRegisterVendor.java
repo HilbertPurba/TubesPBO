@@ -56,7 +56,7 @@ public class PanelRegisterVendor implements ActionListener {
         jfr_registrasi.getContentPane().setBackground(Color.white );
         jfr_registrasi.setResizable(true);
         jfr_registrasi.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jfr_registrasi.setSize(1000,1000);
+        jfr_registrasi.setSize(1000,700);
         jfr_registrasi.setLocationRelativeTo(null);
 
         Panel = new JPanel();

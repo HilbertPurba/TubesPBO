@@ -5,9 +5,13 @@
  */
 package View;
 
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,6 +26,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 /**
@@ -56,12 +61,12 @@ public class Start{
         jfr_start.getContentPane().setBackground(Color.white );
         jfr_start.setResizable(true);
         jfr_start.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jfr_start.setSize(1000,1000);
+        jfr_start.setSize(1000,700);
         jfr_start.setLocationRelativeTo(null);
         
         namaAppL = new JLabel("Welcome to GHz Online Shop");
-        namaAppL.setBounds(125,50,1000,300);
-        namaAppL.setFont(new Font("Calibri", Font.BOLD, 60));
+        namaAppL.setBounds(185,0,1000,300);
+        namaAppL.setFont(new Font("Calibri", Font.BOLD, 50));
         namaAppL.setForeground(Color.orange);
         
         // Exit
@@ -71,7 +76,7 @@ public class Start{
         btn_exit = new JButton(iconExit);
         btn_exit.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_exit.setIcon(iconExit);
-        btn_exit.setBounds(300, 500, 400, 150);
+        btn_exit.setBounds(300, 400, 400, 150);
         btn_exit.addMouseListener(
                 new MouseAdapter(){
                     @Override
@@ -106,7 +111,7 @@ public class Start{
         btn_register = new JButton(iconRegister);
         btn_register.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_register.setIcon(iconRegister);
-        btn_register.setBounds(0, 300, 600, 150);
+        btn_register.setBounds(80, 200, 400, 150);
         btn_register.addMouseListener(
                 new MouseAdapter(){
                     @Override
@@ -137,7 +142,7 @@ public class Start{
         btn_login = new JButton(iconLogin);
         btn_login.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_login.setIcon(iconLogin);
-        btn_login.setBounds(500, 300, 400, 150);
+        btn_login.setBounds(500, 200, 400, 150);
         btn_login.addMouseListener(
                 new MouseAdapter(){
                     @Override
