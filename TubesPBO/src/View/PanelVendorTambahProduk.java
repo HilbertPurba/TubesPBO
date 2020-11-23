@@ -64,7 +64,6 @@ public class PanelVendorTambahProduk extends JPanel implements ActionListener   
         header.add(title);
         
         content = new JPanel(new GridBagLayout());
-//        content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
 
         namaL = new JLabel("Nama Produk : ");
         namaL.setFont(new Font("Calibri", Font.BOLD, 35));
