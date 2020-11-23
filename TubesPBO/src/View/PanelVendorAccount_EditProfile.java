@@ -149,7 +149,7 @@ public class PanelVendorAccount_EditProfile extends JFrame implements ActionList
                 if(option == JOptionPane.OK_OPTION) {
                     UserManager.getInstance().getUser().setEmail(tfEmail.getText());
                     UserManager.getInstance().getUser().setTelepon(tfTelepon.getText());
-                    if(Controller.updateProfil(UserManager.getInstance())) {
+                    if(Controller.updateProfilCustomer(UserManager.getInstance())) {
                         JOptionPane.showMessageDialog(null, "Update Data Sukses. Anda akan diminta untuk Login kembali dengan Data yang baru", "Success", JOptionPane.INFORMATION_MESSAGE);
                         dispose();
                         frame.dispose();
