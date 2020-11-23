@@ -5,6 +5,8 @@
  */
 package View;
 
+import Model.UserManager;
+import static View.DashboardVendor.frame;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Cursor;
@@ -18,6 +20,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -38,10 +41,10 @@ public class DashboardCustomer {
     
     //Panel compoenent
     private JPanel clPanel, panelNav;
-    private JButton btn_home, btn_keranjang, btn_account;
-    private ImageIcon iconHome, iconKeranjang, iconAkun;
-    private ImageIcon iconHome1, iconKeranjang1, iconAkun1;
-    private ImageIcon iconHome2, iconKeranjang2, iconAkun2;
+    private JButton btn_home, btn_keranjang, btn_account, btn_logout;
+    private ImageIcon iconHome, iconKeranjang, iconAkun, iconLogout;
+    private ImageIcon iconHome1, iconKeranjang1, iconAkun1, iconLogout1;
+    private ImageIcon iconHome2, iconKeranjang2, iconAkun2, iconLogout2;
     
     private Image resizeImage(String url) {
         Image dimg = null;
@@ -155,6 +158,45 @@ public class DashboardCustomer {
         btn_account.setFocusPainted(false);
         btn_account.setContentAreaFilled(false);
         panelNav.add(btn_account);
+        
+        // Logout
+        iconLogout = new ImageIcon(resizeImage("assets/logout.png"));
+        iconLogout1 = new ImageIcon(resizeImage("assets/logout1.png"));
+        iconLogout2 = new ImageIcon(resizeImage("assets/logout2.png"));
+        btn_logout = new JButton(iconLogout);
+        btn_logout.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn_logout.setIcon(iconLogout);
+        btn_logout.addMouseListener(
+                new MouseAdapter(){
+                    @Override
+                    public void mouseClicked(MouseEvent me){
+                        btn_logout.setIcon(iconLogout2);
+                        int option = JOptionPane.showConfirmDialog(null, "Anda yakin ingin Keluar?");
+                        if (option == JOptionPane.OK_OPTION){
+                            frame.dispose();
+                            UserManager.getInstance().logOut();
+                            new Start();
+                        }
+                        
+                        cl.show(clPanel, "panelAccount");
+                        frame.setTitle("Menu Account");
+                    }
+                    
+                    @Override
+                    public void mouseEntered(MouseEvent me){
+                        btn_logout.setIcon(iconLogout1);
+                    }
+                    
+                    @Override
+                    public void mouseExited(MouseEvent me){
+                        btn_logout.setIcon(iconLogout);
+                    }
+                }
+        );
+        btn_logout.setBorderPainted(false);
+        btn_logout.setFocusPainted(false);
+        btn_logout.setContentAreaFilled(false);
+        panelNav.add(btn_logout);
         
         cl = new CardLayout();
         clPanel = new JPanel();
