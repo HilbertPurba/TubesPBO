@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  *
  * @author Gilbert
@@ -20,9 +19,8 @@ import java.util.List;
  * @author Zefanya
  */
 public class Transaksi {
-
     private int idTransaksi;
-    private int id_prod;
+    private int id_produk;
     private String namaLengkap;
     private String noTelepon;
     private String alamat;
@@ -38,9 +36,9 @@ public class Transaksi {
     public Transaksi() {
     }
 
-    public Transaksi(int idTransaksi, int id_prod, String namaLengkap, String noTelepon, String alamat, String jenisPembayaran, String jenisPengiriman, String kodePromo, int jumlah_produk, int totalHarga, String status) {
+    public Transaksi(int idTransaksi, int id_produk, String namaLengkap, String noTelepon, String alamat, String jenisPembayaran, String jenisPengiriman, String kodePromo, int jumlah_produk, int totalHarga) {
         this.idTransaksi = idTransaksi;
-        this.id_prod = id_prod;
+        this.id_produk = id_produk;
         this.namaLengkap = namaLengkap;
         this.noTelepon = noTelepon;
         this.alamat = alamat;
@@ -59,13 +57,13 @@ public class Transaksi {
     public void setIdTransaksi(int idTransaksi) {
         this.idTransaksi = idTransaksi;
     }
-
-    public int getId_prod() {
-        return id_prod;
+uk
+    public int getId_produk() {
+        return id_produk;
     }
 
-    public void setId_prod(int id_prod) {
-        this.id_prod = id_prod;
+    public void setId_produk(int id_produk) {
+        this.id_produk = id_produk;
     }
 
     public String getNamaLengkap() {
@@ -166,7 +164,7 @@ public class Transaksi {
             while (rs.next()) {
                 Transaksi transaksi = new Transaksi();
                 transaksi.setIdTransaksi(rs.getInt("transaksi.id_transaksi"));
-                transaksi.setId_prod(rs.getInt("transaksi.id_prod"));
+                transaksi.setId_produk(rs.getInt("transaksi.id_prod"));
                 transaksi.setNamaLengkap(rs.getString("transaksi.nama"));
                 transaksi.setAlamat(rs.getString("transaksi.alamat"));
                 transaksi.setJenisPengiriman(rs.getString("transaksi.jenis_pengiriman"));

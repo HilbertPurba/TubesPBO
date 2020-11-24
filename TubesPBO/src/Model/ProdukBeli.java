@@ -5,10 +5,6 @@
  */
 package Model;
 
-import Controller.Controller;
-import java.util.List;
-
-
 /**
  *
  * @author hilbert
@@ -20,28 +16,22 @@ public class ProdukBeli {
     private int harga;
     private int jumlahBeli;
     private int id_keranjang;
-    
-    public int countTotalHarga(ProdukBeli newProdukBeli) {
-        return newProdukBeli.getHarga() * newProdukBeli.getJumlahBeli();
+    private int id_produk;
+
+    public ProdukBeli() {
     }
 
-    public int getId_keranjang() {
-        return id_keranjang;
-    }
-
-    public void setId_keranjang(int id_keranjang) {
-        this.id_keranjang = id_keranjang;
-    }
-
-    public ProdukBeli(String nama, String merk, int harga, int jumlahBeli, int id_keranjang) {
+    public ProdukBeli(String nama, String merk, int harga, int jumlahBeli, int id_keranjang, int id_produk) {
         this.nama = nama;
         this.merk = merk;
         this.harga = harga;
         this.jumlahBeli = jumlahBeli;
         this.id_keranjang = id_keranjang;
+        this.id_produk = id_produk;
     }
 
-    public ProdukBeli() {
+    public int countTotalHarga(ProdukBeli newProdukBeli) {
+        return newProdukBeli.getHarga() * newProdukBeli.getJumlahBeli();
     }
 
     public String getNama() {
@@ -76,14 +66,19 @@ public class ProdukBeli {
         this.jumlahBeli = jumlahBeli;
     }
 
-    public int getIdProduk() {
-        int id_produk = -1;
-        List<Produk> listProd = Controller.getAllProduk();
-        for (int i = 0; i < listProd.size(); i++) {
-            if (listProd.get(i).getNamaProduk().equals(ProdukBeliManager.getInstance().getProdukBeli().getNama())) {
-                id_produk = listProd.get(i).getIdProduk();
-            }
-        }
+    public int getId_keranjang() {
+        return id_keranjang;
+    }
+
+    public void setId_keranjang(int id_keranjang) {
+        this.id_keranjang = id_keranjang;
+    }
+
+    public int getId_produk() {
         return id_produk;
+    }
+
+    public void setId_produk(int id_produk) {
+        this.id_produk = id_produk;
     }
 }

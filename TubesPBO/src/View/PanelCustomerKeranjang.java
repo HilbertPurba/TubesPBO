@@ -7,7 +7,6 @@ package View;
 
 import Controller.Controller;
 import Model.Keranjang;
-import Model.ProdukBeli;
 import Model.Transaksi;
 import Model.TransaksiManager;
 import Model.UserManager;
@@ -51,7 +50,7 @@ public class PanelCustomerKeranjang extends JPanel implements ActionListener {
     private GridBagConstraints gbc;
     private ImageIcon iconCheckout, iconCheckout1;
     private List<Keranjang> listBag;
-    private int jumlahProduk = 0;
+    private int arrId_prod[], id_prod, jumlah_beli;
 
     private Image resizeImage(String url) {
         Image dimg = null;
@@ -78,11 +77,11 @@ public class PanelCustomerKeranjang extends JPanel implements ActionListener {
 
         content = new JPanel(new GridBagLayout());
         listBag = Controller.getAllKeranjang();
-        
+
         desc = new JLabel("Keranjang Kamu: ");
         desc.setFont(new Font("Segoe UI", Font.BOLD, 35));
-        desc.setForeground(new Color(253,170,0));
-        
+        desc.setForeground(new Color(253, 170, 0));
+
         iconCheckout = new ImageIcon(resizeImage("assets/checkout.png"));
 
         namaL = new JLabel("Nama Produk");
@@ -93,72 +92,71 @@ public class PanelCustomerKeranjang extends JPanel implements ActionListener {
         jumlahL.setFont(new Font("Segoe UI", Font.BOLD, 25));
         hargaL = new JLabel("Harga Produk");
         hargaL.setFont(new Font("Segoe UI", Font.BOLD, 25));
-        
+
         namaProd = new JLabel[listBag.size()];
         jumlahBeliProd = new JLabel[listBag.size()];
         hargaProd = new JLabel[listBag.size()];
         btn_checkout = new JButton[listBag.size()];
-        
-        int counter = 0;
-        
+        arrId_prod = new int[listBag.size()];
+
         gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.anchor = GridBagConstraints.LINE_START;
-        
+
         gbc.gridy = 2;
-        
+
         for (int i = 0; i < listBag.size(); i++) {
-            namaProd[counter] = new JLabel(listBag.get(i).getNama_prod());
-            namaProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 18));
-            jumlahBeliProd[counter] = new JLabel(String.valueOf(listBag.get(i).getJumlah_total()));
-            jumlahBeliProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 18));
-            hargaProd[counter] = new JLabel("Rp. " + String.valueOf(listBag.get(i).getHarga_total()));
-            hargaProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 18));
-            
-            btn_checkout[counter] = new JButton(iconCheckout);
-            btn_checkout[counter].setCursor(new Cursor(Cursor.HAND_CURSOR));
-            btn_checkout[counter].setBorderPainted(false);
-            btn_checkout[counter].setFocusPainted(false);
-            btn_checkout[counter].setContentAreaFilled(false);
-            btn_checkout[counter].addActionListener(this);
-          
+            namaProd[i] = new JLabel(listBag.get(i).getNama_prod());
+            namaProd[i].setFont(new Font("Segoe UI", Font.PLAIN, 18));
+            jumlahBeliProd[i] = new JLabel(String.valueOf(listBag.get(i).getJumlah_total()));
+            jumlahBeliProd[i].setFont(new Font("Segoe UI", Font.PLAIN, 18));
+            hargaProd[i] = new JLabel("Rp. " + String.valueOf(listBag.get(i).getHarga_total()));
+            hargaProd[i].setFont(new Font("Segoe UI", Font.PLAIN, 18));
+            arrId_prod[i] = listBag.get(i).getId_prod();
+
+            btn_checkout[i] = new JButton(iconCheckout);
+            btn_checkout[i].setCursor(new Cursor(Cursor.HAND_CURSOR));
+            btn_checkout[i].setBorderPainted(false);
+            btn_checkout[i].setFocusPainted(false);
+            btn_checkout[i].setContentAreaFilled(false);
+            btn_checkout[i].addActionListener(this);
+
             gbc.gridx = 0;
-            content.add(namaProd[counter], gbc);
-            
+            content.add(namaProd[i], gbc);
+
             gbc.gridx = 1;
-            content.add(jumlahBeliProd[counter], gbc);
-            
+            content.add(jumlahBeliProd[i], gbc);
+
             gbc.gridx = 2;
-            content.add(hargaProd[counter], gbc);
-            
+            content.add(hargaProd[i], gbc);
+
             gbc.gridx = 3;
-            content.add(btn_checkout[counter], gbc);
-            
+            content.add(btn_checkout[i], gbc);
+
             gbc.gridy++;
-            counter++;
         }
-        
+
         gbc.gridx = 0;
         gbc.gridy = 0;
         content.add(desc, gbc);
-        
+
         gbc.gridx = 0;
         gbc.gridy = 1;
         content.add(namaL, gbc);
-        
+
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.ipady = 9;
         content.add(merkL, gbc);
-        
+
         gbc.gridx = 2;
         gbc.gridy = 1;
         content.add(jumlahL, gbc);
-        
+
         gbc.gridx = 3;
         gbc.gridy = 1;
         content.add(hargaL, gbc);
-
+      
         add(header, BorderLayout.PAGE_START);
         add(content, BorderLayout.CENTER);
     }
@@ -168,17 +166,18 @@ public class PanelCustomerKeranjang extends JPanel implements ActionListener {
         JFrame frame = new JFrame("Checkout");
         JPanel header = new JPanel();
         
-        String namaProdSelect = null;
-        String harga = null;
-        
+        JLabel judul = new JLabel();
+        JLabel value = new JLabel();
         for (int i = 0; i < listBag.size(); i++) {
             if (e.getSource() == btn_checkout[i]) {
-                namaProdSelect = namaProd[i].getText();
-                harga = hargaProd[i].getText();
+                id_prod = arrId_prod[i];
+                jumlah_beli = Integer.parseInt(jumlahBeliProd[i].getText());
+                String namaProdSelect = namaProd[i].getText();
+                judul.setText(namaProdSelect);
+                String harga = hargaProd[i].getText();
+                value.setText(harga);
             }
         }
-        
-        JLabel judul = new JLabel("Checkout Produk " + namaProdSelect);
         header.add(judul);
 
         JPanel content = new JPanel(new GridBagLayout());
@@ -190,40 +189,38 @@ public class PanelCustomerKeranjang extends JPanel implements ActionListener {
         JTextField tfNama = new JTextField(UserManager.getInstance().getUser().getNama(), 15);
 
         JLabel lbNoTelp = new JLabel("Nomor Telepon");
-        JTextField tfNoTelp = new JTextField(15);
+        JTextField tfNoTelp = new JTextField(UserManager.getInstance().getUser().getTelepon(), 15);
 
         JLabel lbAlamat = new JLabel("Alamat");
         JTextArea taAlamat = new JTextArea(5, 15);
-        
+
         String[] arrMetodePembayaran = {"", "Debit", "Kredit", "COD"};
         JLabel lbMetodePembayaran = new JLabel("Metode Pembayaran");
         JComboBox cbMetodePembayaran = new JComboBox(arrMetodePembayaran);
-        
+
         String[] arrMetodePengiriman = {"", "JNE", "SiCepat", "J&T"};
         JLabel lbMetodePengiriman = new JLabel("Metode Pengiriman");
         JComboBox cbMetodePengiriman = new JComboBox(arrMetodePengiriman);
-        
+
         JLabel lbKodePromo = new JLabel("Kode Promo");
         JTextField tfKodePromo = new JTextField(15);
-       
         
-        JLabel lbTotalHarga = new JLabel("Total Harga");
-        JLabel value = new JLabel(harga);
-        JLabel ketPromo = new JLabel();
-        
+        String valueOri = value.getText();
         tfKodePromo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(tfKodePromo.getText().equals("GHZ10PERSEN")) {
-                    value.setText("Rp. " + String.valueOf(Integer.parseInt(value.getText().substring(4)) * 90 / 100));
-                    ketPromo.setText("Anda mendapatkan diskon 10% dari GHz!!!");
+                int valuetoInt = Integer.parseInt(value.getText().substring(4));
+                int discount = valuetoInt * 10 / 100;
+                if (tfKodePromo.getText().equals("GHZ11/11")) {
+                    value.setText("Rp. " + String.valueOf(valuetoInt - discount));
                 } else {
-                    ketPromo.setText(null);
-                    value.setText("Rp. " + String.valueOf(Integer.parseInt(value.getText().substring(4)) * 100 / 90));
+                    value.setText(valueOri);
                 }
             }
         });
-        
+
+        JLabel lbTotalHarga = new JLabel("Total Harga");
+
         JButton addTransaksi = new JButton("Lakukan Transaksi");
 
         gbc.gridx = 0;
@@ -265,15 +262,15 @@ public class PanelCustomerKeranjang extends JPanel implements ActionListener {
         gbc.gridx = 1;
         gbc.gridy = 4;
         content.add(cbMetodePengiriman, gbc);
-        
+
         gbc.gridx = 0;
         gbc.gridy = 5;
         content.add(lbKodePromo, gbc);
-        
+
         gbc.gridx = 1;
         gbc.gridy = 5;
         content.add(tfKodePromo, gbc);
-        
+
         gbc.gridx = 0;
         gbc.gridy = 6;
         content.add(lbTotalHarga, gbc);
@@ -281,35 +278,40 @@ public class PanelCustomerKeranjang extends JPanel implements ActionListener {
         gbc.gridx = 1;
         gbc.gridy = 6;
         content.add(value, gbc);
-        
-        gbc.gridx = 1;
-        gbc.gridy = 7;
-        content.add(ketPromo, gbc);
-        
+
         gbc.gridx = 1;
         gbc.gridy = 8;
         content.add(addTransaksi, gbc);
-        
+
         addTransaksi.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if((tfNoTelp.getText().isEmpty() || taAlamat.getText().isEmpty()) || 
-                        cbMetodePembayaran.getSelectedItem().toString().equals("") || 
-                        cbMetodePengiriman.getSelectedItem().toString().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Field tidak boleh ada yang kosong", "Warning", JOptionPane.WARNING_MESSAGE);
+                if ((tfNoTelp.getText().isEmpty() || taAlamat.getText().isEmpty())
+                        || cbMetodePembayaran.getSelectedItem().toString().equals("")
+                        || cbMetodePengiriman.getSelectedItem().toString().equals("")
+                        || (!tfKodePromo.getText().isEmpty()) && !tfKodePromo.getText().equals("GHZ11/11")) {
+                    JOptionPane.showMessageDialog(null, "Field masih ada yang kosong/Kode Promo tidak ditemukan", 
+                            "Warning", JOptionPane.WARNING_MESSAGE);
                 } else {
                     int option = JOptionPane.showConfirmDialog(null, "Apakah sudah yakin dengan data yang ditulis?", "Are you sure?", JOptionPane.YES_NO_OPTION);
                     if (option == JOptionPane.YES_OPTION) {
-                        Transaksi newTransaksi = new Transaksi();
-                        newTransaksi.setNamaLengkap(tfNama.getText());
-                        newTransaksi.setNoTelepon(tfNoTelp.getText());
-                        newTransaksi.setAlamat(taAlamat.getText());
-                        newTransaksi.setJenisPembayaran(cbMetodePembayaran.getSelectedItem().toString());
-                        newTransaksi.setJenisPengiriman(cbMetodePengiriman.getSelectedItem().toString());
-                        newTransaksi.setKodePromo(tfKodePromo.getText());
-                        newTransaksi.setTotalHarga(Integer.parseInt(value.getText().substring(4)));
-                        TransaksiManager.getInstance().setTransaksi(newTransaksi);
-                        if(Controller.insertNewTransaksi(newTransaksi)) {
+                        Transaksi transaksi = new Transaksi();
+                        transaksi.setId_produk(id_prod);
+                        transaksi.setNamaLengkap(tfNama.getText());
+                        transaksi.setNoTelepon(tfNoTelp.getText());
+                        transaksi.setAlamat(taAlamat.getText());
+                        transaksi.setJenisPembayaran(cbMetodePembayaran.getSelectedItem().toString());
+                        transaksi.setJenisPengiriman(cbMetodePengiriman.getSelectedItem().toString());
+                        if (tfKodePromo.getText().isEmpty()) {
+                            transaksi.setKodePromo("-");
+                        } else {
+                            transaksi.setKodePromo(tfKodePromo.getText());
+                        }
+                        transaksi.setJumlah_produk(jumlah_beli);
+                        transaksi.setTotalHarga(Integer.parseInt(value.getText().substring(4)));
+                        TransaksiManager.getInstance().setTransaksi(transaksi);
+                        if (Controller.insertNewTransaksi(transaksi) && Controller.insertConnectorTransaksi(transaksi) 
+                                && Controller.updateStok() && Controller.deleteKeranjang()) {
                             JOptionPane.showMessageDialog(null, "Transaksi Berhasil!");
                         } else {
                             JOptionPane.showMessageDialog(null, "Transaksi Gagal");
