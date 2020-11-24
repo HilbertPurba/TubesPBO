@@ -15,7 +15,7 @@ import Model.User;
  * @author Hilbert
  * @author Zefanya
  */
-public abstract class User {
+public class User {
 
     private int ID;
     private String nama;

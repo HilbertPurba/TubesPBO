@@ -40,8 +40,8 @@ public class PanelAdminSeeTransaction_See extends JFrame {
     private JLabel judul;
     private ImageIcon iconOk;
     private JButton btn_ok;
-    private JLabel namaUserL, namaProdukL, alamatL, jenisPembayaranL, jenisPengirimanL, kodePromoL, totalHargaL, statusKirimL;
-    private JLabel namaUser[], namaProduk[], alamat[], jenisPembayaran[], jenisPengiriman[], kodePromo[], totalHarga[], statusKirim[];
+    private JLabel namaUserL, namaProdukL, alamatL, jenisPembayaranL, jenisPengirimanL, kodePromoL, totalHargaL, statusKirimL, jumlah_produkL;
+    private JLabel namaUser[], namaProduk[], alamat[], jenisPembayaran[], jenisPengiriman[], kodePromo[], totalHarga[], statusKirim[], jumlah_produk[];
 //    private List<Transaksi> listTransaksi;
     private int jumlahProduk = 0;
     
@@ -64,7 +64,7 @@ public class PanelAdminSeeTransaction_See extends JFrame {
         header.setBackground(Color.white);
         
         judul = new JLabel("Riwayat Transaksi dari " + namaToko);
-        judul.setFont(new Font("Segoe UI", Font.BOLD, 35));
+        judul.setFont(new Font("Segoe UI", Font.BOLD, 30));
         judul.setForeground(Color.red);
         header.add(judul);
         
@@ -98,6 +98,8 @@ public class PanelAdminSeeTransaction_See extends JFrame {
         jenisPengirimanL.setFont(new Font("Segoe UI", Font.BOLD, 12));
         kodePromoL = new JLabel("Kode Promo       ");
         kodePromoL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        jumlah_produkL = new JLabel("Jumlah       ");
+        jumlah_produkL.setFont(new Font("Segoe UI", Font.BOLD, 12));
         totalHargaL = new JLabel("Total Harga       ");
         totalHargaL.setFont(new Font("Segoe UI", Font.BOLD, 12));
         statusKirimL = new JLabel("Status Kirim       ");
@@ -110,6 +112,7 @@ public class PanelAdminSeeTransaction_See extends JFrame {
 //        jenisPembayaran = new JLabel[listTransaksi.size()];
 //        jenisPengiriman = new JLabel[listTransaksi.size()];
 //        kodePromo = new JLabel[listTransaksi.size()];
+//        jumlah_produk = new JLabel[listTransaksi.size()];
 //        totalHarga = new JLabel[listTransaksi.size()];
 //        statusKirim = new JLabel[listTransaksi.size()];
         
@@ -137,6 +140,8 @@ public class PanelAdminSeeTransaction_See extends JFrame {
 //            jenisPengiriman[counter].setFont(new Font("Segoe UI", Font.PLAIN, 11));
 //            kodePromo[counter] = new JLabel(listTransaksi.get(i).getKodePromo());
 //            kodePromo[counter].setFont(new Font("Segoe UI", Font.PLAIN, 11));
+//            jumlah_produk[counter] = new JLabel(listTransaksi.get(i).getJumlahProduk());
+//            jumlah_produk[counter].setFont(new Font("Segoe UI", Font.PLAIN, 11));
 //            totalHarga[counter] = new JLabel(listTransaksi.get(i).getTotalHarga());
 //            totalHarga[counter].setFont(new Font("Segoe UI", Font.PLAIN, 11));
 //            statusKirim[counter] = new JLabel(listTransaksi.get(i).getStatusKirim());
