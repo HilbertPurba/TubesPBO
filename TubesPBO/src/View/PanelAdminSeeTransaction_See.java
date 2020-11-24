@@ -191,7 +191,7 @@ public class PanelAdminSeeTransaction_See extends JFrame {
             panel.add(totalHarga[counter], gbc);
             
             gbc.gridx = 6;
-            panel.add(totalHarga[counter], gbc);
+            panel.add(status[counter], gbc);
             
             
             gbc.gridy++;

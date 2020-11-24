@@ -152,10 +152,10 @@ public class Transaksi {
     }
 
     //Get semua transaksi
-    public static ArrayList<Transaksi> getAllTransaksi() {
+    public static ArrayList<Transaksi> getAllTransaksiByToko() {
         ArrayList<Transaksi> listTransaksi = new ArrayList<>();
         conn.connect();
-        String query = "SELECT * FROM transaksi";
+        String query = "SELECT * FROM transaksi WHERE id="+UserManager.getInstance().getUser().getID();
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -171,13 +171,27 @@ public class Transaksi {
                 transaksi.setKodePromo(rs.getString("kode_promo"));
                 transaksi.setJumlah_produk(rs.getInt("jumlah_produk"));
                 transaksi.setTotalHarga(rs.getInt("total_harga"));
-                transaksi.setStatus(rs.getString("status"));
+                transaksi.setStatus(rs.getString("status_kirim"));
                 listTransaksi.add(transaksi);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return (listTransaksi);
+    }
+
+    // DELETE
+    public static boolean hapusTransaksi(int idTransaksi) {
+        conn.connect();
+        String query = "DELETE FROM transaksi WHERE id_transaksi='" + idTransaksi + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(query);
+            return (true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
+        }
     }
 
 }
