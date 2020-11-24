@@ -32,7 +32,7 @@ public class PanelRegister {
     private JLabel judul;
     private JButton btn_cust, btn_idk, btn_vendor, btn_back;
     private ImageIcon iconCust, idk, iconVendor, iconBack;
-    private ImageIcon iconCust1, idk1, iconVendor1, iconBack1;
+    private ImageIcon iconCust1, idk1, iconVendor1, iconBack1, logo;
     
     private Image resizeImage(String url) {
         Image dimg = null;
@@ -67,6 +67,9 @@ public class PanelRegister {
         jfr_register.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jfr_register.setSize(1000,700);
         jfr_register.setLocationRelativeTo(null);
+        //Logo
+        logo = new ImageIcon("assets/logo.png");
+        jfr_register.setIconImage(logo.getImage());
 
         
         judul = new JLabel("Register Sebagai ..");

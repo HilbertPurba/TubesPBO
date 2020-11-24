@@ -57,6 +57,7 @@ public class DashboardVendor {
     private ImageIcon iconCheckStock,iconAddProduct, iconHistory,  iconAccount, iconLogout;
     private ImageIcon iconCheckStock1,iconAddProduct1, iconHistory1,  iconAccount1, iconLogout1;
     private ImageIcon iconCheckStock2,iconAddProduct2, iconHistory2,  iconAccount2, iconLogout2;
+    private ImageIcon logo;
     
     private Image resizeImage(String url) {
         Image dimg = null;
@@ -264,5 +265,8 @@ public class DashboardVendor {
         frame.setResizable(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        //Logo
+        logo = new ImageIcon("assets/logo.png");
+        frame.setIconImage(logo.getImage());
     }
 }

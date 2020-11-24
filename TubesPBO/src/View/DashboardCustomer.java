@@ -44,7 +44,7 @@ public class DashboardCustomer {
     private JButton btn_home, btn_keranjang, btn_account, btn_logout;
     private ImageIcon iconHome, iconKeranjang, iconAkun, iconLogout;
     private ImageIcon iconHome1, iconKeranjang1, iconAkun1, iconLogout1;
-    private ImageIcon iconHome2, iconKeranjang2, iconAkun2, iconLogout2;
+    private ImageIcon iconHome2, iconKeranjang2, iconAkun2, iconLogout2, logo;
     
     private Image resizeImage(String url) {
         Image dimg = null;
@@ -219,5 +219,8 @@ public class DashboardCustomer {
         frame.setResizable(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        //Logo
+        logo = new ImageIcon("assets/logo.png");
+        frame.setIconImage(logo.getImage());
     }
 }
