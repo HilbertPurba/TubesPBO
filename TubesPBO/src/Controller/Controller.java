@@ -45,7 +45,7 @@ public class Controller {
         }
         return (listProd);
     }
-    
+
      //Get User yang punya Toko
     public static ArrayList<User> getUserToko(int id){
         ArrayList<User> listUser = new ArrayList<>();

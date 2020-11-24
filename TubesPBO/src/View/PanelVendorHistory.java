@@ -71,32 +71,31 @@ public class PanelVendorHistory extends JPanel {
         content.add(namaL, gbc);
         
         
-        gbc.gridx = 2;
+        gbc.gridx = 1;
         gbc.gridy = 0;
         content.add(namaProdukL, gbc);
-        
                 
-        gbc.gridx = 4;
+        gbc.gridx = 3;
         gbc.gridy = 0;
         content.add(alamatL, gbc);
         
-        gbc.gridx = 5;
+        gbc.gridx = 4;
         gbc.gridy = 0;
         content.add(jenisPembayaranL, gbc);
         
-        gbc.gridx = 6;
+        gbc.gridx = 5;
         gbc.gridy = 0;
         content.add(jenisPengirimanL, gbc);
         
-        gbc.gridx = 7;
+        gbc.gridx = 6;
         gbc.gridy = 0;
         content.add(kodePromoL, gbc);
         
-        gbc.gridx = 8;
+        gbc.gridx = 7;
         gbc.gridy = 0;
         content.add(totalHargaL, gbc);
         
-        gbc.gridx = 9;
+        gbc.gridx = 8;
         gbc.gridy = 0;
         content.add(statusKirimL, gbc);
         

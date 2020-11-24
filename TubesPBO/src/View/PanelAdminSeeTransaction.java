@@ -11,10 +11,21 @@ import Model.User;
 import Model.UserManager;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Cursor;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Image;
@@ -47,7 +58,6 @@ public class PanelAdminSeeTransaction extends JPanel implements ActionListener {
     private int jumlahUser = 0;
     private JButton btn_see[];
     private ImageIcon iconSee, iconSee1;
-
     private Image resizeImage(String url) {
         Image dimg = null;
 
@@ -60,7 +70,7 @@ public class PanelAdminSeeTransaction extends JPanel implements ActionListener {
 
         return dimg;
     }
-    
+  
     public PanelAdminSeeTransaction(){
         setLayout(new BorderLayout());
         header = new JPanel();
@@ -80,9 +90,9 @@ public class PanelAdminSeeTransaction extends JPanel implements ActionListener {
         for (int i=0;i< listUser.size();i++){
             jumlahUser++;
         }
-        
+      
         iconSee = new ImageIcon(resizeImage("assets/see.png"));
-        
+
         nama = new JLabel[jumlahUser];
         btn_see = new JButton[jumlahUser];
         
@@ -93,11 +103,10 @@ public class PanelAdminSeeTransaction extends JPanel implements ActionListener {
         gbc.anchor = GridBagConstraints.LINE_START;
         
         gbc.gridy = 1;
-
+      
         for (int i = 0;i<jumlahUser;i++){
             nama[counter] = new JLabel(listUser.get(i).getNama());
             nama[counter].setFont(new Font("Segoe UI", Font.PLAIN, 25));
-
             btn_see[counter] = new JButton(iconSee);
             btn_see[counter].setCursor(new Cursor(Cursor.HAND_CURSOR));
             btn_see[counter].setBorderPainted(false);
@@ -118,6 +127,7 @@ public class PanelAdminSeeTransaction extends JPanel implements ActionListener {
         gbc.gridx = 0;
         gbc.gridy = 0;
         content.add(judul, gbc);
+
         
         add(header, BorderLayout.PAGE_START);
         add(content, BorderLayout.CENTER);
@@ -125,6 +135,7 @@ public class PanelAdminSeeTransaction extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+
         
     }
 }
