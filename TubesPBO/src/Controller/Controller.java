@@ -355,6 +355,7 @@ public class Controller {
     }
 
     public static boolean insertNewTransaksi(Transaksi newTransaksi) {
+        conn.connect();
         if(countTransaksi(newTransaksi) == 0) {
             String query = "INSERT INTO transaksi (nama, noTelp, alamat, jenis_pembayaran, "
                     + "jenis_pengiriman, kode_promo, total_harga, status_kirim) VALUES (?,?,?,?,?,?,?,?)";

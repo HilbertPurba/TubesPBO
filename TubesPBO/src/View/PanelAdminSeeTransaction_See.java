@@ -45,8 +45,7 @@ public class PanelAdminSeeTransaction_See extends JFrame {
     private JButton btn_ok;
 //    private JLabel namaUserL, namaProdukL, alamatL, jenisPembayaranL, jenisPengirimanL, kodePromoL, totalHargaL, statusKirimL;
     private JLabel idTr[], namaProd[], nama[], idProd[], totalHarga[], jumlahProduk[], status[];
-//    private List<Transaksi> listTransaksi;
-    private int jumlah = 0;
+    private JLabel namaUserL, namaProdukL, alamatL, jenisPembayaranL, jenisPengirimanL, kodePromoL, totalHargaL, statusKirimL, jumlah_produkL;
 
     private Image resizeImage(String url) {
         Image dimg = null;
@@ -68,7 +67,7 @@ public class PanelAdminSeeTransaction_See extends JFrame {
         header.setBackground(Color.white);
 
         judul = new JLabel("Riwayat Transaksi dari " + namaToko);
-        judul.setFont(new Font("Segoe UI", Font.BOLD, 35));
+        judul.setFont(new Font("Segoe UI", Font.BOLD, 30));
         judul.setForeground(Color.red);
         header.add(judul);
 
@@ -88,7 +87,6 @@ public class PanelAdminSeeTransaction_See extends JFrame {
         );
 
         panel = new JPanel(new GridBagLayout());
-//        listTransaksi = Controller.getListTransaksi();
 
 //        namaUserL = new JLabel("Nama User      ");
 //        namaUserL.setFont(new Font("Segoe UI", Font.BOLD, 12));
@@ -116,6 +114,37 @@ public class PanelAdminSeeTransaction_See extends JFrame {
         jumlahProduk = new JLabel[newList.size()];
         status = new JLabel[newList.size()];
 
+        
+        namaUserL = new JLabel("Nama User      ");
+        namaUserL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        namaProdukL = new JLabel("Nama Produk        ");
+        namaProdukL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        alamatL = new JLabel("Alamat      ");
+        alamatL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        jenisPembayaranL = new JLabel("Pembayaran       ");
+        jenisPembayaranL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        jenisPengirimanL = new JLabel("Pengiriman       ");
+        jenisPengirimanL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        kodePromoL = new JLabel("Kode Promo       ");
+        kodePromoL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        jumlah_produkL = new JLabel("Jumlah       ");
+        jumlah_produkL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        totalHargaL = new JLabel("Total Harga       ");
+        totalHargaL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        statusKirimL = new JLabel("Status Kirim       ");
+        statusKirimL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        
+        //isi
+//        namaUser = new JLabel[listTransaksi.size()];
+//        namaProduk = new JLabel[listTransaksi.size()];
+//        alamat = new JLabel[listTransaksi.size()];
+//        jenisPembayaran = new JLabel[listTransaksi.size()];
+//        jenisPengiriman = new JLabel[listTransaksi.size()];
+//        kodePromo = new JLabel[listTransaksi.size()];
+//        jumlah_produk = new JLabel[listTransaksi.size()];
+//        totalHarga = new JLabel[listTransaksi.size()];
+//        statusKirim = new JLabel[listTransaksi.size()];
+        
         //counter
         int counter = 0;
 
@@ -168,7 +197,7 @@ public class PanelAdminSeeTransaction_See extends JFrame {
             gbc.gridy++;
             counter++;
         }
-
+ 
 //            gbc.gridx = 0;
 //            gbc.gridy = 1;
 //            panel.add(namaUserL, gbc);
