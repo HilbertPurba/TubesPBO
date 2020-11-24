@@ -87,7 +87,7 @@ public class ListTransaksiToko {
         ArrayList<ListTransaksiToko> listTransaksi = new ArrayList<>();
         conn.connect();
         String query = "select transaksi.id_transaksi, transaksi.id_prod,produk.nama_prod,transaksi.nama,transaksi.jumlah_produk,transaksi.total_harga"
-                + ",transaksi.status\n"
+                + ",transaksi.status_kirim\n"
                 + "FROM transaksi\n"
                 + "JOIN produk ON transaksi.id_prod = produk.id_prod \n"
                 + "JOIN pengguna ON produk.id = pengguna.id WHERE pengguna.nama ='" + nama_toko + "'";
@@ -102,7 +102,7 @@ public class ListTransaksiToko {
                 newList.setNama_prod(rs.getString("produk.nama_prod"));
                 newList.setJumlah_beli(rs.getInt("transaksi.jumlah_produk"));
                 newList.setTotal_harga(rs.getInt("transaksi.total_harga"));
-                newList.setStatus(rs.getString("transaksi.status"));
+                newList.setStatus(rs.getString("transaksi.status_kirim"));
                 listTransaksi.add(newList);
             }
         } catch (SQLException e) {
