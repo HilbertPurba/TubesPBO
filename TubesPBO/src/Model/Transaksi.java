@@ -155,7 +155,12 @@ public class Transaksi {
     public static ArrayList<Transaksi> getAllTransaksiByToko() {
         ArrayList<Transaksi> listTransaksi = new ArrayList<>();
         conn.connect();
-        String query = "SELECT * FROM transaksi WHERE id="+UserManager.getInstance().getUser().getID();
+        String query = "select transaksi.id_transaksi, transaksi.id_prod,produk.nama_prod,transaksi.nama,transaksi.noTelp, transaksi.alamat, "
+                + "transaksi.jenis_pengiriman, transaksi.jenis_pembayaran, transaksi.kode_promo, transaksi.jumlah_produk,transaksi.total_harga"
+                + ",transaksi.status_kirim\n"
+                + "FROM transaksi\n"
+                + "JOIN produk ON transaksi.id_prod = produk.id_prod \n"
+                + "JOIN pengguna ON produk.id = pengguna.id ";
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -172,6 +177,17 @@ public class Transaksi {
                 transaksi.setJumlah_produk(rs.getInt("jumlah_produk"));
                 transaksi.setTotalHarga(rs.getInt("total_harga"));
                 transaksi.setStatus(rs.getString("status_kirim"));
+                transaksi.setIdTransaksi(rs.getInt("transaksi.id_transaksi"));
+                transaksi.setId_prod(rs.getInt("transaksi.id_prod"));
+                transaksi.setNamaLengkap(rs.getString("transaksi.nama"));
+                transaksi.setNoTelepon(rs.getString("transaksi.noTelp"));
+                transaksi.setAlamat(rs.getString("transaksi.alamat"));
+                transaksi.setJenisPengiriman(rs.getString("transaksi.jenis_pengiriman"));
+                transaksi.setJenisPembayaran(rs.getString("transaksi.jenis_pembayaran"));
+                transaksi.setKodePromo(rs.getString("transaksi.kode_promo"));
+                transaksi.setJumlah_produk(rs.getInt("transaksi.jumlah_produk"));
+                transaksi.setTotalHarga(rs.getInt("transaksi.total_harga"));
+                transaksi.setStatus(rs.getString("transaksi.status_kirim"));
                 listTransaksi.add(transaksi);
             }
         } catch (SQLException e) {

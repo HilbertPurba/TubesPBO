@@ -5,11 +5,14 @@
  */
 package View;
 
+import Model.ListTransaksiToko;
+import Model.Transaksi;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -22,10 +25,11 @@ import javax.swing.JPanel;
 public class PanelVendorHistory extends JPanel {
     private JPanel header, content;
     private JLabel title, namaL, namaProdukL, alamatL, jenisPembayaranL, jenisPengirimanL, kodePromoL, totalHargaL, statusKirimL, total_produkL;
-    private JLabel[] idTr, idProd, nama, alamat, noTelp, jenisPembayaran, jenisPengiriman, kodePromo, totalHarga, statusKirim, total_produk;
+    private JLabel nama[], namaProduk[], alamat[], jenisPembayaran[], jenisPengiriman[], kodePromo[], totalHarga[], statusKirim[], total_produk[];
     private GridBagConstraints gbc;
     
     public PanelVendorHistory(){
+        ArrayList<Transaksi> newList = Transaksi.getAllTransaksi();
         setLayout(new BorderLayout());
         header = new JPanel();
         header.setBackground(Color.WHITE);
@@ -57,16 +61,74 @@ public class PanelVendorHistory extends JPanel {
 //        statusKirimL.setFont(new Font("Segoe UI", Font.BOLD, 12));
         
         //isi
-        
+        nama = new JLabel[newList.size()];
+        namaProduk = new JLabel[newList.size()];
+        alamat = new JLabel[newList.size()];
+        jenisPembayaran = new JLabel[newList.size()];
+        jenisPengiriman = new JLabel[newList.size()];
+        kodePromo = new JLabel[newList.size()];
+        totalHarga = new JLabel[newList.size()];
+        statusKirim = new JLabel[newList.size()];
+        total_produk = new JLabel[newList.size()];
+
         //counter
+        int counter = 0;
         
         gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.anchor = GridBagConstraints.LINE_START;
         
         gbc.gridy = 2;
-        
-        //looping isi
+        for(int i =0;i<newList.size();i++){
+            nama[counter] = new JLabel("" + newList.get(i).getNamaLengkap());
+            nama[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+//            namaProduk[counter] = new JLabel("" + newList.get(i).());
+//            namaProduk[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            alamat[counter] = new JLabel("" + newList.get(i).getAlamat());
+            alamat[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            jenisPembayaran[counter] = new JLabel("" + newList.get(i).getJenisPembayaran());
+            jenisPembayaran[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            jenisPengiriman[counter] = new JLabel("" + newList.get(i).getJenisPengiriman());
+            jenisPengiriman[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            kodePromo[counter] = new JLabel("" + newList.get(i).getKodePromo());
+            kodePromo[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            totalHarga[counter] = new JLabel("" + newList.get(i).getTotalHarga());
+            totalHarga[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            statusKirim[counter] = new JLabel("" + newList.get(i).getStatus());
+            statusKirim[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+//            total_produk[counter] = new JLabel("" + listPr.get(i).getJumlah_beli());
+//            total_produk[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            
+            gbc.gridx = 0;
+            content.add(nama[counter], gbc);
+            
+//            gbc.gridx = 0;
+//            content.add(namaProduk[counter], gbc);
+            
+            gbc.gridx = 3;
+            content.add(alamat[counter], gbc);
+            
+            gbc.gridx = 4;
+            content.add(jenisPembayaran[counter], gbc);
+            
+            gbc.gridx = 5;
+            content.add(jenisPengiriman[counter], gbc);
+            
+            gbc.gridx = 6;
+            content.add(kodePromo[counter], gbc);
+            
+            gbc.gridx = 7;
+            content.add(totalHarga[counter], gbc);
+            
+            gbc.gridx = 9;
+            content.add(statusKirim[counter], gbc);
+            
+//            gbc.gridx = 0;
+//            content.add(total_produk[counter], gbc);
+
+            gbc.gridy++;
+            counter++;
+        }
         
         gbc.gridx = 0;
         gbc.gridy = 0;
