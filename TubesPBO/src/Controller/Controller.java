@@ -420,28 +420,28 @@ public class Controller {
         return jumlah_produk; 
     }
     
-    public static boolean insertConnectorTransaksi(Transaksi transaksi) {
-        conn.connect();
-        int id_produk = TransaksiManager.getInstance().getTransaksi().getIdProduk();
-        String query = "INSERT INTO connectorproduktransaksi (id_transaksi, id_prod, jumlah_produk, total_harga) VALUES (?,?,?,?)";
-
-        try {
-            PreparedStatement stmt = conn.con.prepareStatement(query);
-            stmt.setString(1, newTransaksi.getNamaLengkap());
-            stmt.setString(2, newTransaksi.getNoTelepon());
-            stmt.setString(3, newTransaksi.getAlamat());
-            stmt.setString(4, newTransaksi.getJenisPembayaran());
-            stmt.setString(5, newTransaksi.getJenisPengiriman());
-            stmt.setString(6, newTransaksi.getKodePromo());
-            stmt.setInt(7, newTransaksi.getTotalHarga());
-            stmt.setString(8, "Dikemas");
-            stmt.executeUpdate();
-            return (true);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return (false);
-        }
-    }
+//    public static boolean insertConnectorTransaksi(Transaksi transaksi) {
+//        conn.connect();
+//        int id_produk = TransaksiManager.getInstance().getTransaksi().getIdProduk();
+//        String query = "INSERT INTO connectorproduktransaksi (id_transaksi, id_prod, jumlah_produk, total_harga) VALUES (?,?,?,?)";
+//
+//        try {
+//            PreparedStatement stmt = conn.con.prepareStatement(query);
+//            stmt.setString(1, newTransaksi.getNamaLengkap());
+//            stmt.setString(2, newTransaksi.getNoTelepon());
+//            stmt.setString(3, newTransaksi.getAlamat());
+//            stmt.setString(4, newTransaksi.getJenisPembayaran());
+//            stmt.setString(5, newTransaksi.getJenisPengiriman());
+//            stmt.setString(6, newTransaksi.getKodePromo());
+//            stmt.setInt(7, newTransaksi.getTotalHarga());
+//            stmt.setString(8, "Dikemas");
+//            stmt.executeUpdate();
+//            return (true);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            return (false);
+//        }
+//    }
 //
 //    public static int getIdTransaksi() {
 //        int id_transaksi = 0;
