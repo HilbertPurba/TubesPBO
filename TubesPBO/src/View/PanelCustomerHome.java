@@ -20,7 +20,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -46,6 +45,7 @@ public class PanelCustomerHome extends JPanel implements ActionListener {
     private JButton[] btn_add;
     private JComboBox[] banyakProduk;
     private ArrayList<Produk> listProd = Controller.getAllProduk();
+    private int id_produk[];
     private int jumlahProduk = 0;
 
     private Image resizeImage(String url) {
@@ -90,6 +90,7 @@ public class PanelCustomerHome extends JPanel implements ActionListener {
         hargaProd = new JLabel[jumlahProduk];
         stokProd = new JLabel[jumlahProduk];
         btn_add = new JButton[jumlahProduk];
+        id_produk = new int[jumlahProduk];
         int x1 = 70, x2 = 350, x3 = 520, x4 = 700, x5 = 800;
         int y1 = 225, y2 = 225, y3 = 225, y4 = 225, y5 = 225;
         for (int i = 0; i < jumlahProduk; i++) {
@@ -102,6 +103,7 @@ public class PanelCustomerHome extends JPanel implements ActionListener {
             stokProd[i] = new JLabel("" + listProd.get(i).getStok());
             stokProd[i].setFont(new Font("Segoe UI", Font.PLAIN, 14));
             btn_add[i] = new JButton(iconAdd);
+            id_produk[i] = listProd.get(i).getIdProduk();
 
             namaProd[i].setBounds(x1, y1, 300, 25);
             merkProd[i].setBounds(x2, y2, 150, 25);
@@ -169,6 +171,7 @@ public class PanelCustomerHome extends JPanel implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Stok Habis");
                 } else {
                     newProdukBeli.setHarga(Integer.parseInt(hargaProd[i].getText().substring(4)));
+                    newProdukBeli.setId_produk(id_produk[i]);
                     newProdukBeli.setNama(namaProd[i].getText());
                     newProdukBeli.setJumlahBeli(jumlahBeli);
                     ProdukBeliManager.getInstance().setProdukBeli(newProdukBeli);
@@ -176,7 +179,7 @@ public class PanelCustomerHome extends JPanel implements ActionListener {
             }
         }
         keranjang.setId_user(UserManager.getInstance().getUser().getID());
-        keranjang.setId_prod(ProdukBeliManager.getInstance().getProdukBeli().getIdProduk());
+        keranjang.setId_prod(ProdukBeliManager.getInstance().getProdukBeli().getId_produk());
         keranjang.setNama_prod(ProdukBeliManager.getInstance().getProdukBeli().getNama());
         keranjang.setHarga_total(ProdukBeliManager.getInstance().getProdukBeli().countTotalHarga(newProdukBeli));
         keranjang.setJumlah_total(ProdukBeliManager.getInstance().getProdukBeli().getJumlahBeli());

@@ -55,7 +55,7 @@ public class DatabaseHandler {
     public void connect() {
         try {
             con = logOn();
-            System.out.println("Connection Successful");
+            System.out.println("Connected");
         } catch (Exception ex) {
             System.out.println("Error occured when connecting to database");
         }

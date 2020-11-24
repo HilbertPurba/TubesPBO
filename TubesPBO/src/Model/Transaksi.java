@@ -5,10 +5,6 @@
  */
 package Model;
 
-import Controller.Controller;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author Gilbert
@@ -16,56 +12,47 @@ import java.util.List;
  * @author Zefanya
  */
 public class Transaksi {
-    private String idTransaksi;
-    private Customer customer;
+    private int idTransaksi;
+    private int id_produk;
     private String namaLengkap;
     private String noTelepon;
     private String alamat;
     private String jenisPembayaran;
     private String jenisPengiriman;
     private String kodePromo;
+    private int jumlah_produk;
     private int totalHarga;
     
     public Transaksi() {
     }
-    
-    public Transaksi(String idTransaksi, Customer customer, String namaLengkap, String noTelepon, String alamat, String jenisPembayaran, String jenisPengiriman, String kodePromo, int totalHarga) {
+
+    public Transaksi(int idTransaksi, int id_produk, String namaLengkap, String noTelepon, String alamat, String jenisPembayaran, String jenisPengiriman, String kodePromo, int jumlah_produk, int totalHarga) {
         this.idTransaksi = idTransaksi;
-        this.customer = customer;
+        this.id_produk = id_produk;
         this.namaLengkap = namaLengkap;
         this.noTelepon = noTelepon;
         this.alamat = alamat;
         this.jenisPembayaran = jenisPembayaran;
         this.jenisPengiriman = jenisPengiriman;
         this.kodePromo = kodePromo;
+        this.jumlah_produk = jumlah_produk;
         this.totalHarga = totalHarga;
     }
-    
-    public int getIdProduk() {
-        int id_produk = 0;
-        List<Produk> listProd = Controller.getAllProduk();
-        for(int i = 0; i < listProd.size(); i++) {
-            if(listProd.get(i).getIdProduk() == TransaksiManager.getInstance().getTransaksi().getIdProduk()) {
-                id_produk = listProd.get(i).getIdProduk();
-            }
-        }
-        return id_produk;
-    }
-    
-    public String getIdTransaksi() {
+
+    public int getIdTransaksi() {
         return idTransaksi;
     }
 
-    public void setIdTransaksi(String idTransaksi) {
+    public void setIdTransaksi(int idTransaksi) {
         this.idTransaksi = idTransaksi;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public int getId_produk() {
+        return id_produk;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setId_produk(int id_produk) {
+        this.id_produk = id_produk;
     }
 
     public String getNamaLengkap() {
@@ -114,6 +101,14 @@ public class Transaksi {
 
     public void setKodePromo(String kodePromo) {
         this.kodePromo = kodePromo;
+    }
+
+    public int getJumlah_produk() {
+        return jumlah_produk;
+    }
+
+    public void setJumlah_produk(int jumlah_produk) {
+        this.jumlah_produk = jumlah_produk;
     }
 
     public int getTotalHarga() {

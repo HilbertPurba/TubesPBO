@@ -6,14 +6,8 @@
 package View;
 
 import java.awt.*;
-import java.util.*;
 import java.awt.event.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
-import javax.swing.event.*;
 import Model.*;
 import Controller.*;
 import java.awt.image.BufferedImage;
@@ -184,21 +178,18 @@ public class PanelRegisterCustomer implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        String nama = this.name.getText();
-        String email = this.email.getText();
-        String noTelepon = this.telepon.getText();
         String password = new String(pass.getPassword());
         int a = JOptionPane.showOptionDialog(null, "Are you sure?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
         if (a == JOptionPane.YES_OPTION) {
-            if (nama.length() == 0 || email.length() == 0 || noTelepon.length() == 0 || password.length() == 0) {
+            if (name.getText().isEmpty() || email.getText().isEmpty() || telepon.getText().isEmpty() || password.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Input all the data!", "Alert", JOptionPane.WARNING_MESSAGE);
             } else {
-                User newUser = new User();
-                newUser.setNama(nama);
-                newUser.setPassword(password);
-                newUser.setEmail(email);
-                newUser.setTelepon(noTelepon);
-                if (Controller.insertNewCustomer(newUser)) {
+                Customer customer = new Customer();
+                customer.setNama(name.getText());
+                customer.setPassword(new String(pass.getPassword()));
+                customer.setEmail(email.getText());
+                customer.setTelepon(telepon.getText());
+                if (Controller.insertNewCustomer(customer)) {
                     JOptionPane.showMessageDialog(null, "Registration Complete!\nPlease Login!");
                     jfr_registrasi.dispose();
                     new PanelLogin();

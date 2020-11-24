@@ -191,12 +191,13 @@ public class PanelRegisterVendor implements ActionListener {
             if (nama.length() == 0 || email.length() == 0 || noTelepon.length() == 0 || password.length() == 0) {
                 JOptionPane.showMessageDialog(null, "Input all the data!", "Alert", JOptionPane.WARNING_MESSAGE);
             } else {
-                User newUser = new User();
-                newUser.setNama(nama);
-                newUser.setPassword(password);
-                newUser.setEmail(email);
-                newUser.setTelepon(noTelepon);
-                if (Controller.insertNewVendor(newUser)) {
+                //register ampas
+                Vendor vendor = new Vendor();
+                vendor.setNama(nama);
+                vendor.setPassword(password);
+                vendor.setEmail(email);
+                vendor.setTelepon(noTelepon);
+                if (Controller.insertNewVendor(vendor)) {
                     JOptionPane.showMessageDialog(null, "Registration Complete!\nPlease Login!");
                     jfr_registrasi.dispose();
                     new PanelLogin();
