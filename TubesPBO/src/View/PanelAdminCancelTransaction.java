@@ -5,6 +5,8 @@
  */
 package View;
 
+import Model.ListTransaksiToko;
+import Model.Transaksi;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -17,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -31,15 +34,18 @@ import javax.swing.JPanel;
  * @author Zefanya
  */
 public class PanelAdminCancelTransaction extends JPanel implements ActionListener {
-    private JPanel header, content;
-    private JLabel title,judul, namaL, namaProdukL, alamatL, jenisPembayaranL, jenisPengirimanL, kodePromoL, totalHargaL, statusKirimL;
-    private GridBagConstraints gbc;
+
+    private JPanel header, panel;
     private ImageIcon iconSee, iconSee1;
-//    private JButton btn_see[];
-    private JLabel nama[], namaProduk[], alamat[], jenisPembayaran[], jenisPengiriman[], kodePromo[], totalHarga[], statusKirim[];
-//    private List<Transaksi> listTransaksi;
-    private JButton btn_see;
-    
+    private GridBagConstraints gbc;
+    private JLabel judul, judul1;
+    private ImageIcon iconOk;
+    private JButton btn_ok;
+    private JLabel idTr[], namaProd[], nama[], totalHarga[], jumlahProduk[], status[];
+    private JLabel idTrL, namaProdL, namaL, totalHargaL, jumlahProdukL, statusL, namaProdukL;
+    private List<ListTransaksiToko> newList = ListTransaksiToko.getAllTransaksiToko();
+    private JButton btn_see[];
+
     private Image resizeImage(String url) {
         Image dimg = null;
 
@@ -52,170 +58,143 @@ public class PanelAdminCancelTransaction extends JPanel implements ActionListene
 
         return dimg;
     }
-    
-    public PanelAdminCancelTransaction(){
+
+    public PanelAdminCancelTransaction() {
         setLayout(new BorderLayout());
         header = new JPanel();
         header.setBackground(Color.WHITE);
-                
-        title = new JLabel("CANCEL TRANSAKSI");
-        title.setFont(new Font("Calibri", Font.BOLD, 60));
-        title.setForeground(Color.red);
-        header.add(title);
-        
-        content = new JPanel(new GridBagLayout());
-        //        listTransaksi = Controller.getListTransaksi();
-        
-        judul = new JLabel("Daftar Transaksi: ");
-        judul.setFont(new Font("Segoe UI", Font.BOLD, 20));
+
+        judul = new JLabel("CANCEL TRANSAKSI");
+        judul.setFont(new Font("Calibri", Font.BOLD, 60));
         judul.setForeground(Color.red);
-        
-        namaL = new JLabel("Nama Customer        ");
-        namaL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        namaProdukL = new JLabel("Nama Produk          ");
-        namaProdukL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        alamatL = new JLabel("Alamat       ");
-        alamatL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        jenisPembayaranL = new JLabel("Jenis Pembayaran       ");
-        jenisPembayaranL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        jenisPengirimanL = new JLabel("Jenis Pengiriman       ");
-        jenisPengirimanL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        kodePromoL = new JLabel("Kode Promo       ");
-        kodePromoL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        totalHargaL = new JLabel("Total Harga       ");
-        totalHargaL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        statusKirimL = new JLabel("Status Kirim       ");
-        statusKirimL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        
+        header.add(judul);
+
+        panel = new JPanel(new GridBagLayout());
+
+        judul1 = new JLabel("Daftar Transaksi: ");
+        judul1.setFont(new Font("Segoe UI", Font.BOLD, 20));
+        judul1.setForeground(Color.red);
+
+        idTrL = new JLabel("ID Transaksi       ");
+        idTrL.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        namaProdukL = new JLabel("Nama Produk             ");
+        namaProdukL.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        namaL = new JLabel("Nama User      ");
+        namaL.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        totalHargaL = new JLabel("Total Harga        ");
+        totalHargaL.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        jumlahProdukL = new JLabel("Jumlah       ");
+        jumlahProdukL.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        statusL = new JLabel("Status    ");
+        statusL.setFont(new Font("Segoe UI", Font.BOLD, 16));
         iconSee = new ImageIcon(resizeImage("assets/see.png"));
-        
-//        for (int i=0;i< listProd.size();i++){
-//        
-//        }
-                
+
         //isi
-//        namaUser = new JLabel[listTransaksi.size()];
-//        namaProduk = new JLabel[listTransaksi.size()];
-//        alamat = new JLabel[listTransaksi.size()];
-//        jenisPembayaran = new JLabel[listTransaksi.size()];
-//        jenisPengiriman = new JLabel[listTransaksi.size()];
-//        kodePromo = new JLabel[listTransaksi.size()];
-//        totalHarga = new JLabel[listTransaksi.size()];
-//        statusKirim = new JLabel[listTransaksi.size()];
-        
+        idTr = new JLabel[newList.size()];
+        nama = new JLabel[newList.size()];
+        namaProd = new JLabel[newList.size()];
+        totalHarga = new JLabel[newList.size()];
+        jumlahProduk = new JLabel[newList.size()];
+        status = new JLabel[newList.size()];
+        btn_see = new JButton[newList.size()];
+
         //counter
         int counter = 0;
-        
+
         gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.anchor = GridBagConstraints.LINE_START;
-        
+
         gbc.gridy = 2;
-        
-        //looping isi
-//        for(int i=0;i<listTransaksi.size(); i++){
-//            namaUser[counter] = new JLabel(listTransaksi.get(i).getNama());
-//            namaUser[counter].setFont(new Font("Segoe UI", Font.PLAIN, 11));
-//            namaProduk[counter] = new JLabel(listTransaksi.get(i).getNamaProduk());
-//            namaProduk[counter].setFont(new Font("Segoe UI", Font.PLAIN, 11));
-//            alamat[counter] = new JLabel();
-//            alamat[counter].setFont(new Font("Segoe UI", Font.PLAIN, 11));
-//            jenisPembayaran[counter] = new JLabel(listTransaksi.get(i).getJenisPembayaran());
-//            jenisPembayaran[counter].setFont(new Font("Segoe UI", Font.PLAIN, 11));
-//            jenisPengiriman[counter] = new JLabel(listTransaksi.get(i).getJenisPengiriman());
-//            jenisPengiriman[counter].setFont(new Font("Segoe UI", Font.PLAIN, 11));
-//            kodePromo[counter] = new JLabel(listTransaksi.get(i).getKodePromo());
-//            kodePromo[counter].setFont(new Font("Segoe UI", Font.PLAIN, 11));
-//            totalHarga[counter] = new JLabel(listTransaksi.get(i).getTotalHarga());
-//            totalHarga[counter].setFont(new Font("Segoe UI", Font.PLAIN, 11));
-//            statusKirim[counter] = new JLabel(listTransaksi.get(i).getStatusKirim());
-//            statusKirim[counter].setFont(new Font("Segoe UI", Font.PLAIN, 11));
-//            
-//            gbc.gridx = 0;
-//            panel.add(namaUser[counter], gbc);
-//            
-//            gbc.gridx = 1;
-//            panel.add(namaProduk[counter], gbc);
-//            
-//            gbc.gridx = 2;
-//            panel.add(alamat[counter], gbc);
-//            
-//            gbc.gridx = 3;
-//            panel.add(jenisPembayaran[counter], gbc);
-//            
-//            gbc.gridx = 4;
-//            panel.add(jenisPengiriman[counter], gbc);
-//            
-//            gbc.gridx = 5;
-//            panel.add(kodePromo[counter], gbc);
-//            
-//            gbc.gridx = 6;
-//            panel.add(totalHarga[counter], gbc);
-//            
-//            gbc.gridx = 7;
-//            panel.add(statusKirim[counter], gbc);
-//            
-//            gbc.gridy++;
-//            counter++;
-//        }
-        
+
+        for (int i = 0; i < newList.size(); i++) {
+            idTr[counter] = new JLabel("" +newList.get(i).getId_transaksi());
+            idTr[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            namaProd[counter] = new JLabel(newList.get(i).getNama_prod());
+            namaProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            nama[counter] = new JLabel(newList.get(i).getNamaPengguna());
+            nama[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            jumlahProduk[counter] = new JLabel("" + newList.get(i).getJumlah_beli());
+            jumlahProduk[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            totalHarga[counter] = new JLabel("" + newList.get(i).getTotal_harga());
+            totalHarga[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            status[counter] = new JLabel(newList.get(i).getStatus());
+            status[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            
+            gbc.gridx = 1;
+            panel.add(idTr[counter], gbc);
+            
+            gbc.gridx = 2;
+            panel.add(namaProd[counter], gbc);
+            
+            gbc.gridx = 3;
+            panel.add(nama[counter], gbc);
+            
+            gbc.gridx = 4;
+            panel.add(totalHarga[counter], gbc);
+            
+            gbc.gridx = 5;
+            panel.add(jumlahProduk[counter], gbc);
+            
+            gbc.gridx = 6;
+            panel.add(status[counter], gbc);
+
+            gbc.gridx = 0;
+            btn_see[counter] = new JButton(iconSee);
+            btn_see[counter].setCursor(new Cursor(Cursor.HAND_CURSOR));
+            btn_see[counter].setBorderPainted(false);
+            btn_see[counter].setFocusPainted(false);
+            btn_see[counter].setContentAreaFilled(false);
+            btn_see[counter].addActionListener(this);
+            panel.add(btn_see[counter], gbc);
+
+            gbc.gridy++;
+            counter++;
+        }
         gbc.gridx = 0;
         gbc.gridy = 0;
-        content.add(judul, gbc);
-        
-        //delete soon
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        btn_see = new JButton(iconSee);
-        btn_see.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btn_see.setBorderPainted(false);
-        btn_see.setFocusPainted(false);
-        btn_see.setContentAreaFilled(false);
-        btn_see.addActionListener(this);
-        content.add(btn_see, gbc);
-        
+        panel.add(judul1, gbc);
+
         gbc.gridx = 1;
         gbc.gridy = 1;
-        content.add(namaL, gbc);
+        panel.add(idTrL, gbc);
         
         gbc.gridx = 2;
         gbc.gridy = 1;
-        content.add(namaProdukL, gbc);
+        panel.add(namaProdukL, gbc);
         
         gbc.gridx = 3;
         gbc.gridy = 1;
-        content.add(alamatL, gbc);
+        panel.add(namaL, gbc);
         
         gbc.gridx = 4;
         gbc.gridy = 1;
-        content.add(jenisPembayaranL, gbc);
+        panel.add(totalHargaL, gbc);
         
         gbc.gridx = 5;
         gbc.gridy = 1;
-        content.add(jenisPengirimanL, gbc);
+        panel.add(jumlahProdukL, gbc);
         
         gbc.gridx = 6;
         gbc.gridy = 1;
-        content.add(kodePromoL, gbc);
-        
-        gbc.gridx = 7;
-        gbc.gridy = 1;
-        content.add(totalHargaL, gbc);
-        
-        gbc.gridx = 8;
-        gbc.gridy = 1;
-        content.add(statusKirimL, gbc);
+        panel.add(statusL, gbc);
         
         add(header, BorderLayout.PAGE_START);
-        add(content, BorderLayout.CENTER);
+        add(panel, BorderLayout.CENTER);
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        int option = JOptionPane.showConfirmDialog(null, "Yakin ingin Cancel Transaksi", "Update", JOptionPane.YES_NO_OPTION);
-        if (option == JOptionPane.OK_OPTION){
-            System.out.println("halo");
-        } 
-        
+        for (int i = 0; i < newList.size(); i++) {
+            if (ae.getSource() == btn_see[i]) {
+                int option = JOptionPane.showConfirmDialog(null, "Yakin ingin Cancel Transaksi", "Update", JOptionPane.YES_NO_OPTION);
+                if (option == JOptionPane.OK_OPTION) {
+                    if(Transaksi.hapusTransaksi(Integer.parseInt(idTr[i].getText()))){
+                        JOptionPane.showMessageDialog(null, "Transaksi berhasil dibatalkan!");
+                    }
+                }
+            }
+        }
+
     }
 }

@@ -156,6 +156,7 @@ public class PanelCustomerKeranjang extends JPanel implements ActionListener {
         gbc.gridx = 3;
         gbc.gridy = 1;
         content.add(hargaL, gbc);
+      
         add(header, BorderLayout.PAGE_START);
         add(content, BorderLayout.CENTER);
     }

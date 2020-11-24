@@ -5,6 +5,13 @@
  */
 package Model;
 
+import Controller.Controller;
+import Controller.DatabaseHandler;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Gilbert
@@ -22,7 +29,10 @@ public class Transaksi {
     private String kodePromo;
     private int jumlah_produk;
     private int totalHarga;
-    
+    private String status;
+
+    static DatabaseHandler conn = new DatabaseHandler();
+
     public Transaksi() {
     }
 
@@ -37,6 +47,7 @@ public class Transaksi {
         this.kodePromo = kodePromo;
         this.jumlah_produk = jumlah_produk;
         this.totalHarga = totalHarga;
+        this.status = status;
     }
 
     public int getIdTransaksi() {
@@ -46,7 +57,7 @@ public class Transaksi {
     public void setIdTransaksi(int idTransaksi) {
         this.idTransaksi = idTransaksi;
     }
-
+uk
     public int getId_produk() {
         return id_produk;
     }
@@ -118,4 +129,69 @@ public class Transaksi {
     public void setTotalHarga(int totalHarga) {
         this.totalHarga = totalHarga;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getIdProduk() {
+        int id_produk = 0;
+        List<Produk> listProd = Controller.getAllProduk();
+        for (int i = 0; i < listProd.size(); i++) {
+            if (listProd.get(i).getIdProduk() == TransaksiManager.getInstance().getTransaksi().getIdProduk()) {
+                id_produk = listProd.get(i).getIdProduk();
+            }
+        }
+        return id_produk;
+    }
+
+    //Get semua transaksi
+    public static ArrayList<Transaksi> getAllTransaksiByToko(int id) {
+        ArrayList<Transaksi> listTransaksi = new ArrayList<>();
+        conn.connect();
+        String query = "SELECT transaksi.id_transaksi, transaksi.id_prod, transaksi.nama, transaksi.alamat, transaksi.jenis_pembayaran, transaksi.jenis_pengiriman, transaksi.total_harga, transaksi.jumlah_produk, transaksi.status_kirim \n"
+                + "FROM transaksi\n"
+                + "JOIN produk ON transaksi.id_prod = produk.id_prod\n"
+                + "JOIN pengguna ON produk.id = pengguna.id\n"
+                + "WHERE pengguna.id='"+id+"'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                Transaksi transaksi = new Transaksi();
+                transaksi.setIdTransaksi(rs.getInt("transaksi.id_transaksi"));
+                transaksi.setId_produk(rs.getInt("transaksi.id_prod"));
+                transaksi.setNamaLengkap(rs.getString("transaksi.nama"));
+                transaksi.setAlamat(rs.getString("transaksi.alamat"));
+                transaksi.setJenisPengiriman(rs.getString("transaksi.jenis_pengiriman"));
+                transaksi.setJenisPembayaran(rs.getString("transaksi.jenis_pembayaran"));
+                transaksi.setJumlah_produk(rs.getInt("transaksi.jumlah_produk"));
+                transaksi.setTotalHarga(rs.getInt("transaksi.total_harga"));
+                transaksi.setStatus(rs.getString("transaksi.status_kirim"));
+                listTransaksi.add(transaksi);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return (listTransaksi);
+    }
+
+    // DELETE
+    public static boolean hapusTransaksi(int idTransaksi) {
+        conn.connect();
+        String query = "DELETE FROM transaksi WHERE id_transaksi='" + idTransaksi + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(query);
+            return (true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
+        }
+    }
+
 }
