@@ -21,8 +21,8 @@ import javax.swing.JPanel;
  */
 public class PanelVendorHistory extends JPanel {
     private JPanel header, content;
-    private JLabel title, namaL, namaProdukL, noTelpL, alamatL, jenisPembayaranL, jenisPengirimanL, kodePromoL, totalHargaL, statusKirimL;
-    private JLabel[] nama, namaProduk, noTelp, alamat, jenisPembayaran, jenisPengiriman, kodePromo, totalHarga, statusKirim;
+    private JLabel title, namaL, namaProdukL, alamatL, jenisPembayaranL, jenisPengirimanL, kodePromoL, totalHargaL, statusKirimL;
+    private JLabel[] nama, namaProduk, alamat, jenisPembayaran, jenisPengiriman, kodePromo, totalHarga, statusKirim;
     private GridBagConstraints gbc;
     
     public PanelVendorHistory(){
@@ -41,8 +41,6 @@ public class PanelVendorHistory extends JPanel {
         namaL.setFont(new Font("Segoe UI", Font.BOLD, 12));
         namaProdukL = new JLabel("Nama Produk          ");
         namaProdukL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        noTelpL = new JLabel("No Telepon       ");
-        noTelpL.setFont(new Font("Segoe UI", Font.BOLD, 12));
         alamatL = new JLabel("Alamat       ");
         alamatL.setFont(new Font("Segoe UI", Font.BOLD, 12));
         jenisPembayaranL = new JLabel("Jenis Pembayaran       ");
@@ -76,10 +74,6 @@ public class PanelVendorHistory extends JPanel {
         gbc.gridx = 1;
         gbc.gridy = 0;
         content.add(namaProdukL, gbc);
-        
-        gbc.gridx = 2;
-        gbc.gridy = 0;
-        content.add(noTelpL, gbc);
                 
         gbc.gridx = 3;
         gbc.gridy = 0;

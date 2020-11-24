@@ -45,12 +45,12 @@ public class Controller {
         }
         return (listProd);
     }
-    
-    //Get User yang punya Toko
+
+     //Get User yang punya Toko
     public static ArrayList<User> getUserToko(int id){
         ArrayList<User> listUser = new ArrayList<>();
         conn.connect();
-        String query = "SELECT * FROM pengguna WHERE tipeUser='1'";
+        String query = "SELECT * FROM pengguna WHERE tipeUser=1";
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -69,8 +69,8 @@ public class Controller {
         }
         return (listUser);
     }
-  
-    //Get User dari Toko tertentu
+    
+    //Get Produk dari Toko tertentu
     public static ArrayList<Produk> getProdukToko(int id) {
         ArrayList<Produk> listProd = new ArrayList<>();
         conn.connect();
