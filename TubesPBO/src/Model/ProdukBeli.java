@@ -76,13 +76,14 @@ public class ProdukBeli {
         this.jumlahBeli = jumlahBeli;
     }
 
-    @Override
-    public String toString() {
-        String data = "";
-        List<ProdukBeli> produkBeli = Controller.getProdukBeli();
-        for(ProdukBeli produk : produkBeli) {
-            data += "ProdukBeli{" + "nama=" + produk.getNama() + ", merk=" + produk.getMerk();
+    public int getIdProduk() {
+        int id_produk = -1;
+        List<Produk> listProd = Controller.getAllProduk();
+        for (int i = 0; i < listProd.size(); i++) {
+            if (listProd.get(i).getNamaProduk().equals(ProdukBeliManager.getInstance().getProdukBeli().getNama())) {
+                id_produk = listProd.get(i).getIdProduk();
+            }
         }
-        return data;
+        return id_produk;
     }
 }

@@ -16,23 +16,15 @@ import java.util.List;
  * @author Zefanya
  */
 public class Keranjang {
+
     private int idKeranjang;
     private int id_user;
+    private int id_prod;
+    private String nama_prod;
     private int jumlah_total;
     private int harga_total;
 
     public Keranjang() {
-    }
-    
-    public int getIdProduk() {
-        int id_produk = -1;
-        List<Produk> listProd = Controller.getAllProduk();
-        for(int i = 0; i < listProd.size(); i++) {
-            if(listProd.get(i).getNamaProduk().equals(ProdukBeliManager.getInstance().getProdukBeli().getNama())) {
-                id_produk = listProd.get(i).getIdProduk();
-            }
-        }
-        return id_produk;
     }
 
     public Keranjang(int idKeranjang, int id_user, int jumlah_total, int harga_total) {
@@ -73,5 +65,34 @@ public class Keranjang {
     public void setHarga_total(int harga_total) {
         this.harga_total = harga_total;
     }
-  
+
+    public int getId_prod() {
+        return id_prod;
+    }
+
+    public void setId_prod(int id_prod) {
+        this.id_prod = id_prod;
+    }
+
+    public String getNama_prod() {
+        return nama_prod;
+    }
+
+    public void setNama_prod(String nama_prod) {
+        this.nama_prod = nama_prod;
+    }
+
+    @Override
+    public String toString() {
+        String data = "";
+        List<Keranjang> listkeranjang = Controller.getAllKeranjang();
+        for (Keranjang keranjang : listkeranjang) {
+            data += "Keranjang{" + "idKeranjang=" + keranjang.getIdKeranjang()
+                    + ", id_user=" + keranjang.getId_user() + ", id_prod="
+                    + keranjang.getId_prod() + ", nama_prod=" + keranjang.getNama_prod()
+                    + ", jumlah_total=" + keranjang.getJumlah_total() + ", harga_total=" + keranjang.getHarga_total() + '}';
+
+        }
+        return data;
+    }
 }
