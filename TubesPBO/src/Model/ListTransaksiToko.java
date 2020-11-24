@@ -110,4 +110,32 @@ public class ListTransaksiToko {
         }
         return (listTransaksi);
     }
+    
+    public static ArrayList<ListTransaksiToko> getAllTransaksiToko() {
+        ArrayList<ListTransaksiToko> listTransaksi = new ArrayList<>();
+        conn.connect();
+        String query = "select transaksi.id_transaksi, transaksi.id_prod,produk.nama_prod,transaksi.nama,transaksi.jumlah_produk,transaksi.total_harga"
+                + ",transaksi.status_kirim\n"
+                + "FROM transaksi\n"
+                + "JOIN produk ON transaksi.id_prod = produk.id_prod \n"
+                + "JOIN pengguna ON produk.id = pengguna.id";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                ListTransaksiToko newList = new ListTransaksiToko();
+                newList.setId_transaksi(rs.getInt("transaksi.id_transaksi"));
+                newList.setId_produk(rs.getInt("transaksi.id_prod"));
+                newList.setNamaPengguna(rs.getString("transaksi.nama"));
+                newList.setNama_prod(rs.getString("produk.nama_prod"));
+                newList.setJumlah_beli(rs.getInt("transaksi.jumlah_produk"));
+                newList.setTotal_harga(rs.getInt("transaksi.total_harga"));
+                newList.setStatus(rs.getString("transaksi.status_kirim"));
+                listTransaksi.add(newList);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return (listTransaksi);
+    }
 }

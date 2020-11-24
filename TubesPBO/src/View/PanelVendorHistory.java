@@ -41,24 +41,24 @@ public class PanelVendorHistory extends JPanel {
         
         content = new JPanel(new GridBagLayout());
         
-        namaL = new JLabel("Nama Customer        ");
-        namaL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        namaProdukL = new JLabel("Nama Produk          ");
-        namaProdukL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        alamatL = new JLabel("Alamat       ");
-        alamatL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        jenisPembayaranL = new JLabel("Pembayaran       ");
-        jenisPembayaranL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        jenisPengirimanL = new JLabel("Pengiriman       ");
-        jenisPengirimanL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        kodePromoL = new JLabel("Kode Promo       ");
-        kodePromoL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        total_produkL = new JLabel("Jumlah      ");
-        total_produkL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        totalHargaL = new JLabel("Total Harga       ");
-        totalHargaL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        statusKirimL = new JLabel("Status Kirim       ");
-        statusKirimL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+//        namaL = new JLabel("Nama Customer        ");
+//        namaL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+//        namaProdukL = new JLabel("Nama Produk          ");
+//        namaProdukL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+//        alamatL = new JLabel("Alamat       ");
+//        alamatL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+//        jenisPembayaranL = new JLabel("Pembayaran       ");
+//        jenisPembayaranL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+//        jenisPengirimanL = new JLabel("Pengiriman       ");
+//        jenisPengirimanL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+//        kodePromoL = new JLabel("Kode Promo       ");
+//        kodePromoL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+//        total_produkL = new JLabel("Jumlah      ");
+//        total_produkL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+//        totalHargaL = new JLabel("Total Harga       ");
+//        totalHargaL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+//        statusKirimL = new JLabel("Status Kirim       ");
+//        statusKirimL.setFont(new Font("Segoe UI", Font.BOLD, 12));
         
         //isi
         nama = new JLabel[newList.size()];

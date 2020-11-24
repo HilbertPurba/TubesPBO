@@ -152,7 +152,7 @@ public class Transaksi {
     }
 
     //Get semua transaksi
-    public static ArrayList<Transaksi> getAllTransaksi() {
+    public static ArrayList<Transaksi> getAllTransaksiByToko() {
         ArrayList<Transaksi> listTransaksi = new ArrayList<>();
         conn.connect();
         String query = "select transaksi.id_transaksi, transaksi.id_prod,produk.nama_prod,transaksi.nama,transaksi.noTelp, transaksi.alamat, "
@@ -161,12 +161,22 @@ public class Transaksi {
                 + "FROM transaksi\n"
                 + "JOIN produk ON transaksi.id_prod = produk.id_prod \n"
                 + "JOIN pengguna ON produk.id = pengguna.id ";
-//        String query = "SELECT * FROM transaksi";
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 Transaksi transaksi = new Transaksi();
+                transaksi.setIdTransaksi(rs.getInt("id_transaksi"));
+                transaksi.setId_prod(rs.getInt("id_prod"));
+                transaksi.setNamaLengkap(rs.getString("nama"));
+                transaksi.setNoTelepon(rs.getString("noTelp"));
+                transaksi.setAlamat(rs.getString("alamat"));
+                transaksi.setJenisPengiriman(rs.getString("jenis_pengiriman"));
+                transaksi.setJenisPembayaran(rs.getString("jenis_pembayaran"));
+                transaksi.setKodePromo(rs.getString("kode_promo"));
+                transaksi.setJumlah_produk(rs.getInt("jumlah_produk"));
+                transaksi.setTotalHarga(rs.getInt("total_harga"));
+                transaksi.setStatus(rs.getString("status_kirim"));
                 transaksi.setIdTransaksi(rs.getInt("transaksi.id_transaksi"));
                 transaksi.setId_prod(rs.getInt("transaksi.id_prod"));
                 transaksi.setNamaLengkap(rs.getString("transaksi.nama"));
@@ -184,6 +194,20 @@ public class Transaksi {
             e.printStackTrace();
         }
         return (listTransaksi);
+    }
+
+    // DELETE
+    public static boolean hapusTransaksi(int idTransaksi) {
+        conn.connect();
+        String query = "DELETE FROM transaksi WHERE id_transaksi='" + idTransaksi + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(query);
+            return (true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
+        }
     }
 
 }
