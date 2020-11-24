@@ -191,7 +191,7 @@ public class PanelRegisterVendor implements ActionListener {
             if (nama.length() == 0 || email.length() == 0 || noTelepon.length() == 0 || password.length() == 0) {
                 JOptionPane.showMessageDialog(null, "Input all the data!", "Alert", JOptionPane.WARNING_MESSAGE);
             } else {
-                User newUser = new User();
+                User newUser = new Vendor();
                 newUser.setNama(nama);
                 newUser.setPassword(password);
                 newUser.setEmail(email);

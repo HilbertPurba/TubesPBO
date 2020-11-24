@@ -4,11 +4,6 @@
  * and open the template in the editor.
  */
 package Model;
-
-import java.util.ArrayList;
-import java.util.List;
-import Model.User;
-
 /**
  *
  * @author Gilbert

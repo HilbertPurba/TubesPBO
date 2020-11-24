@@ -5,6 +5,7 @@
  */
 package View;
 
+import Model.Transaksi;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -17,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -31,15 +33,14 @@ import javax.swing.JPanel;
  * @author Zefanya
  */
 public class PanelAdminCancelTransaction extends JPanel implements ActionListener {
-    private JPanel header, content;
+    private JPanel header, panel;
     private JLabel title,judul, namaL, namaProdukL, alamatL, jenisPembayaranL, jenisPengirimanL, kodePromoL, totalHargaL, statusKirimL;
     private GridBagConstraints gbc;
     private ImageIcon iconSee, iconSee1;
 //    private JButton btn_see[];
-    private JLabel nama[], namaProduk[], alamat[], jenisPembayaran[], jenisPengiriman[], kodePromo[], totalHarga[], statusKirim[];
-//    private List<Transaksi> listTransaksi;
+   private JLabel idTr[], namaProd[], nama[], idProd[], totalHarga[], jumlahProduk[], status[];
+    private List<Transaksi> listTransaksi = Transaksi.getAllTransaksi();
     private JButton btn_see;
-    
     private Image resizeImage(String url) {
         Image dimg = null;
 
@@ -63,29 +64,29 @@ public class PanelAdminCancelTransaction extends JPanel implements ActionListene
         title.setForeground(Color.red);
         header.add(title);
         
-        content = new JPanel(new GridBagLayout());
+        panel = new JPanel(new GridBagLayout());
         //        listTransaksi = Controller.getListTransaksi();
         
         judul = new JLabel("Daftar Transaksi: ");
         judul.setFont(new Font("Segoe UI", Font.BOLD, 20));
         judul.setForeground(Color.red);
         
-        namaL = new JLabel("Nama Customer        ");
-        namaL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        namaProdukL = new JLabel("Nama Produk          ");
-        namaProdukL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        alamatL = new JLabel("Alamat       ");
-        alamatL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        jenisPembayaranL = new JLabel("Jenis Pembayaran       ");
-        jenisPembayaranL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        jenisPengirimanL = new JLabel("Jenis Pengiriman       ");
-        jenisPengirimanL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        kodePromoL = new JLabel("Kode Promo       ");
-        kodePromoL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        totalHargaL = new JLabel("Total Harga       ");
-        totalHargaL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        statusKirimL = new JLabel("Status Kirim       ");
-        statusKirimL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+//        namaL = new JLabel("Nama Customer        ");
+//        namaL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+//        namaProdukL = new JLabel("Nama Produk          ");
+//        namaProdukL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+//        alamatL = new JLabel("Alamat       ");
+//        alamatL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+//        jenisPembayaranL = new JLabel("Jenis Pembayaran       ");
+//        jenisPembayaranL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+//        jenisPengirimanL = new JLabel("Jenis Pengiriman       ");
+//        jenisPengirimanL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+//        kodePromoL = new JLabel("Kode Promo       ");
+//        kodePromoL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+//        totalHargaL = new JLabel("Total Harga       ");
+//        totalHargaL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+//        statusKirimL = new JLabel("Status Kirim       ");
+//        statusKirimL.setFont(new Font("Segoe UI", Font.BOLD, 12));
         
         iconSee = new ImageIcon(resizeImage("assets/see.png"));
         
@@ -161,7 +162,7 @@ public class PanelAdminCancelTransaction extends JPanel implements ActionListene
         
         gbc.gridx = 0;
         gbc.gridy = 0;
-        content.add(judul, gbc);
+        panel.add(judul, gbc);
         
         //delete soon
         gbc.gridx = 0;
@@ -172,42 +173,42 @@ public class PanelAdminCancelTransaction extends JPanel implements ActionListene
         btn_see.setFocusPainted(false);
         btn_see.setContentAreaFilled(false);
         btn_see.addActionListener(this);
-        content.add(btn_see, gbc);
+        panel.add(btn_see, gbc);
         
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        content.add(namaL, gbc);
-        
-        gbc.gridx = 2;
-        gbc.gridy = 1;
-        content.add(namaProdukL, gbc);
-        
-        gbc.gridx = 3;
-        gbc.gridy = 1;
-        content.add(alamatL, gbc);
-        
-        gbc.gridx = 4;
-        gbc.gridy = 1;
-        content.add(jenisPembayaranL, gbc);
-        
-        gbc.gridx = 5;
-        gbc.gridy = 1;
-        content.add(jenisPengirimanL, gbc);
-        
-        gbc.gridx = 6;
-        gbc.gridy = 1;
-        content.add(kodePromoL, gbc);
-        
-        gbc.gridx = 7;
-        gbc.gridy = 1;
-        content.add(totalHargaL, gbc);
-        
-        gbc.gridx = 8;
-        gbc.gridy = 1;
-        content.add(statusKirimL, gbc);
+//        gbc.gridx = 1;
+//        gbc.gridy = 1;
+//        content.add(namaL, gbc);
+//        
+//        gbc.gridx = 2;
+//        gbc.gridy = 1;
+//        content.add(namaProdukL, gbc);
+//        
+//        gbc.gridx = 3;
+//        gbc.gridy = 1;
+//        content.add(alamatL, gbc);
+//        
+//        gbc.gridx = 4;
+//        gbc.gridy = 1;
+//        content.add(jenisPembayaranL, gbc);
+//        
+//        gbc.gridx = 5;
+//        gbc.gridy = 1;
+//        content.add(jenisPengirimanL, gbc);
+//        
+//        gbc.gridx = 6;
+//        gbc.gridy = 1;
+//        content.add(kodePromoL, gbc);
+//        
+//        gbc.gridx = 7;
+//        gbc.gridy = 1;
+//        content.add(totalHargaL, gbc);
+//        
+//        gbc.gridx = 8;
+//        gbc.gridy = 1;
+//        content.add(statusKirimL, gbc);
         
         add(header, BorderLayout.PAGE_START);
-        add(content, BorderLayout.CENTER);
+        add(panel, BorderLayout.CENTER);
     }
 
     @Override

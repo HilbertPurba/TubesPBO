@@ -50,7 +50,7 @@ public class Controller {
     public static List<Keranjang> getAllKeranjang() {
         List<Keranjang> listKeranjang = new ArrayList<>();
         conn.connect();
-        String query = "SELECT * FROM keranjang";
+        String query = "SELECT * FROM keranjang WHERE id='" +UserManager.getInstance().getUser().getID()+"'";
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
