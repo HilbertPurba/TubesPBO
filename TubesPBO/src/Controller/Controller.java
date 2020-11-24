@@ -184,6 +184,7 @@ public class Controller {
 //    
     // INSERT Customer 
     public static boolean insertNewCustomer(User user) {
+        conn.connect();
         String query = "INSERT INTO pengguna (nama,email,password,noTelp,tipeUser) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement stmt = conn.con.prepareStatement(query);
@@ -202,6 +203,7 @@ public class Controller {
 
     // INSERT Vendor
     public static boolean insertNewVendor(User user) {
+        conn.connect();
         String query = "INSERT INTO pengguna (nama,email,password,noTelp,tipeUser) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement stmt = conn.con.prepareStatement(query);
@@ -220,6 +222,7 @@ public class Controller {
 
     // INSERT produk
     public static boolean insertNewProduk(Produk produk) {
+        conn.connect();
         int id = UserManager.getInstance().getUser().getID();
         String query = "INSERT INTO produk (id,nama_prod,merk_prod,harga,stok) VALUES(?,?,?,?,?)";
         try {
@@ -352,6 +355,7 @@ public class Controller {
     }
 
     public static boolean insertNewTransaksi(Transaksi newTransaksi) {
+        conn.connect();
         if(countTransaksi(newTransaksi) == 0) {
             String query = "INSERT INTO transaksi (nama, noTelp, alamat, jenis_pembayaran, "
                     + "jenis_pengiriman, kode_promo, total_harga, status_kirim) VALUES (?,?,?,?,?,?,?,?)";
