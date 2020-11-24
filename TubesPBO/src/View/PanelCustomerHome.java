@@ -92,42 +92,39 @@ public class PanelCustomerHome extends JPanel implements ActionListener {
         btn_add = new JButton[jumlahProduk];
         int x1 = 70, x2 = 350, x3 = 520, x4 = 700, x5 = 800;
         int y1 = 225, y2 = 225, y3 = 225, y4 = 225, y5 = 225;
-        int counter = 0;
         for (int i = 0; i < jumlahProduk; i++) {
-            namaProd[counter] = new JLabel(listProd.get(i).getNamaProduk());
-            namaProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
-            merkProd[counter] = new JLabel(listProd.get(i).getMerk());
-            merkProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
-            hargaProd[counter] = new JLabel("Rp. " + listProd.get(i).getHarga());
-            hargaProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
-            stokProd[counter] = new JLabel("" + listProd.get(i).getStok());
-            stokProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
-            btn_add[counter] = new JButton(iconAdd);
+            namaProd[i] = new JLabel(listProd.get(i).getNamaProduk());
+            namaProd[i].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            merkProd[i] = new JLabel(listProd.get(i).getMerk());
+            merkProd[i].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            hargaProd[i] = new JLabel("Rp. " + listProd.get(i).getHarga());
+            hargaProd[i].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            stokProd[i] = new JLabel("" + listProd.get(i).getStok());
+            stokProd[i].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            btn_add[i] = new JButton(iconAdd);
 
-            namaProd[counter].setBounds(x1, y1, 300, 25);
-            merkProd[counter].setBounds(x2, y2, 150, 25);
-            hargaProd[counter].setBounds(x3, y3, 120, 20);
-            stokProd[counter].setBounds(x4, y4, 150, 25);
-            btn_add[counter].setBounds(x5, y5, 90, 25);
+            namaProd[i].setBounds(x1, y1, 300, 25);
+            merkProd[i].setBounds(x2, y2, 150, 25);
+            hargaProd[i].setBounds(x3, y3, 120, 20);
+            stokProd[i].setBounds(x4, y4, 150, 25);
+            btn_add[i].setBounds(x5, y5, 90, 25);
 
-            add(namaProd[counter]);
-            add(merkProd[counter]);
-            add(hargaProd[counter]);
-            add(stokProd[counter]);
-            add(btn_add[counter]);
+            add(namaProd[i]);
+            add(merkProd[i]);
+            add(hargaProd[i]);
+            add(stokProd[i]);
+            add(btn_add[i]);
 
             y1 += 60;
             y2 += 60;
             y3 += 60;
             y4 += 60;
             y5 += 60;
-            btn_add[counter].setCursor(new Cursor(Cursor.HAND_CURSOR));
-            btn_add[counter].setBorderPainted(false);
-            btn_add[counter].setFocusPainted(false);
-            btn_add[counter].setContentAreaFilled(false);
-            btn_add[counter].addActionListener(this);
-
-            counter++;
+            btn_add[i].setCursor(new Cursor(Cursor.HAND_CURSOR));
+            btn_add[i].setBorderPainted(false);
+            btn_add[i].setFocusPainted(false);
+            btn_add[i].setContentAreaFilled(false);
+            btn_add[i].addActionListener(this);
         }
 
         namaL = new JLabel("Nama Produk");
@@ -163,7 +160,7 @@ public class PanelCustomerHome extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         Keranjang keranjang = new Keranjang();
         ProdukBeli newProdukBeli = new ProdukBeli();
-        for (int i = 0; i < listProd.size(); i++) {
+        for (int i = 0; i < jumlahProduk; i++) {
             if (ae.getSource() == btn_add[i]) {
                 int jumlahBeli = Integer.parseInt(JOptionPane.showInputDialog(null, "Masukkan jumlah pembelian " + namaProd[i].getText() + ": "));
                 if (jumlahBeli > Integer.parseInt(stokProd[i].getText())) {
@@ -172,6 +169,7 @@ public class PanelCustomerHome extends JPanel implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Stok Habis");
                 } else {
                     newProdukBeli.setHarga(Integer.parseInt(hargaProd[i].getText().substring(4)));
+                    newProdukBeli.setNama(namaProd[i].getText());
                     newProdukBeli.setJumlahBeli(jumlahBeli);
                     ProdukBeliManager.getInstance().setProdukBeli(newProdukBeli);
                 }
@@ -181,8 +179,9 @@ public class PanelCustomerHome extends JPanel implements ActionListener {
         keranjang.setHarga_total(ProdukBeliManager.getInstance().getProdukBeli().countTotalHarga(newProdukBeli));
         keranjang.setJumlah_total(ProdukBeliManager.getInstance().getProdukBeli().getJumlahBeli());
         KeranjangManager.getInstance().setKeranjang(keranjang);
-        if (Controller.insertNewKeranjang(keranjang) && Controller.insertConnectorKeranjang(keranjang)) {
+        if (Controller.insertConnectorKeranjang(keranjang) && Controller.insertNewKeranjang(keranjang)) {
             JOptionPane.showMessageDialog(null, "Insert keranjang berhasil");
+            JOptionPane.showMessageDialog(null, newProdukBeli.toString());
         } else {
             JOptionPane.showMessageDialog(null, "Insert Keranjang gagal");
         }

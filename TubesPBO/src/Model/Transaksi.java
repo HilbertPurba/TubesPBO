@@ -5,6 +5,10 @@
  */
 package Model;
 
+import Controller.Controller;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Gilbert
@@ -21,7 +25,10 @@ public class Transaksi {
     private String jenisPengiriman;
     private String kodePromo;
     private int totalHarga;
-
+    
+    public Transaksi() {
+    }
+    
     public Transaksi(String idTransaksi, Customer customer, String namaLengkap, String noTelepon, String alamat, String jenisPembayaran, String jenisPengiriman, String kodePromo, int totalHarga) {
         this.idTransaksi = idTransaksi;
         this.customer = customer;
@@ -33,7 +40,18 @@ public class Transaksi {
         this.kodePromo = kodePromo;
         this.totalHarga = totalHarga;
     }
-
+    
+    public int getIdProduk() {
+        int id_produk = 0;
+        List<Produk> listProd = Controller.getAllProduk();
+        for(int i = 0; i < listProd.size(); i++) {
+            if(listProd.get(i).getIdProduk() == TransaksiManager.getInstance().getTransaksi().getIdProduk()) {
+                id_produk = listProd.get(i).getIdProduk();
+            }
+        }
+        return id_produk;
+    }
+    
     public String getIdTransaksi() {
         return idTransaksi;
     }

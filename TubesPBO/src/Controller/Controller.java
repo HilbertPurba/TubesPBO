@@ -160,7 +160,6 @@ public class Controller {
 //    
     // INSERT Customer 
     public static boolean insertNewCustomer(User user) {
-        conn.connect();
         String query = "INSERT INTO pengguna (nama,email,password,noTelp,tipeUser) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement stmt = conn.con.prepareStatement(query);
@@ -179,7 +178,6 @@ public class Controller {
 
     // INSERT Vendor
     public static boolean insertNewVendor(User user) {
-        conn.connect();
         String query = "INSERT INTO pengguna (nama,email,password,noTelp,tipeUser) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement stmt = conn.con.prepareStatement(query);
@@ -199,7 +197,6 @@ public class Controller {
     // INSERT produk
     public static boolean insertNewProduk(Produk produk) {
         int id = UserManager.getInstance().getUser().getID();
-        conn.connect();
         String query = "INSERT INTO produk (id,nama_prod,merk_prod,harga,stok) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement stmt = conn.con.prepareStatement(query);
@@ -217,7 +214,6 @@ public class Controller {
     }
 
     public static int countId(Keranjang keranjang) {
-        conn.connect();
         String query = "SELECT count(*) FROM keranjang WHERE id=" + keranjang.getId_user();
         int count = 0;
         try {
@@ -232,6 +228,7 @@ public class Controller {
         return count;
     }
     public static boolean insertNewKeranjang(Keranjang keranjang) {
+        conn.connect();
         if(countId(keranjang) == 0) {
             String query = "INSERT INTO keranjang (id, jumlah_total, harga_total) VALUES (?,?,?)";
             try {
@@ -244,6 +241,10 @@ public class Controller {
             } catch (SQLException e) {
                 e.printStackTrace();
                 return (false);
+            } finally {
+                if (conn != null) {
+                    conn.disconnect();
+                }
             }
         } else {
             String query = "UPDATE keranjang SET jumlah_total=jumlah_total+" + keranjang.getJumlah_total()
@@ -277,15 +278,15 @@ public class Controller {
     }
     
     public static boolean insertConnectorKeranjang(Keranjang keranjang) {
-        int id_produk = KeranjangManager.getInstance().getKeranjang().testConnector();
         conn.connect();
+        int id_produk = KeranjangManager.getInstance().getKeranjang().getIdProduk();
         String query = "INSERT INTO connectorprodukkeranjang (id_keranjang, id_prod, jumlah_produk) VALUES (?,?,?)";
         try {
             PreparedStatement stmt = conn.con.prepareStatement(query);
-                stmt.setInt(1, getIdKeranjang());
-                stmt.setInt(2, id_produk);
-                stmt.setInt(3, keranjang.getJumlah_total());
-                stmt.executeUpdate();
+            stmt.setInt(1, getIdKeranjang());
+            stmt.setInt(2, id_produk);
+            stmt.setInt(3, keranjang.getJumlah_total());
+            stmt.executeUpdate();
             return (true);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -295,7 +296,6 @@ public class Controller {
 
 //
     public static boolean updateProfilCustomer(UserManager updateUser) {
-        conn.connect();
         String query = "UPDATE pengguna SET email='" + updateUser.getInstance().getUser().getEmail() + "',"
                 + "noTelp='" + updateUser.getInstance().getUser().getTelepon()+ "'"
                 + "WHERE nama='" + updateUser.getInstance().getUser().getNama() + "'";
@@ -327,6 +327,7 @@ public class Controller {
     
     public static List<ProdukBeli> getProdukBeli() {
         List<ProdukBeli> listProdukBeli = new ArrayList<>();
+        conn.connect();
         String query = "SELECT connectorprodukkeranjang.id_keranjang, produk.nama_prod, produk.merk_prod, "
                 + "connectorprodukkeranjang.jumlah_produk, "
                 + "connectorprodukkeranjang.jumlah_produk*produk.harga AS totalharga1produk "
@@ -349,6 +350,115 @@ public class Controller {
             e.printStackTrace();
         }
         return listProdukBeli;
+    }
+    
+    public static int countTransaksi(Transaksi transaksi) {
+        conn.connect();
+        String query = "SELECT count(*) FROM transaksi WHERE nama='" + transaksi.getNamaLengkap() + "'";
+        int count = 0;
+        try {
+            PreparedStatement stmtId = conn.con.prepareStatement(query);
+            ResultSet rs = stmtId.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt("count(*)");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+    public static boolean insertNewTransaksi(Transaksi newTransaksi) {
+        if(countTransaksi(newTransaksi) == 0) {
+            String query = "INSERT INTO transaksi (nama, noTelp, alamat, jenis_pembayaran, "
+                    + "jenis_pengiriman, kode_promo, total_harga, status_kirim) VALUES (?,?,?,?,?,?,?,?)";
+            try {
+                PreparedStatement stmt = conn.con.prepareStatement(query);
+                stmt.setString(1, newTransaksi.getNamaLengkap());
+                stmt.setString(2, newTransaksi.getNoTelepon());
+                stmt.setString(3, newTransaksi.getAlamat());
+                stmt.setString(4, newTransaksi.getJenisPembayaran());
+                stmt.setString(5, newTransaksi.getJenisPengiriman());
+                stmt.setString(6, newTransaksi.getKodePromo());
+                stmt.setInt(7, newTransaksi.getTotalHarga());
+                stmt.setString(8, "Dikemas");
+                stmt.executeUpdate();
+                return (true);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return (false);
+            }
+        } else {
+            String query = "UPDATE transaksi SET total_harga=total_harga + " + newTransaksi.getTotalHarga()
+                    + " WHERE nama='" + newTransaksi.getNamaLengkap() + "'";
+            try {
+                PreparedStatement stmt = conn.con.prepareStatement(query);
+                stmt = conn.con.prepareStatement(query);
+                stmt.executeUpdate();
+                return (true);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return (false);
+            }
+        }
+    }
+    
+    public static int getIdTransaksi() {
+        int id_transaksi = 0;
+        conn.connect();
+        String query = "SELECT id_transaksi FROM transaksi WHERE nama='" + TransaksiManager.getInstance().getTransaksi().getNamaLengkap() + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                id_transaksi = rs.getInt("id_transaksi");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id_transaksi;
+    }
+    
+    public static int getJumlahProduk() {
+        int jumlah_produk = 0;
+        conn.connect();
+        String query = "SELECT jumlah_produk "
+                + "from connectorprodukkeranjang "
+                + "WHERE id_keranjang=" + getProdukKeranjang();
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                jumlah_produk = rs.getInt("jumlah_produk");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return jumlah_produk; 
+    }
+    
+    public static boolean insertConnectorTransaksi(Transaksi transaksi) {
+        conn.connect();
+        int id_produk = TransaksiManager.getInstance().getTransaksi().getIdProduk();
+        String query = "INSERT INTO connectorproduktransaksi (id_transaksi, id_prod, jumlah_produk, total_harga) VALUES (?,?,?,?)";
+        try {
+            PreparedStatement stmt = conn.con.prepareStatement(query);
+                stmt.setInt(1, getIdTransaksi());
+                stmt.setInt(2, id_produk);
+                stmt.setInt(3, getJumlahProduk());
+                stmt.setInt(4, transaksi.getTotalHarga());
+                stmt.executeUpdate();
+            return (true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
+        }
+    }
+    public static boolean updateKeranjang() {
+        return true;
+    }
+    
+    public static boolean updateStok() {
+        return true;
     }
 //
 //    // DELETE

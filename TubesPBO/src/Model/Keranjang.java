@@ -24,7 +24,7 @@ public class Keranjang {
     public Keranjang() {
     }
     
-    public int testConnector() {
+    public int getIdProduk() {
         int id_produk = -1;
         List<Produk> listProd = Controller.getAllProduk();
         for(int i = 0; i < listProd.size(); i++) {

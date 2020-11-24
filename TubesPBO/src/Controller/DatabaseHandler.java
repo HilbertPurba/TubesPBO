@@ -63,8 +63,8 @@ public class DatabaseHandler {
 
     public void disconnect() {
         try {
-            System.out.println("Disconnected");
             logOff();
+            System.out.println("Disconnected");
         } catch (Exception ex) {
             System.out.println("Error occured when connecting to database");
         }
