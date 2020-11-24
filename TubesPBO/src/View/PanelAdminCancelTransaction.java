@@ -36,11 +36,13 @@ import javax.swing.JPanel;
 public class PanelAdminCancelTransaction extends JPanel implements ActionListener {
 
     private JPanel header, panel;
-    private JLabel title, judul, namaL, namaProdukL, alamatL, jenisPembayaranL, jenisPengirimanL, kodePromoL, totalHargaL, statusKirimL;
-    private GridBagConstraints gbc;
     private ImageIcon iconSee, iconSee1;
-//    private JButton btn_see[];
+    private GridBagConstraints gbc;
+    private JLabel judul, judul1;
+    private ImageIcon iconOk;
+    private JButton btn_ok;
     private JLabel idTr[], namaProd[], nama[], totalHarga[], jumlahProduk[], status[];
+    private JLabel idTrL, namaProdL, namaL, totalHargaL, jumlahProdukL, statusL, namaProdukL;
     private List<ListTransaksiToko> newList = ListTransaksiToko.getAllTransaksiToko();
     private JButton btn_see[];
 
@@ -62,39 +64,31 @@ public class PanelAdminCancelTransaction extends JPanel implements ActionListene
         header = new JPanel();
         header.setBackground(Color.WHITE);
 
-        title = new JLabel("CANCEL TRANSAKSI");
-        title.setFont(new Font("Calibri", Font.BOLD, 60));
-        title.setForeground(Color.red);
-        header.add(title);
+        judul = new JLabel("CANCEL TRANSAKSI");
+        judul.setFont(new Font("Calibri", Font.BOLD, 60));
+        judul.setForeground(Color.red);
+        header.add(judul);
 
         panel = new JPanel(new GridBagLayout());
-        //        listTransaksi = Controller.getListTransaksi();
 
-        judul = new JLabel("Daftar Transaksi: ");
-        judul.setFont(new Font("Segoe UI", Font.BOLD, 20));
-        judul.setForeground(Color.red);
+        judul1 = new JLabel("Daftar Transaksi: ");
+        judul1.setFont(new Font("Segoe UI", Font.BOLD, 20));
+        judul1.setForeground(Color.red);
 
-//        namaL = new JLabel("Nama Customer        ");
-//        namaL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-//        namaProdukL = new JLabel("Nama Produk          ");
-//        namaProdukL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-//        alamatL = new JLabel("Alamat       ");
-//        alamatL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-//        jenisPembayaranL = new JLabel("Jenis Pembayaran       ");
-//        jenisPembayaranL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-//        jenisPengirimanL = new JLabel("Jenis Pengiriman       ");
-//        jenisPengirimanL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-//        kodePromoL = new JLabel("Kode Promo       ");
-//        kodePromoL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-//        totalHargaL = new JLabel("Total Harga       ");
-//        totalHargaL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-//        statusKirimL = new JLabel("Status Kirim       ");
-//        statusKirimL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        idTrL = new JLabel("ID Transaksi       ");
+        idTrL.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        namaProdukL = new JLabel("Nama Produk             ");
+        namaProdukL.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        namaL = new JLabel("Nama User      ");
+        namaL.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        totalHargaL = new JLabel("Total Harga        ");
+        totalHargaL.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        jumlahProdukL = new JLabel("Jumlah       ");
+        jumlahProdukL.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        statusL = new JLabel("Status    ");
+        statusL.setFont(new Font("Segoe UI", Font.BOLD, 16));
         iconSee = new ImageIcon(resizeImage("assets/see.png"));
 
-//        for (int i=0;i< listProd.size();i++){
-//        
-//        }
         //isi
         idTr = new JLabel[newList.size()];
         nama = new JLabel[newList.size()];
@@ -111,38 +105,38 @@ public class PanelAdminCancelTransaction extends JPanel implements ActionListene
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.anchor = GridBagConstraints.LINE_START;
 
-        gbc.gridy = 1;
+        gbc.gridy = 2;
 
         for (int i = 0; i < newList.size(); i++) {
-            idTr[counter] = new JLabel("" + newList.get(i).getId_transaksi());
-            idTr[counter].setFont(new Font("Segoe UI", Font.PLAIN, 11));
+            idTr[counter] = new JLabel("" +newList.get(i).getId_transaksi());
+            idTr[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
             namaProd[counter] = new JLabel(newList.get(i).getNama_prod());
-            namaProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 11));
+            namaProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
             nama[counter] = new JLabel(newList.get(i).getNamaPengguna());
-            nama[counter].setFont(new Font("Segoe UI", Font.PLAIN, 11));
+            nama[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
             jumlahProduk[counter] = new JLabel("" + newList.get(i).getJumlah_beli());
-            jumlahProduk[counter].setFont(new Font("Segoe UI", Font.PLAIN, 11));
+            jumlahProduk[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
             totalHarga[counter] = new JLabel("" + newList.get(i).getTotal_harga());
-            totalHarga[counter].setFont(new Font("Segoe UI", Font.PLAIN, 11));
+            totalHarga[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
             status[counter] = new JLabel(newList.get(i).getStatus());
-            status[counter].setFont(new Font("Segoe UI", Font.PLAIN, 11));
-
-            gbc.gridx = 0;
-            panel.add(idTr[counter], gbc);
-
+            status[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            
             gbc.gridx = 1;
-            panel.add(namaProd[counter], gbc);
-
+            panel.add(idTr[counter], gbc);
+            
             gbc.gridx = 2;
-            panel.add(nama[counter], gbc);
-
+            panel.add(namaProd[counter], gbc);
+            
             gbc.gridx = 3;
-            panel.add(jumlahProduk[counter], gbc);
-
+            panel.add(nama[counter], gbc);
+            
             gbc.gridx = 4;
             panel.add(totalHarga[counter], gbc);
-
+            
             gbc.gridx = 5;
+            panel.add(jumlahProduk[counter], gbc);
+            
+            gbc.gridx = 6;
             panel.add(status[counter], gbc);
 
             gbc.gridx = 0;
@@ -152,8 +146,6 @@ public class PanelAdminCancelTransaction extends JPanel implements ActionListene
             btn_see[counter].setFocusPainted(false);
             btn_see[counter].setContentAreaFilled(false);
             btn_see[counter].addActionListener(this);
-
-            gbc.gridx = 1;
             panel.add(btn_see[counter], gbc);
 
             gbc.gridy++;
@@ -161,39 +153,32 @@ public class PanelAdminCancelTransaction extends JPanel implements ActionListene
         }
         gbc.gridx = 0;
         gbc.gridy = 0;
-        panel.add(judul, gbc);
+        panel.add(judul1, gbc);
 
-//        gbc.gridx = 1;
-//        gbc.gridy = 1;
-//        content.add(namaL, gbc);
-//        
-//        gbc.gridx = 2;
-//        gbc.gridy = 1;
-//        content.add(namaProdukL, gbc);
-//        
-//        gbc.gridx = 3;
-//        gbc.gridy = 1;
-//        content.add(alamatL, gbc);
-//        
-//        gbc.gridx = 4;
-//        gbc.gridy = 1;
-//        content.add(jenisPembayaranL, gbc);
-//        
-//        gbc.gridx = 5;
-//        gbc.gridy = 1;
-//        content.add(jenisPengirimanL, gbc);
-//        
-//        gbc.gridx = 6;
-//        gbc.gridy = 1;
-//        content.add(kodePromoL, gbc);
-//        
-//        gbc.gridx = 7;
-//        gbc.gridy = 1;
-//        content.add(totalHargaL, gbc);
-//        
-//        gbc.gridx = 8;
-//        gbc.gridy = 1;
-//        content.add(statusKirimL, gbc);
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        panel.add(idTrL, gbc);
+        
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        panel.add(namaProdukL, gbc);
+        
+        gbc.gridx = 3;
+        gbc.gridy = 1;
+        panel.add(namaL, gbc);
+        
+        gbc.gridx = 4;
+        gbc.gridy = 1;
+        panel.add(totalHargaL, gbc);
+        
+        gbc.gridx = 5;
+        gbc.gridy = 1;
+        panel.add(jumlahProdukL, gbc);
+        
+        gbc.gridx = 6;
+        gbc.gridy = 1;
+        panel.add(statusL, gbc);
+        
         add(header, BorderLayout.PAGE_START);
         add(panel, BorderLayout.CENTER);
     }
