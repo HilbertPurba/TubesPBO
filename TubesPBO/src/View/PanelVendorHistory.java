@@ -26,7 +26,7 @@ import javax.swing.JPanel;
  */
 public class PanelVendorHistory extends JPanel {
     private JPanel header, content;
-    private JLabel title, namaL, namaProdukL, alamatL, jenisPembayaranL, jenisPengirimanL, kodePromoL, totalHargaL, statusKirimL, total_produkL;
+    private JLabel title, namaL,idProdL, alamatL, jenisPembayaranL, jenisPengirimanL, idTrL, totalHargaL, statusKirimL, total_produkL;
     private JLabel nama[], idProd[], alamat[], jenisPembayaran[], jenisPengiriman[], idTr[], totalHarga[], statusKirim[], total_produk[];
     private GridBagConstraints gbc;
     
@@ -42,25 +42,26 @@ public class PanelVendorHistory extends JPanel {
         header.add(title);
         
         content = new JPanel(new GridBagLayout());
-        
-//        namaL = new JLabel("Nama Customer        ");
-//        namaL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-//        namaProdukL = new JLabel("Nama Produk          ");
-//        namaProdukL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-//        alamatL = new JLabel("Alamat       ");
-//        alamatL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-//        jenisPembayaranL = new JLabel("Pembayaran       ");
-//        jenisPembayaranL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-//        jenisPengirimanL = new JLabel("Pengiriman       ");
-//        jenisPengirimanL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-//        kodePromoL = new JLabel("Kode Promo       ");
-//        kodePromoL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-//        total_produkL = new JLabel("Jumlah      ");
-//        total_produkL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-//        totalHargaL = new JLabel("Total Harga       ");
-//        totalHargaL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-//        statusKirimL = new JLabel("Status Kirim       ");
-//        statusKirimL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+//            private JLabel title, namaL,idProdL, alamatL, jenisPembayaranL, jenisPengirimanL, idTrL, totalHargaL, statusKirimL, total_produkL;
+
+        idTrL = new JLabel("ID Transaksi        ");
+        idTrL.setFont(new Font("Segoe UI", Font.BOLD, 15));
+        idProdL = new JLabel("ID Produk        ");
+        idProdL.setFont(new Font("Segoe UI", Font.BOLD, 15));
+        namaL = new JLabel("Nama Customer        ");
+        namaL.setFont(new Font("Segoe UI", Font.BOLD, 15));
+        alamatL = new JLabel("Alamat       ");
+        alamatL.setFont(new Font("Segoe UI", Font.BOLD, 15));
+        jenisPembayaranL = new JLabel("Pembayaran       ");
+        jenisPembayaranL.setFont(new Font("Segoe UI", Font.BOLD, 15));
+        jenisPengirimanL = new JLabel("Pengiriman       ");
+        jenisPengirimanL.setFont(new Font("Segoe UI", Font.BOLD, 15));
+        totalHargaL = new JLabel("Total Harga       ");
+        totalHargaL.setFont(new Font("Segoe UI", Font.BOLD, 15));
+        total_produkL = new JLabel("Jumlah      ");
+        total_produkL.setFont(new Font("Segoe UI", Font.BOLD, 15));
+        statusKirimL = new JLabel("Status Kirim       ");
+        statusKirimL.setFont(new Font("Segoe UI", Font.BOLD, 15));
         
         //isi
         nama = new JLabel[newList.size()];
@@ -80,26 +81,26 @@ public class PanelVendorHistory extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.anchor = GridBagConstraints.LINE_START;
         
-        gbc.gridy = 2;
+        gbc.gridy = 1;
         for(int i =0;i<newList.size();i++){
             nama[counter] = new JLabel("" + newList.get(i).getNamaLengkap());
-            nama[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            nama[counter].setFont(new Font("Segoe UI", Font.PLAIN, 12));
             idProd[counter] = new JLabel("" + newList.get(i).getId_prod());
-            idProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            idProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 12));
             alamat[counter] = new JLabel("" + newList.get(i).getAlamat());
-            alamat[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            alamat[counter].setFont(new Font("Segoe UI", Font.PLAIN, 12));
             jenisPembayaran[counter] = new JLabel("" + newList.get(i).getJenisPembayaran());
-            jenisPembayaran[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            jenisPembayaran[counter].setFont(new Font("Segoe UI", Font.PLAIN, 12));
             jenisPengiriman[counter] = new JLabel("" + newList.get(i).getJenisPengiriman());
-            jenisPengiriman[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            jenisPengiriman[counter].setFont(new Font("Segoe UI", Font.PLAIN, 12));
             idTr[counter] = new JLabel("" + newList.get(i).getIdTransaksi());
-            idTr[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            idTr[counter].setFont(new Font("Segoe UI", Font.PLAIN, 12));
             totalHarga[counter] = new JLabel("" + newList.get(i).getTotalHarga());
-            totalHarga[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            totalHarga[counter].setFont(new Font("Segoe UI", Font.PLAIN, 12));
             statusKirim[counter] = new JLabel("" + newList.get(i).getStatus());
-            statusKirim[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            statusKirim[counter].setFont(new Font("Segoe UI", Font.PLAIN, 12));
             total_produk[counter] = new JLabel("" + newList.get(i).getJumlah_produk());
-            total_produk[counter].setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            total_produk[counter].setFont(new Font("Segoe UI", Font.PLAIN, 12));
             
             gbc.gridx = 0;
             content.add(idTr[counter], gbc);
@@ -128,49 +129,45 @@ public class PanelVendorHistory extends JPanel {
             gbc.gridx = 8;
             content.add(statusKirim[counter], gbc);
             
-//            gbc.gridx = 0;
-//            content.add(total_produk[counter], gbc);
-
             gbc.gridy++;
             counter++;
         }
         
-//        gbc.gridx = 0;
-//        gbc.gridy = 0;
-//        content.add(namaL, gbc);
-//        
-//        
-//        gbc.gridx = 1;
-//        gbc.gridy = 0;
-//        content.add(namaProdukL, gbc);
-//                
-//        gbc.gridx = 3;
-//        gbc.gridy = 0;
-//        content.add(alamatL, gbc);
-//        
-//        gbc.gridx = 4;
-//        gbc.gridy = 0;
-//        content.add(jenisPembayaranL, gbc);
-//        
-//        gbc.gridx = 5;
-//        gbc.gridy = 0;
-//        content.add(jenisPengirimanL, gbc);
-//        
-//        gbc.gridx = 6;
-//        gbc.gridy = 0;
-//        content.add(kodePromoL, gbc);
-//        
-//        gbc.gridx = 7;
-//        gbc.gridy = 0;
-//        content.add(total_produkL, gbc);
-//        
-//        gbc.gridx = 8;
-//        gbc.gridy = 0;
-//        content.add(totalHargaL, gbc);
-//        
-//        gbc.gridx = 9;
-//        gbc.gridy = 0;
-//        content.add(statusKirimL, gbc);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        content.add(idTrL, gbc);
+        
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        content.add(idProdL, gbc);
+                
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        content.add(namaL, gbc);
+        
+        gbc.gridx = 3;
+        gbc.gridy = 0;
+        content.add(alamatL, gbc);
+        
+        gbc.gridx = 4;
+        gbc.gridy = 0;
+        content.add(jenisPembayaranL, gbc);
+        
+        gbc.gridx = 5;
+        gbc.gridy = 0;
+        content.add(jenisPengirimanL, gbc);
+        
+        gbc.gridx = 6;
+        gbc.gridy = 0;
+        content.add(totalHargaL, gbc);
+        
+        gbc.gridx = 7;
+        gbc.gridy = 0;
+        content.add(total_produkL, gbc);
+        
+        gbc.gridx = 8;
+        gbc.gridy = 0;
+        content.add(statusKirimL, gbc);
 //        
         add(header, BorderLayout.PAGE_START);
         add(content, BorderLayout.CENTER);
