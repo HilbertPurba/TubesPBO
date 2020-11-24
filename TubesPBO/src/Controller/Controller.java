@@ -46,6 +46,8 @@ public class Controller {
         return (listProd);
     }
 
+//    get public static List<getA
+    
      //Get User yang punya Toko
     public static ArrayList<User> getUserToko(int id){
         ArrayList<User> listUser = new ArrayList<>();
@@ -55,7 +57,7 @@ public class Controller {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                User user = new User();
+                User user = new User() {};
                 user.setID(rs.getInt("id"));
                 user.setNama(rs.getString("nama"));
                 user.setEmail(rs.getString("email"));
@@ -115,7 +117,7 @@ public class Controller {
 
     //Get User Login Data
     public static User getUser(String email) {
-        User user = new User();
+        User user = new User() {};
         conn.connect();
         String query = "SELECT * FROM pengguna WHERE email='" + email + "'";
         try {
@@ -294,7 +296,7 @@ public class Controller {
         }
     }
 
-//
+    // Update Profil
     public static boolean updateProfilCustomer(UserManager updateUser) {
         String query = "UPDATE pengguna SET email='" + updateUser.getInstance().getUser().getEmail() + "',"
                 + "noTelp='" + updateUser.getInstance().getUser().getTelepon()+ "'"
@@ -405,7 +407,7 @@ public class Controller {
     public static int getIdTransaksi() {
         int id_transaksi = 0;
         conn.connect();
-        String query = "SELECT id_transaksi FROM transaksi WHERE nama='" + TransaksiManager.getInstance().getTransaksi().getNamaLengkap() + "'";
+        String query = "SELECT id_transaksi FROM transaksi WHERE nama='" + TransaksiManager.getInstance().getTransaksi().getNamaLengkap()+ "'";
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -459,6 +461,21 @@ public class Controller {
     
     public static boolean updateStok() {
         return true;
+    }
+    
+    //DELETE Transaction
+    public boolean deleteTransaction(String id_transaksi){
+        conn.connect();
+        
+        String query = "DELETE FROM transaksi WHERE id_transaksi = '" + id_transaksi + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(query);
+            return (true);
+        } catch (SQLException e){
+            e.printStackTrace();
+            return (false);
+        }
     }
 //
 //    // DELETE

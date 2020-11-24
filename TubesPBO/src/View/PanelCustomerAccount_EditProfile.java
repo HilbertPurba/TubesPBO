@@ -32,7 +32,9 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author hilbert
+ * @author Gilbert
+ * @author Gilbert
+ * @author Zefanya
  */
 public class PanelCustomerAccount_EditProfile extends JFrame implements ActionListener {
     private JPanel panel;

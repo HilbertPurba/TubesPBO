@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.util.List;
+
 
 /**
  *
@@ -13,6 +15,8 @@ package Model;
  * @author Zefanya
  */
 public class Admin extends User{
+    
+    List<Transaksi> listTransaksi;
 
     public Admin(int ID, String nama, String email, String password, String telepon, int TipeUser) {
         super(ID, nama, email, password, telepon, TipeUser);
