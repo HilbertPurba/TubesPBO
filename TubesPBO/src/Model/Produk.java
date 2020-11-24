@@ -73,21 +73,21 @@ public class Produk {
         this.stok = stok;
     }
 
-    @Override
-    public String toString() {
-        ArrayList<Produk> listProd = Controller.getProdukToko(UserManager.getInstance().getUser().getID());
-        String data = ""
-                + "<html>"
-                    + "<body>"
-                        + "<table style='border-collapse: collapse;width: 500px;border: 0px solid black'>"
-                            + "<tr style='border: 1px solid black;'>"
-                                + "<th style='text-align: center; border:1px solid black;'>Nama Produk</th>"
-                                + "<th style='text-align: center'>Stok</th>"
-                            + "</tr>";
-        for (int i = 0; i < listProd.size(); i++) {
-            data += "<tr style='border: 1px solid black;'><td style='text-align: center; border: 1px solid black; '>"+listProd.get(i).getNamaProduk() + "</td>"+"<td style='text-align: center'>"+listProd.get(i).getStok() + "</td></tr>";
-        }
-        data += "</table></body></html>";
-        return data;
-    }
+//    @Override
+//    public String toString() {
+//        ArrayList<Produk> listProd = Controller.getProdukToko(UserManager.getInstance().getUser().getID());
+//        String data = ""
+//                + "<html>"
+//                    + "<body>"
+//                        + "<table style='border-collapse: collapse;width: 500px;border: 0px solid black'>"
+//                            + "<tr style='border: 1px solid black;'>"
+//                                + "<th style='text-align: center; border:1px solid black;'>Nama Produk</th>"
+//                                + "<th style='text-align: center'>Stok</th>"
+//                            + "</tr>";
+//        for (int i = 0; i < listProd.size(); i++) {
+//            data += "<tr style='border: 1px solid black;'><td style='text-align: center; border: 1px solid black; '>"+listProd.get(i).getNamaProduk() + "</td>"+"<td style='text-align: center'>"+listProd.get(i).getStok() + "</td></tr>";
+//        }
+//        data += "</table></body></html>";
+//        return data;
+//    }
 }

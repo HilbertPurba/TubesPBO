@@ -35,6 +35,7 @@ public class PanelRegisterCustomer implements ActionListener {
     JPasswordField pass;
     JPanel Panel;
     JButton btn_submit, btn_back;
+    private ImageIcon logo;
     
     private ImageIcon iconRegister, iconRegister1;
     private ImageIcon iconBack, iconBack1;
@@ -59,6 +60,9 @@ public class PanelRegisterCustomer implements ActionListener {
         jfr_registrasi.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jfr_registrasi.setSize(1000,700);
         jfr_registrasi.setLocationRelativeTo(null);
+        //Logo
+        logo = new ImageIcon("assets/logo.png");
+        jfr_registrasi.setIconImage(logo.getImage());
 
         Panel = new JPanel();
         Panel.setLayout(null);

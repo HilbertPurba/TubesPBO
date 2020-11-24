@@ -31,7 +31,7 @@ public class PanelLogin implements ActionListener {
     private JButton btn_login, btn_back;
     private JPanel panel;
     private GridBagConstraints gbc;    
-    private ImageIcon iconLogin, iconLogin1, iconBack, iconBack1;
+    private ImageIcon iconLogin, iconLogin1, iconBack, iconBack1, logo;
     
     private Image resizeImage(String url) {
         Image dimg = null;
@@ -54,6 +54,9 @@ public class PanelLogin implements ActionListener {
         jfr_login.setSize(1000,700);
         jfr_login.setLocationRelativeTo(null);
         jfr_login.setLayout(new BorderLayout());
+        //Logo
+        logo = new ImageIcon("assets/logo.png");
+        jfr_login.setIconImage(logo.getImage());
         
         panel = new JPanel(new GridBagLayout());
         
@@ -61,14 +64,14 @@ public class PanelLogin implements ActionListener {
         judulL.setFont(new Font("Trebuchet MS", Font.BOLD, 100));
         judulL.setForeground(new Color(253,170,0));
 
-        emailL = new JLabel("Email           : ");
+        emailL = new JLabel("Email");
         emailL.setFont(new Font("Calibri", Font.CENTER_BASELINE, 32));
         
         email = new JTextField(15);
         email.setFont(new Font("Calibri", Font.PLAIN, 25));
         email.setBorder(null);
 
-        passL = new JLabel("Password   : ");
+        passL = new JLabel("Password ");
         passL.setFont(new Font("Calibri", Font.CENTER_BASELINE, 32));
         
         pass = new JPasswordField(15);

@@ -12,6 +12,7 @@ import Model.TransaksiManager;
 import Model.UserManager;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -43,11 +44,13 @@ import javax.swing.JTextField;
 public class PanelCustomerKeranjang extends JPanel implements ActionListener {
 
     private JPanel header, content;
+    private JLabel namaL, merkL, jumlahL, hargaL;
     private JLabel title, desc, namaProd[], merkProd[], jumlahBeliProd[], hargaProd[];
     private JButton btn_checkout[];
     private GridBagConstraints gbc;
-    private ImageIcon iconCheckout;
+    private ImageIcon iconCheckout, iconCheckout1;
     private List<ProdukBeli> listProd;
+    private int jumlahProduk = 0;
 
     private Image resizeImage(String url) {
         Image dimg = null;
@@ -73,28 +76,38 @@ public class PanelCustomerKeranjang extends JPanel implements ActionListener {
         header.add(title);
 
         content = new JPanel(new GridBagLayout());
-        gbc = new GridBagConstraints();
         listProd = Controller.getProdukBeli();
-
+        
         desc = new JLabel("Keranjang Kamu: ");
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        content.add(desc, gbc);
+        desc.setFont(new Font("Segoe UI", Font.BOLD, 35));
+        desc.setForeground(new Color(253,170,0));
+        
+        iconCheckout = new ImageIcon(resizeImage("assets/checkout.png"));
 
-        iconCheckout = new ImageIcon(resizeImage("assets/add.png"));
-
-        listProd = Controller.getProdukBeli();
+        namaL = new JLabel("Nama Produk");
+        namaL.setFont(new Font("Segoe UI", Font.BOLD, 25));
+        merkL = new JLabel("Merk       ");
+        merkL.setFont(new Font("Segoe UI", Font.BOLD, 25));
+        jumlahL = new JLabel("Jumlah       ");
+        jumlahL.setFont(new Font("Segoe UI", Font.BOLD, 25));
+        hargaL = new JLabel("Harga Produk");
+        hargaL.setFont(new Font("Segoe UI", Font.BOLD, 25));
+        
         namaProd = new JLabel[listProd.size()];
         merkProd = new JLabel[listProd.size()];
         jumlahBeliProd = new JLabel[listProd.size()];
         hargaProd = new JLabel[listProd.size()];
         btn_checkout = new JButton[listProd.size()];
-
+        
         int counter = 0;
-        content.add(desc);
-        gbc.gridy = 1;
+        
+        gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        
+        gbc.gridy = 2;
+        
         for (int i = 0; i < listProd.size(); i++) {
-            gbc.gridx = 0;
             namaProd[counter] = new JLabel(listProd.get(i).getNama());
             namaProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 18));
             merkProd[counter] = new JLabel(listProd.get(i).getMerk());
@@ -103,30 +116,57 @@ public class PanelCustomerKeranjang extends JPanel implements ActionListener {
             jumlahBeliProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 18));
             hargaProd[counter] = new JLabel("Rp. " + String.valueOf(listProd.get(i).getHarga()));
             hargaProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 18));
+            
             btn_checkout[counter] = new JButton(iconCheckout);
+            btn_checkout[counter].setCursor(new Cursor(Cursor.HAND_CURSOR));
             btn_checkout[counter].setBorderPainted(false);
             btn_checkout[counter].setFocusPainted(false);
             btn_checkout[counter].setContentAreaFilled(false);
             btn_checkout[counter].addActionListener(this);
-
-            gbc.gridx += 3;
+          
+            gbc.gridx = 0;
             content.add(namaProd[counter], gbc);
-
-            gbc.gridx += 3;
+            
+            gbc.gridx = 1;
             content.add(merkProd[counter], gbc);
-
-            gbc.gridx += 3;
+            
+            gbc.gridx = 2;
             content.add(jumlahBeliProd[counter], gbc);
-
-            gbc.gridx += 3;
+            
+            gbc.gridx = 3;
             content.add(hargaProd[counter], gbc);
-
-            gbc.gridx += 3;
+            
+            gbc.gridx = 4;
             content.add(btn_checkout[counter], gbc);
-
+            
             gbc.gridy++;
             counter++;
         }
+        
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        content.add(desc, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        content.add(namaL, gbc);
+        
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.ipady = 9;
+        content.add(merkL, gbc);
+        
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        content.add(jumlahL, gbc);
+        
+        gbc.gridx = 3;
+        gbc.gridy = 1;
+        content.add(hargaL, gbc);
+        
+
+        
+        
 
         add(header, BorderLayout.PAGE_START);
         add(content, BorderLayout.CENTER);

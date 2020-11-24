@@ -73,7 +73,7 @@ public class PanelCustomerHome extends JPanel implements ActionListener {
         content = new JPanel();
         desc = new JLabel("Pilih Produk: ");
         desc.setFont(new Font("Calibri", Font.BOLD, 56));
-        desc.setBounds(350, 100, 550, 75);
+        desc.setBounds(100, 100, 550, 75);
         desc.setForeground(new Color(253,170,0));
         add(desc);
 

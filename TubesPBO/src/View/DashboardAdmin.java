@@ -47,6 +47,7 @@ public class DashboardAdmin {
     private ImageIcon iconSeeTransaction, iconCancelTransaction, iconLogout;
     private ImageIcon iconSeeTransaction1, iconCancelTransaction1, iconLogout1;
     private ImageIcon iconSeeTransaction2, iconCancelTransaction2, iconLogout2;
+    private ImageIcon logo;
     
     private Image resizeImage(String url) {
         Image dimg = null;
@@ -184,5 +185,8 @@ public class DashboardAdmin {
         frame.setResizable(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        //Logo
+        logo = new ImageIcon("assets/logo.png");
+        frame.setIconImage(logo.getImage());    
     }
 }

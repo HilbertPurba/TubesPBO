@@ -19,14 +19,15 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Lenovo
+ * @author Gilbert
+ * @author Hilbert
+ * @author Zefanya
  */
 public class PanelVendorCheck extends JPanel {
 
     private JPanel header,content;
     private JLabel headerTitle, contentTitle, namaL, stokL;
     private JLabel[] nama, stok;
-    private JLabel isi;
     private GridBagConstraints gbc;
     private ArrayList<Produk> listProd = Controller.getProdukToko(UserManager.getInstance().getUser().getID());
     private int jumlahProduk =0;
@@ -46,10 +47,6 @@ public class PanelVendorCheck extends JPanel {
         contentTitle = new JLabel("Daftar Produk : ");
         contentTitle.setFont(new Font("Segoe UI", Font.BOLD, 35));
         contentTitle.setForeground(new Color(2,91,149));
-//        contentTitle.setBounds(350, 130, 450, 40);
-        
-//        content = new JPanel();
-//        content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
 
         for (int i = 0;i < listProd.size(); i++){
             jumlahProduk++;
@@ -58,16 +55,12 @@ public class PanelVendorCheck extends JPanel {
             }
         }
 
-        namaL = new JLabel("Nama Produk");
+        namaL = new JLabel("Nama Produk                      ");
         namaL.setFont(new Font("Segoe UI", Font.BOLD, 25));
-        stokL = new JLabel("Stok");
+        stokL = new JLabel("Stok ");
         stokL.setFont(new Font("Segoe UI", Font.BOLD, 25));
-//        nama = new JLabel(UserManager.getInstance().getProduk().getNamaProduk());
         nama = new JLabel[jumlahProduk];
-//        nama.setFont(new Font("Segoe UI", Font.BOLD, 25));
-//        stok = new JLabel(String.valueOf(UserManager.getInstance().getProduk().getStok()));
         stok = new JLabel[jumlahProduk];
-//        stok.setFont(new Font("Segoe UI", Font.BOLD, 25));
 
         int counter = 0;
         
@@ -105,17 +98,6 @@ public class PanelVendorCheck extends JPanel {
         gbc.gridx = 1;
         gbc.gridy = 1;
         content.add(stokL, gbc);
-        
-
-//        Produk produk = new Produk();
-//
-//        isi = new JLabel();
-//        isi.setFont(new Font("Segoe UI", Font.PLAIN, 25));
-//        isi.setBounds(150, 50, 800, 520);
-//        isi.setText(produk.toString());
-        
-//        add(contentTitle);
-//        add(isi);
         
         add(header, BorderLayout.PAGE_START);
         add(content, BorderLayout.CENTER);

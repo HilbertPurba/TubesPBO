@@ -42,6 +42,7 @@ public class Start extends JPanel {
     private JButton idk, btn_register, btn_login, btn_exit;
     private ImageIcon iconExit, iconRegister, iconLogin;
     private ImageIcon iconExit1, iconRegister1, iconLogin1;
+    private ImageIcon logo;
     private GridBagConstraints gbc;
     
     
@@ -72,6 +73,10 @@ public class Start extends JPanel {
         namaAppL = new JLabel("Welcome to GHz Online Shop");
         namaAppL.setFont(new Font("Calibri", Font.BOLD, 55));
         namaAppL.setForeground(Color.orange);
+        
+        //Logo
+        logo = new ImageIcon("assets/logo.png");
+        jfr_start.setIconImage(logo.getImage());
         
         // Exit
         iconExit = new ImageIcon(resizeImage("assets/exit.png"));
