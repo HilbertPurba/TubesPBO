@@ -90,7 +90,7 @@ public class PanelAdminSeeTransaction extends JPanel implements ActionListener {
         for (int i=0;i< listUser.size();i++){
             jumlahUser++;
         }
-      
+
         iconSee = new ImageIcon(resizeImage("assets/see.png"));
 
         nama = new JLabel[jumlahUser];
@@ -113,7 +113,7 @@ public class PanelAdminSeeTransaction extends JPanel implements ActionListener {
             btn_see[counter].setFocusPainted(false);
             btn_see[counter].setContentAreaFilled(false);
             btn_see[counter].addActionListener(this);
-
+            
             gbc.gridx = 0;
             content.add(nama[counter], gbc);
 
@@ -127,7 +127,6 @@ public class PanelAdminSeeTransaction extends JPanel implements ActionListener {
         gbc.gridx = 0;
         gbc.gridy = 0;
         content.add(judul, gbc);
-
         
         add(header, BorderLayout.PAGE_START);
         add(content, BorderLayout.CENTER);
@@ -135,7 +134,10 @@ public class PanelAdminSeeTransaction extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-
-        
+        for(int i = 0;i<jumlahUser;i++){
+            if (ae.getSource() == btn_see[i]){
+                new PanelAdminSeeTransaction_See(nama[i].getText());
+            }
+        }
     }
 }

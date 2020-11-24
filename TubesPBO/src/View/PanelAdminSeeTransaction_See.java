@@ -5,6 +5,7 @@
  */
 package View;
 
+import Model.UserManager;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -12,16 +13,19 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -30,22 +34,23 @@ import javax.swing.JPanel;
  * @author Hilbert
  * @author Zefanya
  */
-public class PanelAdminCancelTransaction extends JPanel implements ActionListener {
-    private JPanel header, content;
-    private JLabel title,judul, namaL, namaProdukL, alamatL, jenisPembayaranL, jenisPengirimanL, kodePromoL, totalHargaL, statusKirimL;
+public class PanelAdminSeeTransaction_See extends JFrame {
+    private JPanel header, panel;
     private GridBagConstraints gbc;
-    private ImageIcon iconSee, iconSee1;
-//    private JButton btn_see[];
-    private JLabel nama[], namaProduk[], alamat[], jenisPembayaran[], jenisPengiriman[], kodePromo[], totalHarga[], statusKirim[];
+    private JLabel judul;
+    private ImageIcon iconOk;
+    private JButton btn_ok;
+    private JLabel namaUserL, namaProdukL, alamatL, jenisPembayaranL, jenisPengirimanL, kodePromoL, totalHargaL, statusKirimL;
+    private JLabel namaUser[], namaProduk[], alamat[], jenisPembayaran[], jenisPengiriman[], kodePromo[], totalHarga[], statusKirim[];
 //    private List<Transaksi> listTransaksi;
-    private JButton btn_see;
+    private int jumlahProduk = 0;
     
     private Image resizeImage(String url) {
         Image dimg = null;
 
         try {
             BufferedImage img = ImageIO.read(new File(url));
-            dimg = img.getScaledInstance(60, 20, Image.SCALE_SMOOTH);
+            dimg = img.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         } catch (IOException ex) {
             ex.printStackTrace(System.err);
         }
@@ -53,32 +58,43 @@ public class PanelAdminCancelTransaction extends JPanel implements ActionListene
         return dimg;
     }
     
-    public PanelAdminCancelTransaction(){
+    public PanelAdminSeeTransaction_See(String namaToko){
         setLayout(new BorderLayout());
         header = new JPanel();
-        header.setBackground(Color.WHITE);
-                
-        title = new JLabel("CANCEL TRANSAKSI");
-        title.setFont(new Font("Calibri", Font.BOLD, 60));
-        title.setForeground(Color.red);
-        header.add(title);
+        header.setBackground(Color.white);
         
-        content = new JPanel(new GridBagLayout());
-        //        listTransaksi = Controller.getListTransaksi();
-        
-        judul = new JLabel("Daftar Transaksi: ");
-        judul.setFont(new Font("Segoe UI", Font.BOLD, 20));
+        judul = new JLabel("Riwayat Transaksi dari " + namaToko);
+        judul.setFont(new Font("Segoe UI", Font.BOLD, 35));
         judul.setForeground(Color.red);
+        header.add(judul);
         
-        namaL = new JLabel("Nama Customer        ");
-        namaL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        namaProdukL = new JLabel("Nama Produk          ");
+        iconOk = new ImageIcon(resizeImage("assets/ok.png"));
+        btn_ok = new JButton(iconOk);
+        btn_ok.setBorderPainted(false);
+        btn_ok.setFocusPainted(false);
+        btn_ok.setContentAreaFilled(false);
+        btn_ok.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn_ok.addMouseListener(
+            new MouseAdapter(){
+                @Override
+                public void mouseClicked(MouseEvent me){
+                    dispose();
+                }
+            }
+        );
+        
+        panel = new JPanel(new GridBagLayout());
+//        listTransaksi = Controller.getListTransaksi();
+        
+        namaUserL = new JLabel("Nama User      ");
+        namaUserL.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        namaProdukL = new JLabel("Nama Produk        ");
         namaProdukL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        alamatL = new JLabel("Alamat       ");
+        alamatL = new JLabel("Alamat      ");
         alamatL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        jenisPembayaranL = new JLabel("Jenis Pembayaran       ");
+        jenisPembayaranL = new JLabel("Pembayaran       ");
         jenisPembayaranL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        jenisPengirimanL = new JLabel("Jenis Pengiriman       ");
+        jenisPengirimanL = new JLabel("Pengiriman       ");
         jenisPengirimanL.setFont(new Font("Segoe UI", Font.BOLD, 12));
         kodePromoL = new JLabel("Kode Promo       ");
         kodePromoL.setFont(new Font("Segoe UI", Font.BOLD, 12));
@@ -87,12 +103,6 @@ public class PanelAdminCancelTransaction extends JPanel implements ActionListene
         statusKirimL = new JLabel("Status Kirim       ");
         statusKirimL.setFont(new Font("Segoe UI", Font.BOLD, 12));
         
-        iconSee = new ImageIcon(resizeImage("assets/see.png"));
-        
-//        for (int i=0;i< listProd.size();i++){
-//        
-//        }
-                
         //isi
 //        namaUser = new JLabel[listTransaksi.size()];
 //        namaProduk = new JLabel[listTransaksi.size()];
@@ -109,8 +119,9 @@ public class PanelAdminCancelTransaction extends JPanel implements ActionListene
         gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.anchor = GridBagConstraints.LINE_START;
-        
-        gbc.gridy = 2;
+        gbc.insets = new Insets(15,0,0,0);
+
+        gbc.gridy = 1;
         
         //looping isi
 //        for(int i=0;i<listTransaksi.size(); i++){
@@ -160,62 +171,49 @@ public class PanelAdminCancelTransaction extends JPanel implements ActionListene
 //        }
         
         gbc.gridx = 0;
-        gbc.gridy = 0;
-        content.add(judul, gbc);
-        
-        //delete soon
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        btn_see = new JButton(iconSee);
-        btn_see.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btn_see.setBorderPainted(false);
-        btn_see.setFocusPainted(false);
-        btn_see.setContentAreaFilled(false);
-        btn_see.addActionListener(this);
-        content.add(btn_see, gbc);
-        
+        gbc.gridy = 1;
+        panel.add(namaUserL, gbc);
+
         gbc.gridx = 1;
         gbc.gridy = 1;
-        content.add(namaL, gbc);
+        panel.add(namaProdukL, gbc);
         
         gbc.gridx = 2;
         gbc.gridy = 1;
-        content.add(namaProdukL, gbc);
+        panel.add(alamatL, gbc);
         
         gbc.gridx = 3;
         gbc.gridy = 1;
-        content.add(alamatL, gbc);
+        panel.add(jenisPembayaranL, gbc);
         
         gbc.gridx = 4;
         gbc.gridy = 1;
-        content.add(jenisPembayaranL, gbc);
+        panel.add(jenisPengirimanL, gbc);
         
         gbc.gridx = 5;
         gbc.gridy = 1;
-        content.add(jenisPengirimanL, gbc);
+        panel.add(kodePromoL, gbc);
         
         gbc.gridx = 6;
         gbc.gridy = 1;
-        content.add(kodePromoL, gbc);
+        panel.add(totalHargaL, gbc);
         
         gbc.gridx = 7;
         gbc.gridy = 1;
-        content.add(totalHargaL, gbc);
+        panel.add(statusKirimL, gbc);
         
-        gbc.gridx = 8;
-        gbc.gridy = 1;
-        content.add(statusKirimL, gbc);
+        gbc.gridx = 4;
+        gbc.gridy = 0;
+        panel.add(btn_ok, gbc);
         
-        add(header, BorderLayout.PAGE_START);
-        add(content, BorderLayout.CENTER);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        int option = JOptionPane.showConfirmDialog(null, "Yakin ingin Cancel Transaksi", "Update", JOptionPane.YES_NO_OPTION);
-        if (option == JOptionPane.OK_OPTION){
-            System.out.println("halo");
-        } 
+        add(header,BorderLayout.PAGE_START);
+        add(panel, BorderLayout.CENTER);
         
+        setTitle("Lihat Riwayat Transaksi " + UserManager.getInstance().getUser().getNama());
+        setSize(700, 500);
+        setLocationRelativeTo(null);
+        setResizable(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
     }
 }

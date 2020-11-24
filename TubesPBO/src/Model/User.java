@@ -4,13 +4,18 @@
  * and open the template in the editor.
  */
 package Model;
+
+import java.util.ArrayList;
+import java.util.List;
+import Model.User;
+
 /**
  *
  * @author Gilbert
  * @author Hilbert
  * @author Zefanya
  */
-public class User {
+public abstract class User {
 
     private int ID;
     private String nama;
@@ -85,5 +90,9 @@ public class User {
 
     public void setTelepon(String telepon) {
         this.telepon = telepon;
+    }
+    
+    public void getUserBerdasarkanTipe (){
+        
     }
 }

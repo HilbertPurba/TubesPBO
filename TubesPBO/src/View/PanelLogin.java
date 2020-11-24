@@ -71,7 +71,7 @@ public class PanelLogin implements ActionListener {
         email.setFont(new Font("Calibri", Font.PLAIN, 25));
         email.setBorder(null);
 
-        passL = new JLabel("Password ");
+        passL = new JLabel("Password      ");
         passL.setFont(new Font("Calibri", Font.CENTER_BASELINE, 32));
         
         pass = new JPasswordField(15);
