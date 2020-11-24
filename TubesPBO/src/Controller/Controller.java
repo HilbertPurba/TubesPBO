@@ -45,7 +45,31 @@ public class Controller {
         }
         return (listProd);
     }
-  
+    
+     //Get User yang punya Toko
+    public static ArrayList<User> getUserToko(int id){
+        ArrayList<User> listUser = new ArrayList<>();
+        conn.connect();
+        String query = "SELECT * FROM pengguna WHERE tipeUser=1";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                User user = new User();
+                user.setID(rs.getInt("id"));
+                user.setNama(rs.getString("nama"));
+                user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                user.setTelepon(rs.getString("noTelp"));
+                user.setTipeUser(rs.getInt("tipeUser"));
+                listUser.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return (listUser);
+    }
+    
     //Get Produk dari Toko tertentu
     public static ArrayList<Produk> getProdukToko(int id) {
         ArrayList<Produk> listProd = new ArrayList<>();
