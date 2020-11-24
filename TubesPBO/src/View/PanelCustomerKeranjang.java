@@ -6,6 +6,7 @@
 package View;
 
 import Controller.Controller;
+import Model.Keranjang;
 import Model.ProdukBeli;
 import Model.Transaksi;
 import Model.TransaksiManager;
@@ -45,11 +46,11 @@ public class PanelCustomerKeranjang extends JPanel implements ActionListener {
 
     private JPanel header, content;
     private JLabel namaL, merkL, jumlahL, hargaL;
-    private JLabel title, desc, namaProd[], merkProd[], jumlahBeliProd[], hargaProd[];
+    private JLabel title, desc, namaProd[], jumlahBeliProd[], hargaProd[];
     private JButton btn_checkout[];
     private GridBagConstraints gbc;
     private ImageIcon iconCheckout, iconCheckout1;
-    private List<ProdukBeli> listProd;
+    private List<Keranjang> listBag;
     private int jumlahProduk = 0;
 
     private Image resizeImage(String url) {
@@ -76,7 +77,7 @@ public class PanelCustomerKeranjang extends JPanel implements ActionListener {
         header.add(title);
 
         content = new JPanel(new GridBagLayout());
-        listProd = Controller.getProdukBeli();
+        listBag = Controller.getAllKeranjang();
         
         desc = new JLabel("Keranjang Kamu: ");
         desc.setFont(new Font("Segoe UI", Font.BOLD, 35));
@@ -93,11 +94,10 @@ public class PanelCustomerKeranjang extends JPanel implements ActionListener {
         hargaL = new JLabel("Harga Produk");
         hargaL.setFont(new Font("Segoe UI", Font.BOLD, 25));
         
-        namaProd = new JLabel[listProd.size()];
-        merkProd = new JLabel[listProd.size()];
-        jumlahBeliProd = new JLabel[listProd.size()];
-        hargaProd = new JLabel[listProd.size()];
-        btn_checkout = new JButton[listProd.size()];
+        namaProd = new JLabel[listBag.size()];
+        jumlahBeliProd = new JLabel[listBag.size()];
+        hargaProd = new JLabel[listBag.size()];
+        btn_checkout = new JButton[listBag.size()];
         
         int counter = 0;
         
@@ -107,14 +107,12 @@ public class PanelCustomerKeranjang extends JPanel implements ActionListener {
         
         gbc.gridy = 2;
         
-        for (int i = 0; i < listProd.size(); i++) {
-            namaProd[counter] = new JLabel(listProd.get(i).getNama());
+        for (int i = 0; i < listBag.size(); i++) {
+            namaProd[counter] = new JLabel(listBag.get(i).getNama_prod());
             namaProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 18));
-            merkProd[counter] = new JLabel(listProd.get(i).getMerk());
-            merkProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 18));
-            jumlahBeliProd[counter] = new JLabel(String.valueOf(listProd.get(i).getJumlahBeli()));
+            jumlahBeliProd[counter] = new JLabel(String.valueOf(listBag.get(i).getJumlah_total()));
             jumlahBeliProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 18));
-            hargaProd[counter] = new JLabel("Rp. " + String.valueOf(listProd.get(i).getHarga()));
+            hargaProd[counter] = new JLabel("Rp. " + String.valueOf(listBag.get(i).getHarga_total()));
             hargaProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 18));
             
             btn_checkout[counter] = new JButton(iconCheckout);
@@ -128,15 +126,12 @@ public class PanelCustomerKeranjang extends JPanel implements ActionListener {
             content.add(namaProd[counter], gbc);
             
             gbc.gridx = 1;
-            content.add(merkProd[counter], gbc);
-            
-            gbc.gridx = 2;
             content.add(jumlahBeliProd[counter], gbc);
             
-            gbc.gridx = 3;
+            gbc.gridx = 2;
             content.add(hargaProd[counter], gbc);
             
-            gbc.gridx = 4;
+            gbc.gridx = 3;
             content.add(btn_checkout[counter], gbc);
             
             gbc.gridy++;
@@ -180,7 +175,7 @@ public class PanelCustomerKeranjang extends JPanel implements ActionListener {
         String namaProdSelect = null;
         String harga = null;
         
-        for (int i = 0; i < listProd.size(); i++) {
+        for (int i = 0; i < listBag.size(); i++) {
             if (e.getSource() == btn_checkout[i]) {
                 namaProdSelect = namaProd[i].getText();
                 harga = hargaProd[i].getText();
@@ -318,7 +313,7 @@ public class PanelCustomerKeranjang extends JPanel implements ActionListener {
                         newTransaksi.setKodePromo(tfKodePromo.getText());
                         newTransaksi.setTotalHarga(Integer.parseInt(value.getText().substring(4)));
                         TransaksiManager.getInstance().setTransaksi(newTransaksi);
-                        if(Controller.insertNewTransaksi(newTransaksi) && Controller.insertConnectorTransaksi(newTransaksi)) {
+                        if(Controller.insertNewTransaksi(newTransaksi)) {
                             JOptionPane.showMessageDialog(null, "Transaksi Berhasil!");
                         } else {
                             JOptionPane.showMessageDialog(null, "Transaksi Gagal");

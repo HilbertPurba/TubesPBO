@@ -176,12 +176,13 @@ public class PanelCustomerHome extends JPanel implements ActionListener {
             }
         }
         keranjang.setId_user(UserManager.getInstance().getUser().getID());
+        keranjang.setId_prod(ProdukBeliManager.getInstance().getProdukBeli().getIdProduk());
+        keranjang.setNama_prod(ProdukBeliManager.getInstance().getProdukBeli().getNama());
         keranjang.setHarga_total(ProdukBeliManager.getInstance().getProdukBeli().countTotalHarga(newProdukBeli));
         keranjang.setJumlah_total(ProdukBeliManager.getInstance().getProdukBeli().getJumlahBeli());
         KeranjangManager.getInstance().setKeranjang(keranjang);
-        if (Controller.insertConnectorKeranjang(keranjang) && Controller.insertNewKeranjang(keranjang)) {
+        if (Controller.insertNewKeranjang(keranjang)) {
             JOptionPane.showMessageDialog(null, "Insert keranjang berhasil");
-            JOptionPane.showMessageDialog(null, newProdukBeli.toString());
         } else {
             JOptionPane.showMessageDialog(null, "Insert Keranjang gagal");
         }
