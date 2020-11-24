@@ -75,6 +75,8 @@ public class DashboardCustomer {
                     @Override
                     public void mouseClicked(MouseEvent me){
                         btn_home.setIcon(iconHome2);
+                        clPanel.revalidate();
+                        clPanel.repaint();
                         cl.show(clPanel, "panelCustomer");
                         frame.setTitle("Main Menu");
                     }
@@ -141,6 +143,7 @@ public class DashboardCustomer {
                         btn_account.setIcon(iconAkun2);
                         cl.show(clPanel, "panelAccount");
                         frame.setTitle("Menu Account");
+                        
                     }
                     
                     @Override

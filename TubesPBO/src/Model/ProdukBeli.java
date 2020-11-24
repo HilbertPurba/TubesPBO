@@ -6,8 +6,8 @@
 package Model;
 
 import Controller.Controller;
-import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  *
@@ -78,10 +78,10 @@ public class ProdukBeli {
 
     @Override
     public String toString() {
-        List<ProdukBeli> listProdukBeli = Controller.getProdukBeli();
         String data = "";
-        for(int i = 0; i < listProdukBeli.size(); i++) {
-            data += "ProdukBeli{" + "nama=" + listProdukBeli.get(i).getNama() + ", merk=" + listProdukBeli.get(i).getMerk() + ", harga=" + listProdukBeli.get(i).getHarga() + ", jumlahBeli=" + listProdukBeli.get(i).getJumlahBeli() + ", id_keranjang=" + listProdukBeli.get(i).getId_keranjang()+ '}';
+        List<ProdukBeli> produkBeli = Controller.getProdukBeli();
+        for(ProdukBeli produk : produkBeli) {
+            data += "ProdukBeli{" + "nama=" + produk.getNama() + ", merk=" + produk.getMerk();
         }
         return data;
     }
