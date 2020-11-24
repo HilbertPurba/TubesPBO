@@ -48,7 +48,6 @@ public class Vendor extends User {
 
     @Override
     public void getUserBerdasarkanTipe() {
-        List<Vendor> listVendor = new ArrayList<>();
         conn.connect();
         String query = "SELECT * FROM pengguna WHERE tipeUser = 1";
         try {
@@ -56,7 +55,13 @@ public class Vendor extends User {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 Vendor vendor = new Vendor();
-                
+                vendor.setID(rs.getInt("id"));
+                vendor.setNama(rs.getString("nama"));
+                vendor.setEmail(rs.getString("email"));
+                vendor.setPassword(rs.getString("password"));
+                vendor.setTelepon(rs.getString("noTelp"));
+                vendor.setTipeUser(rs.getInt("tipeUser"));
+                this.listVendor.add(vendor);
             }
         } catch (SQLException e) {
             e.printStackTrace();

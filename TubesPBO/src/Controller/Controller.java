@@ -50,7 +50,7 @@ public class Controller {
     public static List<Keranjang> getAllKeranjang() {
         List<Keranjang> listKeranjang = new ArrayList<>();
         conn.connect();
-        String query = "SELECT * FROM keranjang";
+        String query = "SELECT * FROM keranjang WHERE id='" +UserManager.getInstance().getUser().getID()+"'";
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -184,6 +184,7 @@ public class Controller {
 //    
     // INSERT Customer 
     public static boolean insertNewCustomer(User user) {
+        conn.connect();
         String query = "INSERT INTO pengguna (nama,email,password,noTelp,tipeUser) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement stmt = conn.con.prepareStatement(query);
@@ -202,6 +203,7 @@ public class Controller {
 
     // INSERT Vendor
     public static boolean insertNewVendor(User user) {
+        conn.connect();
         String query = "INSERT INTO pengguna (nama,email,password,noTelp,tipeUser) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement stmt = conn.con.prepareStatement(query);
@@ -220,6 +222,7 @@ public class Controller {
 
     // INSERT produk
     public static boolean insertNewProduk(Produk produk) {
+        conn.connect();
         int id = UserManager.getInstance().getUser().getID();
         String query = "INSERT INTO produk (id,nama_prod,merk_prod,harga,stok) VALUES(?,?,?,?,?)";
         try {
@@ -420,28 +423,28 @@ public class Controller {
         return jumlah_produk; 
     }
     
-    public static boolean insertConnectorTransaksi(Transaksi transaksi) {
-        conn.connect();
-        int id_produk = TransaksiManager.getInstance().getTransaksi().getIdProduk();
-        String query = "INSERT INTO connectorproduktransaksi (id_transaksi, id_prod, jumlah_produk, total_harga) VALUES (?,?,?,?)";
-
-        try {
-            PreparedStatement stmt = conn.con.prepareStatement(query);
-            stmt.setString(1, newTransaksi.getNamaLengkap());
-            stmt.setString(2, newTransaksi.getNoTelepon());
-            stmt.setString(3, newTransaksi.getAlamat());
-            stmt.setString(4, newTransaksi.getJenisPembayaran());
-            stmt.setString(5, newTransaksi.getJenisPengiriman());
-            stmt.setString(6, newTransaksi.getKodePromo());
-            stmt.setInt(7, newTransaksi.getTotalHarga());
-            stmt.setString(8, "Dikemas");
-            stmt.executeUpdate();
-            return (true);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return (false);
-        }
-    }
+//    public static boolean insertConnectorTransaksi(Transaksi transaksi) {
+//        conn.connect();
+//        int id_produk = TransaksiManager.getInstance().getTransaksi().getIdProduk();
+//        String query = "INSERT INTO connectorproduktransaksi (id_transaksi, id_prod, jumlah_produk, total_harga) VALUES (?,?,?,?)";
+//
+//        try {
+//            PreparedStatement stmt = conn.con.prepareStatement(query);
+//            stmt.setString(1, newTransaksi.getNamaLengkap());
+//            stmt.setString(2, newTransaksi.getNoTelepon());
+//            stmt.setString(3, newTransaksi.getAlamat());
+//            stmt.setString(4, newTransaksi.getJenisPembayaran());
+//            stmt.setString(5, newTransaksi.getJenisPengiriman());
+//            stmt.setString(6, newTransaksi.getKodePromo());
+//            stmt.setInt(7, newTransaksi.getTotalHarga());
+//            stmt.setString(8, "Dikemas");
+//            stmt.executeUpdate();
+//            return (true);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            return (false);
+//        }
+//    }
 //
 //    public static int getIdTransaksi() {
 //        int id_transaksi = 0;
