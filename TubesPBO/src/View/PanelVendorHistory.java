@@ -21,8 +21,8 @@ import javax.swing.JPanel;
  */
 public class PanelVendorHistory extends JPanel {
     private JPanel header, content;
-    private JLabel title, namaL, namaTokoL, namaProdukL, noTelpL, alamatL, jenisPembayaranL, jenisPengirimanL, kodePromoL, totalHargaL, statusKirimL;
-    private JLabel[] nama, namaToko, namaProduk, noTelp, alamat, jenisPembayaran, jenisPengiriman, kodePromo, totalHarga, statusKirim;
+    private JLabel title, namaL, namaProdukL, noTelpL, alamatL, jenisPembayaranL, jenisPengirimanL, kodePromoL, totalHargaL, statusKirimL;
+    private JLabel[] nama, namaProduk, noTelp, alamat, jenisPembayaran, jenisPengiriman, kodePromo, totalHarga, statusKirim;
     private GridBagConstraints gbc;
     
     public PanelVendorHistory(){
@@ -39,9 +39,7 @@ public class PanelVendorHistory extends JPanel {
         
         namaL = new JLabel("Nama Customer        ");
         namaL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        namaTokoL = new JLabel("Nama Toko          ");
-        namaTokoL.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        namaProdukL = new JLabel("Nama Toko          ");
+        namaProdukL = new JLabel("Nama Produk          ");
         namaProdukL.setFont(new Font("Segoe UI", Font.BOLD, 12));
         noTelpL = new JLabel("No Telepon       ");
         noTelpL.setFont(new Font("Segoe UI", Font.BOLD, 12));
@@ -74,39 +72,36 @@ public class PanelVendorHistory extends JPanel {
         gbc.gridy = 0;
         content.add(namaL, gbc);
         
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        content.add(namaTokoL, gbc);
         
-        gbc.gridx = 2;
+        gbc.gridx = 1;
         gbc.gridy = 0;
         content.add(namaProdukL, gbc);
         
-        gbc.gridx = 3;
+        gbc.gridx = 2;
         gbc.gridy = 0;
         content.add(noTelpL, gbc);
                 
-        gbc.gridx = 4;
+        gbc.gridx = 3;
         gbc.gridy = 0;
         content.add(alamatL, gbc);
         
-        gbc.gridx = 5;
+        gbc.gridx = 4;
         gbc.gridy = 0;
         content.add(jenisPembayaranL, gbc);
         
-        gbc.gridx = 6;
+        gbc.gridx = 5;
         gbc.gridy = 0;
         content.add(jenisPengirimanL, gbc);
         
-        gbc.gridx = 7;
+        gbc.gridx = 6;
         gbc.gridy = 0;
         content.add(kodePromoL, gbc);
         
-        gbc.gridx = 8;
+        gbc.gridx = 7;
         gbc.gridy = 0;
         content.add(totalHargaL, gbc);
         
-        gbc.gridx = 9;
+        gbc.gridx = 8;
         gbc.gridy = 0;
         content.add(statusKirimL, gbc);
         
