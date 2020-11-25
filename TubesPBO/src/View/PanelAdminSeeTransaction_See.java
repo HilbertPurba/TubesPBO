@@ -37,7 +37,6 @@ import javax.swing.JPanel;
  * @author Zefanya
  */
 public class PanelAdminSeeTransaction_See extends JFrame {
-
     private JPanel header, panel;
     private GridBagConstraints gbc;
     private JLabel judul;

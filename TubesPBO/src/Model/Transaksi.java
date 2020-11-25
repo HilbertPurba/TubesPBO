@@ -57,7 +57,7 @@ public class Transaksi {
     public void setIdTransaksi(int idTransaksi) {
         this.idTransaksi = idTransaksi;
     }
-uk
+    
     public int getId_produk() {
         return id_produk;
     }
