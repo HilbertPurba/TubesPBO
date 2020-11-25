@@ -27,7 +27,6 @@ import javax.imageio.ImageIO;
  * @author Zefanya
  */
 public class PanelRegisterVendor implements ActionListener {
-    
     JFrame jfr_registrasi = new JFrame("GHz - Register Vendor");
     JLabel namaL, emailL, teleponL, passL;
     JTextField name, email, telepon;
@@ -35,7 +34,6 @@ public class PanelRegisterVendor implements ActionListener {
     JPasswordField pass;
     JPanel Panel;
     JButton btn_submit, btn_back;
-    
     private ImageIcon iconRegister, iconRegister1;
     private ImageIcon iconBack, iconBack1, logo;
     
@@ -53,6 +51,7 @@ public class PanelRegisterVendor implements ActionListener {
     }
     
     public PanelRegisterVendor() {
+        // set Frame
         jfr_registrasi.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jfr_registrasi.getContentPane().setBackground(Color.white );
         jfr_registrasi.setResizable(true);
@@ -66,11 +65,13 @@ public class PanelRegisterVendor implements ActionListener {
         Panel = new JPanel();
         Panel.setLayout(null);
 
+        // judul Content
         JLabel judulL = new JLabel("Register as Vendor : ");
         judulL.setBounds(225, 0, 1000, 300);
         judulL.setFont(new Font("Calibri", Font.BOLD, 50));
         judulL.setForeground(new Color(22,105,122));
 
+        // Isi
         namaL = new JLabel("Nama Toko ");
         emailL = new JLabel("Email ");
         teleponL = new JLabel("Phone ");
@@ -103,12 +104,10 @@ public class PanelRegisterVendor implements ActionListener {
         // Button Submit
         iconRegister = new ImageIcon(resizeImage("assets/registerV1.png"));
         iconRegister1 = new ImageIcon(resizeImage("assets/registerV2.png"));
-        
         btn_submit = new JButton (iconRegister);
         btn_submit.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_submit.setIcon(iconRegister);
         btn_submit.setBounds(600, 480, 150, 60);
-        
         btn_submit.addMouseListener(
                 new MouseAdapter(){
                     @Override
@@ -135,12 +134,10 @@ public class PanelRegisterVendor implements ActionListener {
         // Button Submit
         iconBack = new ImageIcon(resizeImage("assets/backo.png"));
         iconBack1 = new ImageIcon(resizeImage("assets/backo1.png"));
-        
         btn_back = new JButton (iconBack);
         btn_back.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_back.setIcon(iconBack);
         btn_back.setBounds(400, 480, 150, 60);
-        
         btn_back.addMouseListener(
                 new MouseAdapter(){
                     @Override
@@ -164,6 +161,7 @@ public class PanelRegisterVendor implements ActionListener {
         btn_back.setFocusPainted(false);
         btn_back.setContentAreaFilled(false);
         
+        // Add to Panel
         Panel.add(judulL);
         Panel.add(namaL);
         Panel.add(teleponL);
@@ -176,6 +174,7 @@ public class PanelRegisterVendor implements ActionListener {
         Panel.add(btn_submit);
         Panel.add(btn_back);
 
+        // Add to Frame
         jfr_registrasi.add(Panel);
         jfr_registrasi.setVisible(true);
     }

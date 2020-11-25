@@ -21,7 +21,6 @@ import javax.imageio.ImageIO;
  * @author Zefanya
  */
 public class PanelRegisterCustomer implements ActionListener {
-    
     JFrame jfr_registrasi = new JFrame("Register Customer");
     JLabel namaL, emailL, teleponL, passL;
     JTextField name, email, telepon;
@@ -30,7 +29,6 @@ public class PanelRegisterCustomer implements ActionListener {
     JPanel Panel;
     JButton btn_submit, btn_back;
     private ImageIcon logo;
-    
     private ImageIcon iconRegister, iconRegister1;
     private ImageIcon iconBack, iconBack1;
     
@@ -48,12 +46,14 @@ public class PanelRegisterCustomer implements ActionListener {
     }
     
     public PanelRegisterCustomer() {
+        // Set Frame
         jfr_registrasi.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jfr_registrasi.getContentPane().setBackground(Color.white );
         jfr_registrasi.setResizable(true);
         jfr_registrasi.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jfr_registrasi.setSize(1000,700);
         jfr_registrasi.setLocationRelativeTo(null);
+        
         //Logo
         logo = new ImageIcon("assets/logo.png");
         jfr_registrasi.setIconImage(logo.getImage());
@@ -61,34 +61,35 @@ public class PanelRegisterCustomer implements ActionListener {
         Panel = new JPanel();
         Panel.setLayout(null);
 
+        // Judul Content
         JLabel judulL = new JLabel("Register as Customer : ");
         judulL.setBounds(225, 0, 1000, 300);
         judulL.setFont(new Font("Calibri", Font.BOLD, 50));
         judulL.setForeground(new Color(253,170,0));
 
+        // Isi
         namaL = new JLabel("Name ");
-        emailL = new JLabel("Email ");
-        teleponL = new JLabel("Phone");
-        passL = new JLabel("Password ");
-
         namaL.setBounds(225, 230, 150, 40);
         namaL.setFont(new Font("Calibri", Font.BOLD, 20));
         name = new JTextField();
         name.setBounds(400, 230, 350, 40);
         name.setBorder(null);
 
+        emailL = new JLabel("Email ");
         emailL.setBounds(225, 290, 150, 40);
         emailL.setFont(new Font("Calibri", Font.BOLD, 20));
         email = new JTextField();
         email.setBounds(400, 290, 350, 40);
         email.setBorder(null);
 
+        teleponL = new JLabel("Phone");
         teleponL.setBounds(225, 350, 150, 40);
         teleponL.setFont(new Font("Calibri", Font.BOLD, 20));
         telepon = new JTextField();
         telepon.setBounds(400, 350, 350, 40);
         telepon.setBorder(null);
         
+        passL = new JLabel("Password ");        
         passL.setBounds(225, 410, 150, 40);
         passL.setFont(new Font("Calibri", Font.BOLD, 20));
         pass = new JPasswordField(100);
@@ -98,12 +99,10 @@ public class PanelRegisterCustomer implements ActionListener {
         // Button Submit
         iconRegister = new ImageIcon(resizeImage("assets/register.png"));
         iconRegister1 = new ImageIcon(resizeImage("assets/register1.png"));
-        
         btn_submit = new JButton (iconRegister);
         btn_submit.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_submit.setIcon(iconRegister);
         btn_submit.setBounds(600, 480, 150, 60);
-        
         btn_submit.addMouseListener(
                 new MouseAdapter(){
                     @Override
@@ -127,15 +126,13 @@ public class PanelRegisterCustomer implements ActionListener {
         btn_submit.setContentAreaFilled(false);
         btn_submit.addActionListener(this);
         
-        // Button Submit
+        // Button Back
         iconBack = new ImageIcon(resizeImage("assets/backo.png"));
         iconBack1 = new ImageIcon(resizeImage("assets/backo1.png"));
-        
         btn_back = new JButton (iconBack);
         btn_back.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_back.setIcon(iconBack);
         btn_back.setBounds(400, 480, 150, 60);
-        
         btn_back.addMouseListener(
                 new MouseAdapter(){
                     @Override
@@ -159,6 +156,7 @@ public class PanelRegisterCustomer implements ActionListener {
         btn_back.setFocusPainted(false);
         btn_back.setContentAreaFilled(false);
 
+        // Add to Panel
         Panel.add(judulL);
         Panel.add(namaL);
         Panel.add(teleponL);
@@ -171,6 +169,7 @@ public class PanelRegisterCustomer implements ActionListener {
         Panel.add(btn_submit);
         Panel.add(btn_back);
 
+        // Add to Frame
         jfr_registrasi.add(Panel);
         jfr_registrasi.setLocationRelativeTo(null);
         jfr_registrasi.setVisible(true);

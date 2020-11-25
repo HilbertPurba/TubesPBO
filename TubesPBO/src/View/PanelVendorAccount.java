@@ -56,6 +56,7 @@ public class PanelVendorAccount extends JPanel {
         header = new JPanel();
         header.setBackground(java.awt.Color.white);
         
+        //judul
         title = new JLabel("PROFIL VENDOR");
         title.setFont(new Font("Calibri", Font.BOLD, 60));
         title.setForeground(new Color(2,91,149));
@@ -63,6 +64,7 @@ public class PanelVendorAccount extends JPanel {
         
         content = new JPanel(new GridBagLayout());
         
+        // isi
         nama = new JLabel("Nama       : " + UserManager.getInstance().getUser().getNama());
         nama.setFont(new Font("Segoe UI",  Font.BOLD, 35));
         email = new JLabel("Email        : " + UserManager.getInstance().getUser().getEmail());
