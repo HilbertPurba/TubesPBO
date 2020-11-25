@@ -85,7 +85,7 @@ public class PanelVendorHistory extends JPanel {
         for(int i =0;i<newList.size();i++){
             nama[counter] = new JLabel("" + newList.get(i).getNamaLengkap());
             nama[counter].setFont(new Font("Segoe UI", Font.PLAIN, 12));
-            idProd[counter] = new JLabel("" + newList.get(i).getId_prod());
+            idProd[counter] = new JLabel("" + newList.get(i).getId_produk());
             idProd[counter].setFont(new Font("Segoe UI", Font.PLAIN, 12));
             alamat[counter] = new JLabel("" + newList.get(i).getAlamat());
             alamat[counter].setFont(new Font("Segoe UI", Font.PLAIN, 12));

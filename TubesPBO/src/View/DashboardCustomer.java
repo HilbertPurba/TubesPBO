@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.DatabaseHandler;
 import Model.UserManager;
 import static View.DashboardVendor.frame;
 import java.awt.BorderLayout;
@@ -46,6 +47,8 @@ public class DashboardCustomer {
     private ImageIcon iconHome1, iconKeranjang1, iconAkun1, iconLogout1;
     private ImageIcon iconHome2, iconKeranjang2, iconAkun2, iconLogout2, logo;
     
+    static DatabaseHandler conn = new DatabaseHandler();
+    
     private Image resizeImage(String url) {
         Image dimg = null;
 
@@ -74,9 +77,9 @@ public class DashboardCustomer {
                 new MouseAdapter(){
                     @Override
                     public void mouseClicked(MouseEvent me){
+                        conn.connect();
+                        conn.disconnect();
                         btn_home.setIcon(iconHome2);
-                        clPanel.revalidate();
-                        clPanel.repaint();
                         cl.show(clPanel, "panelCustomer");
                         frame.setTitle("Main Menu");
                     }
@@ -108,6 +111,8 @@ public class DashboardCustomer {
                 new MouseAdapter(){
                     @Override
                     public void mouseClicked(MouseEvent me){
+                        conn.connect();
+                        conn.disconnect();
                         btn_keranjang.setIcon(iconKeranjang2);
                         cl.show(clPanel, "panelKeranjang");
                         frame.setTitle("Menu Keranjang");
@@ -140,6 +145,8 @@ public class DashboardCustomer {
                 new MouseAdapter(){
                     @Override
                     public void mouseClicked(MouseEvent me){
+                        conn.connect();
+                        conn.disconnect();
                         btn_account.setIcon(iconAkun2);
                         cl.show(clPanel, "panelAccount");
                         frame.setTitle("Menu Account");
@@ -180,7 +187,6 @@ public class DashboardCustomer {
                             UserManager.getInstance().logOut();
                             new Start();
                         }
-                        
                         cl.show(clPanel, "panelAccount");
                         frame.setTitle("Menu Account");
                     }

@@ -135,7 +135,6 @@ public class PanelVendorAccount_EditProfile extends JFrame implements ActionList
         setLocationRelativeTo(null);
         setResizable(true);
         getContentPane().add(panel);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 

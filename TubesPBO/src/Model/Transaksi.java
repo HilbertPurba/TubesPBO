@@ -57,7 +57,7 @@ public class Transaksi {
     public void setIdTransaksi(int idTransaksi) {
         this.idTransaksi = idTransaksi;
     }
-uk
+
     public int getId_produk() {
         return id_produk;
     }
@@ -176,6 +176,8 @@ uk
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            conn.disconnect();
         }
         return (listTransaksi);
     }
@@ -191,6 +193,8 @@ uk
         } catch (SQLException e) {
             e.printStackTrace();
             return (false);
+        } finally {
+            conn.disconnect();
         }
     }
 

@@ -310,8 +310,7 @@ public class PanelCustomerKeranjang extends JPanel implements ActionListener {
                         transaksi.setJumlah_produk(jumlah_beli);
                         transaksi.setTotalHarga(Integer.parseInt(value.getText().substring(4)));
                         TransaksiManager.getInstance().setTransaksi(transaksi);
-                        if (Controller.insertNewTransaksi(transaksi) && Controller.insertConnectorTransaksi(transaksi) 
-                                && Controller.updateStok() && Controller.deleteKeranjang()) {
+                        if (Controller.insertNewTransaksi(transaksi) && Controller.updateStok() && Controller.deleteKeranjang()) {
                             JOptionPane.showMessageDialog(null, "Transaksi Berhasil!");
                         } else {
                             JOptionPane.showMessageDialog(null, "Transaksi Gagal");
