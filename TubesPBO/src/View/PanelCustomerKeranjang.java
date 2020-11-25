@@ -42,9 +42,8 @@ import javax.swing.JTextField;
  * @author Zefanya
  */
 public class PanelCustomerKeranjang extends JPanel implements ActionListener {
-
     private JPanel header, content;
-    private JLabel namaL, merkL, jumlahL, hargaL;
+    private JLabel namaL, jumlahL, hargaL;
     private JLabel title, desc, namaProd[], jumlahBeliProd[], hargaProd[];
     private JButton btn_checkout[];
     private GridBagConstraints gbc;
@@ -70,6 +69,7 @@ public class PanelCustomerKeranjang extends JPanel implements ActionListener {
         header = new JPanel();
         header.setBackground(java.awt.Color.white);
 
+        // Judul Header
         title = new JLabel("KERANJANG");
         title.setFont(new Font("Calibri", Font.BOLD, 60));
         title.setForeground(new Color(253, 170, 0));
@@ -78,21 +78,22 @@ public class PanelCustomerKeranjang extends JPanel implements ActionListener {
         content = new JPanel(new GridBagLayout());
         listBag = Controller.getAllKeranjang();
 
+        // Judul Content
         desc = new JLabel("Keranjang Kamu: ");
         desc.setFont(new Font("Segoe UI", Font.BOLD, 35));
         desc.setForeground(new Color(253, 170, 0));
 
         iconCheckout = new ImageIcon(resizeImage("assets/checkout.png"));
 
+        // Label 
         namaL = new JLabel("Nama Produk");
         namaL.setFont(new Font("Segoe UI", Font.BOLD, 25));
-        merkL = new JLabel("Merk       ");
-        merkL.setFont(new Font("Segoe UI", Font.BOLD, 25));
         jumlahL = new JLabel("Jumlah       ");
         jumlahL.setFont(new Font("Segoe UI", Font.BOLD, 25));
         hargaL = new JLabel("Harga Produk");
         hargaL.setFont(new Font("Segoe UI", Font.BOLD, 25));
 
+        // Isi
         namaProd = new JLabel[listBag.size()];
         jumlahBeliProd = new JLabel[listBag.size()];
         hargaProd = new JLabel[listBag.size()];
@@ -147,16 +148,12 @@ public class PanelCustomerKeranjang extends JPanel implements ActionListener {
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.ipady = 9;
-        content.add(merkL, gbc);
+        content.add(jumlahL, gbc);
 
         gbc.gridx = 2;
         gbc.gridy = 1;
-        content.add(jumlahL, gbc);
-
-        gbc.gridx = 3;
-        gbc.gridy = 1;
         content.add(hargaL, gbc);
-      
+
         add(header, BorderLayout.PAGE_START);
         add(content, BorderLayout.CENTER);
     }

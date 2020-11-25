@@ -76,6 +76,7 @@ public class PanelAdminSeeTransaction extends JPanel implements ActionListener {
         header = new JPanel();
         header.setBackground(Color.WHITE);
                 
+        // Judul Header
         title = new JLabel("LIHAT TRANSAKSI");
         title.setFont(new Font("Calibri", Font.BOLD, 60));
         title.setForeground(Color.red);
@@ -83,6 +84,7 @@ public class PanelAdminSeeTransaction extends JPanel implements ActionListener {
         
         content = new JPanel(new GridBagLayout());
         
+        // Judul2
         judul = new JLabel("Daftar Nama Toko : ");
         judul.setFont(new Font("Segoe UI", Font.BOLD, 35));
         judul.setForeground(Color.red);
@@ -93,6 +95,7 @@ public class PanelAdminSeeTransaction extends JPanel implements ActionListener {
 
         iconSee = new ImageIcon(resizeImage("assets/see.png"));
 
+        // Isi
         nama = new JLabel[jumlahUser];
         btn_see = new JButton[jumlahUser];
         

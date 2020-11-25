@@ -23,7 +23,6 @@ import javax.imageio.ImageIO;
  * @author Zefanya
  */
 public class PanelLogin implements ActionListener {
-
     private JFrame jfr_login;
     private JLabel emailL, passL;
     private JTextField email;
@@ -47,6 +46,7 @@ public class PanelLogin implements ActionListener {
     }
 
     public PanelLogin() {
+        // Set Frame
         jfr_login = new JFrame("GHz - Login");
         jfr_login.getContentPane().setBackground(Color.WHITE);
         jfr_login.setResizable(true);
@@ -60,19 +60,22 @@ public class PanelLogin implements ActionListener {
         
         panel = new JPanel(new GridBagLayout());
         
+        // Judul
         JLabel judulL = new JLabel("LOGIN");
         judulL.setFont(new Font("Trebuchet MS", Font.BOLD, 100));
         judulL.setForeground(new Color(253,170,0));
-
+        
+        // Label
         emailL = new JLabel("Email");
         emailL.setFont(new Font("Calibri", Font.CENTER_BASELINE, 32));
         
+        passL = new JLabel("Password      ");
+        passL.setFont(new Font("Calibri", Font.CENTER_BASELINE, 32));
+        
+        // Isi
         email = new JTextField(15);
         email.setFont(new Font("Calibri", Font.PLAIN, 25));
         email.setBorder(null);
-
-        passL = new JLabel("Password      ");
-        passL.setFont(new Font("Calibri", Font.CENTER_BASELINE, 32));
         
         pass = new JPasswordField(15);
         pass.setFont(new Font("Calibri", Font.PLAIN, 25));
@@ -81,7 +84,6 @@ public class PanelLogin implements ActionListener {
         // Button Submit
         iconLogin = new ImageIcon(resizeImage("assets/login.png"));
         iconLogin1 = new ImageIcon(resizeImage("assets/login1.png"));
-        
         btn_login = new JButton (iconLogin);
         btn_login.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_login.setIcon(iconLogin);        
@@ -111,7 +113,6 @@ public class PanelLogin implements ActionListener {
         // Button Cancel
         iconBack = new ImageIcon(resizeImage("assets/backo.png"));
         iconBack1 = new ImageIcon(resizeImage("assets/backo1.png"));
-        
         btn_back = new JButton (iconBack);
         btn_back.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_back.setIcon(iconBack);        

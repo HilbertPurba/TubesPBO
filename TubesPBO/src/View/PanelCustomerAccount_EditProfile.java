@@ -62,12 +62,13 @@ public class PanelCustomerAccount_EditProfile extends JFrame implements ActionLi
     }
     
     public PanelCustomerAccount_EditProfile() {
+        // Label
         labelEmail = new JLabel("Email: ");
         tfEmail = new JTextField(UserManager.getInstance().getUser().getEmail(), 20);
-        
         labelTelepon = new JLabel("Telepon: ");
         tfTelepon = new JTextField(UserManager.getInstance().getUser().getTelepon(), 20);
         
+        // Tombol OK
         iconOk = new ImageIcon(resizeImage("assets/ok.png"));
         btnOk = new JButton(iconOk);
         btnOk.setBorderPainted(false);
@@ -76,6 +77,7 @@ public class PanelCustomerAccount_EditProfile extends JFrame implements ActionLi
         btnOk.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnOk.addActionListener(this);
         
+        // Tombol Back
         iconBack = new ImageIcon(resizeImage("assets/back.png"));
         iconBack1 = new ImageIcon(resizeImage("assets/back1.png"));
         btnBack = new JButton(iconBack);
@@ -136,6 +138,7 @@ public class PanelCustomerAccount_EditProfile extends JFrame implements ActionLi
         gbc.gridy = 2;
         panel.add(btnBack, gbc);
         
+        // Set Frame
         setTitle("Edit Profile");
         setSize(300, 300);
         setLocationRelativeTo(null);

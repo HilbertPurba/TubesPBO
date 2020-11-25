@@ -59,6 +59,7 @@ public class PanelCustomerAccount extends JPanel {
         title.setForeground(new Color(253,170,0));
         header.add(title);
         
+        // Label
         content = new JPanel(new GridBagLayout());
         nama = new JLabel("Nama       : " + UserManager.getInstance().getUser().getNama());
         nama.setFont(new Font("Segoe UI",  Font.BOLD, 35));
@@ -67,6 +68,7 @@ public class PanelCustomerAccount extends JPanel {
         telepon = new JLabel("Telepon    : " + UserManager.getInstance().getUser().getTelepon());
         telepon.setFont(new Font("Segoe UI",  Font.BOLD, 35));
  
+        // Tombol Edit Profile
         iconEdit = new ImageIcon(resizeImage("assets/edit.png"));
         iconEdit1 = new ImageIcon(resizeImage("assets/edit1.png"));
         iconEdit2 = new ImageIcon(resizeImage("assets/edit2.png"));

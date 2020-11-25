@@ -64,11 +64,13 @@ public class PanelAdminSeeTransaction_See extends JFrame {
         header = new JPanel();
         header.setBackground(Color.white);
 
+        // Judul Header
         judul = new JLabel("Riwayat Transaksi dari " + namaToko);
         judul.setFont(new Font("Segoe UI", Font.BOLD, 30));
         judul.setForeground(Color.red);
         header.add(judul);
 
+        //Tombol X
         iconOk = new ImageIcon(resizeImage("assets/cancel.png"));
         btn_ok = new JButton(iconOk);
         btn_ok.setBorderPainted(false);
@@ -86,6 +88,7 @@ public class PanelAdminSeeTransaction_See extends JFrame {
 
         panel = new JPanel(new GridBagLayout());        
 
+        // Label
         idTrL = new JLabel("ID Transaksi       ");
         idTrL.setFont(new Font("Segoe UI", Font.BOLD, 16));
         namaProdukL = new JLabel("Nama Produk             ");
@@ -182,9 +185,11 @@ public class PanelAdminSeeTransaction_See extends JFrame {
         gbc.gridy = 0;
         panel.add(btn_ok, gbc);
 
+        // Add to Frame
         add(header, BorderLayout.PAGE_START);
         add(panel, BorderLayout.CENTER);
 
+        // Set Frame
         setTitle("Lihat Riwayat Transaksi " + UserManager.getInstance().getUser().getNama());
         setSize(700, 500);
         setLocationRelativeTo(null);

@@ -35,8 +35,7 @@ import javax.swing.JPanel;
  * @author Zefanya
  */
 public class PanelCustomerHome extends JPanel implements ActionListener {
-
-    //CardLayout component
+    //CardLayout Component
     private JPanel header, content;
     private JLabel title, desc;
     private JLabel namaL, merkL, hargaL, stokL;
@@ -62,6 +61,7 @@ public class PanelCustomerHome extends JPanel implements ActionListener {
     }
 
     public PanelCustomerHome() {
+        // Judul Header
         setLayout(new BorderLayout());
         header = new JPanel();
         header.setBackground(java.awt.Color.white);
@@ -70,6 +70,7 @@ public class PanelCustomerHome extends JPanel implements ActionListener {
         title.setForeground(new Color(253, 170, 0));
         header.add(title);
 
+        // Judul Content
         content = new JPanel();
         desc = new JLabel("Pilih Produk: ");
         desc.setFont(new Font("Calibri", Font.BOLD, 56));
@@ -85,6 +86,8 @@ public class PanelCustomerHome extends JPanel implements ActionListener {
                 break;
             }
         }
+        
+        // Isi
         namaProd = new JLabel[jumlahProduk];
         merkProd = new JLabel[jumlahProduk];
         hargaProd = new JLabel[jumlahProduk];
@@ -128,7 +131,8 @@ public class PanelCustomerHome extends JPanel implements ActionListener {
             btn_add[i].setContentAreaFilled(false);
             btn_add[i].addActionListener(this);
         }
-
+        
+        // Label
         namaL = new JLabel("Nama Produk");
         namaL.setFont(new Font("Calibri", Font.BOLD, 25));
         namaL.setForeground(new Color(253, 170, 0));

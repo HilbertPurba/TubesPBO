@@ -60,27 +60,27 @@ public class PanelRegister {
     }
     
     public PanelRegister(){
+        // Set Frame
         jfr_register = new JFrame("GHz Online Shop");
-        
         jfr_register.getContentPane().setBackground(Color.white );
         jfr_register.setResizable(true);
         jfr_register.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jfr_register.setSize(1000,700);
         jfr_register.setLocationRelativeTo(null);
+        
         //Logo
         logo = new ImageIcon("assets/logo.png");
         jfr_register.setIconImage(logo.getImage());
 
-        
+        // Judul Content
         judul = new JLabel("Register Sebagai ..");
         judul.setBounds(300,0,1000,300);
         judul.setFont(new Font("Calibri", Font.BOLD, 55));
         judul.setForeground(Color.orange);
         
-        //Customer
+        //ButtonCustomer
         iconCust = new ImageIcon(resizeImage("assets/customer.png"));
         iconCust1 = new ImageIcon(resizeImage("assets/customer1.png"));
-        
         btn_cust = new JButton(iconCust);
         btn_cust.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_cust.setIcon(iconCust);
@@ -113,10 +113,9 @@ public class PanelRegister {
         btn_idk.setIcon(idk);
         btn_idk.setVisible(false);
         
-        //Vendor
+        //ButtonVendor
         iconVendor = new ImageIcon(resizeImage("assets/vendor.png"));
         iconVendor1 = new ImageIcon(resizeImage("assets/vendor1.png"));
-        
         btn_vendor = new JButton(iconVendor);
         btn_vendor.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_vendor.setIcon(iconVendor);
@@ -144,10 +143,9 @@ public class PanelRegister {
         btn_vendor.setFocusPainted(false);
         btn_vendor.setContentAreaFilled(false);
         
-        //Back
+        //ButtonBack
         iconBack = new ImageIcon(resizeImage2("assets/back.png"));
         iconBack1 = new ImageIcon(resizeImage2("assets/back1.png"));
-        
         btn_back = new JButton(iconBack);
         btn_back.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_back.setIcon(iconBack);
@@ -175,6 +173,7 @@ public class PanelRegister {
         btn_back.setFocusPainted(false);
         btn_back.setContentAreaFilled(false);
         
+        // Add to Frame
         jfr_register.setVisible(true);
         jfr_register.add(judul);
         jfr_register.add(btn_cust);
