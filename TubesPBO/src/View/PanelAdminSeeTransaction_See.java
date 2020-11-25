@@ -189,7 +189,6 @@ public class PanelAdminSeeTransaction_See extends JFrame {
         setSize(700, 500);
         setLocationRelativeTo(null);
         setResizable(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 }

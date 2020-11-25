@@ -325,7 +325,7 @@ public class Controller {
     public static boolean insertNewTransaksi(Transaksi transaksi) {
         conn.connect();
         String query = "INSERT INTO transaksi (id_prod, nama, noTelp, alamat, jenis_pembayaran, "
-                + "jenis_pengiriman, kode_promo, total_harga, status_kirim) VALUES (?,?,?,?,?,?,?,?,?)";
+                + "jenis_pengiriman, kode_promo, jumlah_produk, total_harga, status_kirim) VALUES (?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = conn.con.prepareStatement(query);
             stmt.setInt(1, transaksi.getId_produk());
@@ -335,8 +335,9 @@ public class Controller {
             stmt.setString(5, transaksi.getJenisPembayaran());
             stmt.setString(6, transaksi.getJenisPengiriman());
             stmt.setString(7, transaksi.getKodePromo());
-            stmt.setInt(8, transaksi.getTotalHarga());
-            stmt.setString(9, "Dikemas");
+            stmt.setInt(8, transaksi.getJumlah_produk());
+            stmt.setInt(9, transaksi.getTotalHarga());
+            stmt.setString(10, "Dikemas");
             stmt.executeUpdate();
             return (true);
         } catch (SQLException e) {
@@ -346,7 +347,7 @@ public class Controller {
             conn.disconnect();
         }
     }
-    
+
     // Insert Connector Transaksi
     public static boolean insertConnectorTransaksi(Transaksi transaksi) {
         conn.connect();
@@ -412,6 +413,7 @@ public class Controller {
     
     // Update Stock Produk
     public static boolean updateStok() {
+
         conn.connect();
         String query = "UPDATE produk SET stok=(stok - " + TransaksiManager.getInstance().getTransaksi().getJumlah_produk() + ") "
                 + "WHERE id_prod=" + TransaksiManager.getInstance().getTransaksi().getId_produk();
