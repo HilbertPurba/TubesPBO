@@ -22,6 +22,55 @@ import java.util.List;
 public class Controller {
 
     static DatabaseHandler conn = new DatabaseHandler();
+    
+    //mencocokan untuk pasword login
+    public static boolean cekPassword(String email, String password) {
+        ArrayList<User> users = new ArrayList<>();
+        conn.connect();
+        String query = "SELECT * FROM pengguna WHERE email='" + email + "'";
+        boolean isMatch = false;
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                if (rs.getString("password").equals(password)) {
+                    isMatch = true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            conn.disconnect();
+        }
+        return isMatch;
+    }
+    
+        //---KUMPULAN GET---
+    //Get User Login Data
+    public static User getUser(String email) {
+        User user = new User() {
+        };
+        conn.connect();
+        String query = "SELECT * FROM pengguna WHERE email='" + email + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                int tipeUser = rs.getInt("tipeUser");
+                user.setTipeUser(tipeUser);
+                user.setID(rs.getInt("id"));
+                user.setNama(rs.getString("nama"));
+                user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                user.setTelepon(rs.getString("noTelp"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            conn.disconnect();
+        }
+        return (user);
+    }
 
     //Get All Produk
     public static ArrayList<Produk> getAllProduk() {
@@ -126,76 +175,67 @@ public class Controller {
         return (listProd);
     }
 
-    //mencocokan untuk pasword login
-    public static boolean cekPassword(String email, String password) {
-        ArrayList<User> users = new ArrayList<>();
+    // Get Produk Keranjang
+    public static int getProdukKeranjang() {
         conn.connect();
-        String query = "SELECT * FROM pengguna WHERE email='" + email + "'";
-        boolean isMatch = false;
+        int id_keranjang = 0;
+        String query = "SELECT id_keranjang FROM keranjang WHERE id=" + UserManager.getInstance().getUser().getID();
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                if (rs.getString("password").equals(password)) {
-                    isMatch = true;
-                }
+                id_keranjang = rs.getInt("id_keranjang");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             conn.disconnect();
         }
-        return isMatch;
+        return id_keranjang;
     }
 
-    //Get User Login Data
-    public static User getUser(String email) {
-        User user = new User() {
-        };
+    // Get Jumlah Produk
+    public static int getJumlahProduk() {
         conn.connect();
-        String query = "SELECT * FROM pengguna WHERE email='" + email + "'";
+        String query = "SELECT jumlah_total "
+                + "from keranjang "
+                + "WHERE id=" + UserManager.getInstance().getUser().getID() + " "
+                + "AND id_prod=" + TransaksiManager.getInstance().getTransaksi().getId_produk();
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                int tipeUser = rs.getInt("tipeUser");
-                user.setTipeUser(tipeUser);
-                user.setID(rs.getInt("id"));
-                user.setNama(rs.getString("nama"));
-                user.setEmail(rs.getString("email"));
-                user.setPassword(rs.getString("password"));
-                user.setTelepon(rs.getString("noTelp"));
+                return rs.getInt("jumlah_total");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             conn.disconnect();
         }
-        return (user);
+        return -1;
     }
 
-//
-//    // SELECT WHERE
-//    public Customer getCustomer(String name, String email) {
-//        conn.connect();
-//        String query = "SELECT * FROM customers WHERE name='" + name + "'&&email='" + email + "'";
-//        Customer customer = new Customer();
-//        try {
-//            Statement stmt = conn.con.createStatement();
-//            ResultSet rs = stmt.executeQuery(query);
-//            while (rs.next()) {
-//                customer.setId(rs.getString("id"));
-//                customer.setName(rs.getString("name"));
-//                customer.setEmail(rs.getString("email"));
-//                customer.setPassword(rs.getString("password"));
-//                customer.setHp(rs.getString("hp"));
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return (customer);
-//    }
-//    
+    // Get ID Transaksi
+    public static int getIdTransaksi() {
+        conn.connect();
+        String query = "SELECT id_transaksi from transaksi WHERE total_harga=" + TransaksiManager.getInstance().getTransaksi().getTotalHarga();
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                return rs.getInt("id_transaksi");
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            conn.disconnect();
+        }
+        return -1;
+    }
+    
+
+    
+        //---KUMPULAN INSERT---
     // INSERT Customer 
     public static boolean insertNewCustomer(User user) {
         conn.connect();
@@ -260,6 +300,7 @@ public class Controller {
         }
     }
 
+    // INSERT Keranjang
     public static boolean insertNewKeranjang(Keranjang keranjang) {
         conn.connect();
         String query = "INSERT INTO keranjang (id, id_prod, nama_prod, jumlah_total, harga_total) VALUES (?,?,?,?,?)";
@@ -279,78 +320,8 @@ public class Controller {
             conn.disconnect();
         }
     }
-
-    public static boolean cekIdProd(int id_prod) {
-        conn.connect();
-        String query = "SELECT * FROM keranjang WHERE id_prod='" + id_prod + "'";
-        boolean isMatch = false;
-        try {
-            Statement stmt = conn.con.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                if (rs.getInt("id_prod") == id_prod) {
-                    isMatch = true;
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            conn.disconnect();
-        }
-        return isMatch;
-    }
-//    public static int getIdKeranjang() {
-//        int id_keranjang = 0;
-//        conn.connect();
-//        String query = "SELECT id_prod FROM keranjang WHERE id=" + UserManager.getInstance().getUser().getID();
-//        try {
-//            Statement stmt = conn.con.createStatement();
-//            ResultSet rs = stmt.executeQuery(query);
-//            while (rs.next()) {
-//                id_keranjang = rs.getInt("id_keranjang");
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return id_keranjang;
-//    }
-
-    // Update Profil
-    public static boolean updateProfilCustomer(UserManager updateUser) {
-        conn.connect();
-        String query = "UPDATE pengguna SET email='" + updateUser.getInstance().getUser().getEmail() + "',"
-                + "noTelp='" + updateUser.getInstance().getUser().getTelepon() + "'"
-                + "WHERE nama='" + updateUser.getInstance().getUser().getNama() + "'";
-        try {
-            Statement stmt = conn.con.createStatement();
-            stmt.executeUpdate(query);
-            return (true);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return (false);
-        } finally {
-            conn.disconnect();
-        }
-    }
-
-    public static int getProdukKeranjang() {
-        conn.connect();
-        int id_keranjang = 0;
-        String query = "SELECT id_keranjang FROM keranjang WHERE id=" + UserManager.getInstance().getUser().getID();
-        try {
-            Statement stmt = conn.con.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                id_keranjang = rs.getInt("id_keranjang");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            conn.disconnect();
-        }
-        return id_keranjang;
-    }
-
+    
+    // Insert New Transaksi
     public static boolean insertNewTransaksi(Transaksi transaksi) {
         conn.connect();
         String query = "INSERT INTO transaksi (id_prod, nama, noTelp, alamat, jenis_pembayaran, "
@@ -377,97 +348,75 @@ public class Controller {
         }
     }
 
-//    public static int getJumlahProduk() {
-//        conn.connect();
-//        String query = "SELECT jumlah_total "
-//                + "from keranjang "
-//                + "WHERE id=" + UserManager.getInstance().getUser().getID() + " "
-//                + "AND id_prod=" + TransaksiManager.getInstance().getTransaksi().getId_produk();
-//        try {
-//            Statement stmt = conn.con.createStatement();
-//            ResultSet rs = stmt.executeQuery(query);
-//            while (rs.next()) {
-//                return rs.getInt("jumlah_total");
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            conn.disconnect();
-//        }
-//        return -1;
-//    }
-
-//    public static int getIdTransaksi() {
-//        conn.connect();
-//        String query = "SELECT id_transaksi from transaksi WHERE total_harga=" + TransaksiManager.getInstance().getTransaksi().getTotalHarga();
-//        try {
-//            Statement stmt = conn.con.createStatement();
-//            ResultSet rs = stmt.executeQuery(query);
-//            while (rs.next()) {
-//                return rs.getInt("id_transaksi");
-//            }
-//        }catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            conn.disconnect();
-//        }
-//        return -1;
-//    }
-//
-//    public static int getIdTransaksi() {
-//        int id_transaksi = 0;
-//        conn.connect();
-//        String query = "SELECT id_transaksi FROM transaksi WHERE nama='" + TransaksiManager.getInstance().getTransaksi().getNamaLengkap() + "'";
-//        try {
-//            Statement stmt = conn.con.createStatement();
-//            ResultSet rs = stmt.executeQuery(query);
-//            while (rs.next()) {
-//                id_transaksi = rs.getInt("id_transaksi");
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return id_transaksi;
-//    }
-
-//    public static int getJumlahProduk() {
-//        int jumlah_produk = 0;
-//        conn.connect();
-//        String query = "SELECT jumlah_produk "
-//                + "from connectorprodukkeranjang "
-//                + "WHERE id_keranjang=" + getProdukKeranjang();
-//        try {
-//            Statement stmt = conn.con.createStatement();
-//            ResultSet rs = stmt.executeQuery(query);
-//            while (rs.next()) {
-//                jumlah_produk = rs.getInt("jumlah_produk");
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return jumlah_produk;
-//    }
-//    public static boolean insertConnectorTransaksi(Transaksi transaksi) {
-//        conn.connect();
-//        int id_produk = TransaksiManager.getInstance().getTransaksi().getIdProduk();
-//        String query = "INSERT INTO connectorproduktransaksi (id_transaksi, id_prod, jumlah_produk, total_harga) VALUES (?,?,?,?)";
-//        try {
-//            PreparedStatement stmt = conn.con.prepareStatement(query);
-//            stmt.setInt(1, getIdTransaksi());
-//            stmt.setInt(2, id_produk);
-//            stmt.setInt(3, getJumlahProduk());
-//            stmt.setInt(4, transaksi.getTotalHarga());
-//            stmt.executeUpdate();
-//            return (true);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            return (false);
-//        }
-//    }
-    public static boolean deleteKeranjang() {
+    // Insert Connector Transaksi
+    public static boolean insertConnectorTransaksi(Transaksi transaksi) {
         conn.connect();
-        String query = "DELETE FROM keranjang WHERE id=" + UserManager.getInstance().getUser().getID() + " "
-                + " AND id_prod=" + TransaksiManager.getInstance().getTransaksi().getId_produk();
+        String query = "INSERT INTO connectorproduktransaksi (id_transaksi, id_prod, jumlah_produk, total_harga) VALUES (?,?,?,?)";
+        try {
+            PreparedStatement stmt = conn.con.prepareStatement(query);
+            stmt.setInt(1, getIdTransaksi());
+            stmt.setInt(2, transaksi.getId_produk());
+            stmt.setInt(3, getJumlahProduk());
+            stmt.setInt(4, transaksi.getTotalHarga());
+            stmt.executeUpdate();
+            return (true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
+        } finally {
+            conn.disconnect();
+        }
+    }
+    
+    
+    
+    // Cek ID Produk
+    public static boolean cekIdProd(int id_prod) {
+        conn.connect();
+        String query = "SELECT * FROM keranjang WHERE id_prod='" + id_prod + "'";
+        boolean isMatch = false;
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                if (rs.getInt("id_prod") == id_prod) {
+                    isMatch = true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            conn.disconnect();
+        }
+        return isMatch;
+    }
+
+    
+        // ---KUMPULAN UPDATE---
+    // Update Profil
+    public static boolean updateProfilCustomer(UserManager updateUser) {
+        conn.connect();
+        String query = "UPDATE pengguna SET email='" + updateUser.getInstance().getUser().getEmail() + "',"
+                + "noTelp='" + updateUser.getInstance().getUser().getTelepon() + "'"
+                + "WHERE nama='" + updateUser.getInstance().getUser().getNama() + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(query);
+            return (true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
+        } finally {
+            conn.disconnect();
+        }
+    }
+    
+    // Update Stock Produk
+    public static boolean updateStok() {
+
+        conn.connect();
+        String query = "UPDATE produk SET stok=(stok - " + TransaksiManager.getInstance().getTransaksi().getJumlah_produk() + ") "
+                + "WHERE id_prod=" + TransaksiManager.getInstance().getTransaksi().getId_produk();
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
@@ -480,10 +429,13 @@ public class Controller {
         }
     }
 
-    public static boolean updateStok() {
+
+        // ---KUMPULAN DELETE---
+    // Delete Keranjang
+    public static boolean deleteKeranjang() {
         conn.connect();
-        String query = "UPDATE produk SET stok=(stok - " + TransaksiManager.getInstance().getTransaksi().getJumlah_produk() + ") "
-                + "WHERE id_prod=" + TransaksiManager.getInstance().getTransaksi().getId_produk();
+        String query = "DELETE FROM keranjang WHERE id=" + UserManager.getInstance().getUser().getID() + " "
+                + " AND id_prod=" + TransaksiManager.getInstance().getTransaksi().getId_produk();
         try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
@@ -511,19 +463,4 @@ public class Controller {
             conn.disconnect();
         }
     }
-//
-//    // DELETE
-//    public boolean deleteUser(String name) {
-//        conn.connect();
-//
-//        String query = "DELETE FROM customers WHERE Name='" + name + "'";
-//        try {
-//            Statement stmt = conn.con.createStatement();
-//            stmt.executeUpdate(query);
-//            return (true);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            return (false);
-//        }
-//    }
 }

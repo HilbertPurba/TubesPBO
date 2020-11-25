@@ -66,7 +66,7 @@ public class DashboardAdmin {
         panelNav = new JPanel();
         panelNav.setBackground(java.awt.Color.white);
         
-        // See
+        // See Transaciton Button
         iconSeeTransaction = new ImageIcon(resizeImage("assets/transaction.png"));
         iconSeeTransaction1 = new ImageIcon(resizeImage("assets/transaction1.png"));
         iconSeeTransaction2 = new ImageIcon(resizeImage("assets/transaction2.png"));
@@ -97,7 +97,7 @@ public class DashboardAdmin {
         btn_seeTransaction.setContentAreaFilled(false);
         panelNav.add(btn_seeTransaction);
         
-        // Cancel
+        // Cancel Transaction Button
         iconCancelTransaction = new ImageIcon(resizeImage("assets/cancelTR.png"));
         iconCancelTransaction1 = new ImageIcon(resizeImage("assets/cancelTR1.png"));
         iconCancelTransaction2 = new ImageIcon(resizeImage("assets/cancelTR2.png"));
@@ -105,30 +105,30 @@ public class DashboardAdmin {
         btn_cancelTransaaction.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn_cancelTransaaction.setIcon(iconCancelTransaction);
         btn_cancelTransaaction.addMouseListener(new MouseAdapter(){
-                    @Override
-                    public void mouseClicked(MouseEvent me){
-                        btn_cancelTransaaction.setIcon(iconCancelTransaction2);
-                        cl.show(clPanel, "panelCancelTransaction");
-                        frame.setTitle("Menu Cancel Transaction");
-                    }
-                    
-                    @Override
-                    public void mouseEntered(MouseEvent me){
-                        btn_cancelTransaaction.setIcon(iconCancelTransaction1);
-                    }
-                    
-                    @Override
-                    public void mouseExited(MouseEvent me){
-                        btn_cancelTransaaction.setIcon(iconCancelTransaction);
-                    }
+                @Override
+                public void mouseClicked(MouseEvent me){
+                    btn_cancelTransaaction.setIcon(iconCancelTransaction2);
+                    cl.show(clPanel, "panelCancelTransaction");
+                    frame.setTitle("Menu Cancel Transaction");
                 }
+
+                @Override
+                public void mouseEntered(MouseEvent me){
+                    btn_cancelTransaaction.setIcon(iconCancelTransaction1);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent me){
+                    btn_cancelTransaaction.setIcon(iconCancelTransaction);
+                }
+            }
         );
         btn_cancelTransaaction.setBorderPainted(false);
         btn_cancelTransaaction.setFocusPainted(false);
         btn_cancelTransaaction.setContentAreaFilled(false);
         panelNav.add(btn_cancelTransaaction);
         
-        // Logout
+        // Logout Button
         iconLogout = new ImageIcon(resizeImage("assets/logout.png"));
         iconLogout1 = new ImageIcon(resizeImage("assets/logout1.png"));
         iconLogout2 = new ImageIcon(resizeImage("assets/logout2.png"));
@@ -167,16 +167,19 @@ public class DashboardAdmin {
         btn_logout.setContentAreaFilled(false);
         panelNav.add(btn_logout);
         
+        // Card Layout Instantiate
         cl = new CardLayout();
         clPanel = new JPanel();
         clPanel.setLayout(cl);
         
+        // Panel Instantiate
         panelSeeTransaction = new PanelAdminSeeTransaction();
         panelCancelTransaction = new PanelAdminCancelTransaction();
         
         clPanel.add(panelSeeTransaction, "panelSeeTransaction");
         clPanel.add(panelCancelTransaction, "panelCancelTransaction");
         
+        // Add to Frame
         frame = new JFrame("Menu Utama");
         frame.add(clPanel);
         frame.add(panelNav, BorderLayout.PAGE_END);
@@ -185,6 +188,7 @@ public class DashboardAdmin {
         frame.setResizable(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        
         //Logo
         logo = new ImageIcon("assets/logo.png");
         frame.setIconImage(logo.getImage());    

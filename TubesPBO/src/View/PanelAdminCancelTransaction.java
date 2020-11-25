@@ -64,6 +64,7 @@ public class PanelAdminCancelTransaction extends JPanel implements ActionListene
         header = new JPanel();
         header.setBackground(Color.WHITE);
 
+        // Judul Header
         judul = new JLabel("CANCEL TRANSAKSI");
         judul.setFont(new Font("Calibri", Font.BOLD, 60));
         judul.setForeground(Color.red);
@@ -71,10 +72,12 @@ public class PanelAdminCancelTransaction extends JPanel implements ActionListene
 
         panel = new JPanel(new GridBagLayout());
 
+        // Judul 2
         judul1 = new JLabel("Daftar Transaksi: ");
         judul1.setFont(new Font("Segoe UI", Font.BOLD, 20));
         judul1.setForeground(Color.red);
 
+        // Label
         idTrL = new JLabel("ID Transaksi       ");
         idTrL.setFont(new Font("Segoe UI", Font.BOLD, 16));
         namaProdukL = new JLabel("Nama Produk             ");
