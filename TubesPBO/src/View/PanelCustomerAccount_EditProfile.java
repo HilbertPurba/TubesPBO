@@ -6,8 +6,10 @@
 package View;
 
 import Controller.Controller;
+import Controller.DatabaseHandler;
 import Model.User;
 import Model.UserManager;
+import static View.DashboardCustomer.conn;
 import static View.DashboardCustomer.frame;
 import java.awt.Cursor;
 import java.awt.GridBagConstraints;
@@ -43,6 +45,8 @@ public class PanelCustomerAccount_EditProfile extends JFrame implements ActionLi
     private GridBagConstraints gbc;
     private ImageIcon iconOk, iconBack, iconBack1;
     private JButton btnOk, btnBack;
+    
+    static DatabaseHandler conn = new DatabaseHandler();
     
     private Image resizeImage(String url) {
         Image dimg = null;
@@ -80,6 +84,8 @@ public class PanelCustomerAccount_EditProfile extends JFrame implements ActionLi
                 new MouseAdapter(){
                     @Override
                     public void mouseClicked(MouseEvent me){
+                        conn.connect();
+                        conn.disconnect();
                         btnBack.setIcon(iconBack);
                         dispose();
                     }
@@ -135,7 +141,6 @@ public class PanelCustomerAccount_EditProfile extends JFrame implements ActionLi
         setLocationRelativeTo(null);
         setResizable(true);
         getContentPane().add(panel);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
